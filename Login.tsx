@@ -34,6 +34,7 @@ export default class Login extends Component {
     login = () => {
     }
     signUp = () => {
+        this.props.navigation.navigate('SignUp')
     }
 
     render() {
@@ -49,61 +50,13 @@ export default class Login extends Component {
                     <Text style={styles.loginText}> Login </Text>
                 </TouchableOpacity>
 
-
                 <TouchableOpacity
                     style={styles.signUpButton}
                     onPress={() => this.signUp()}
                 >
                     <Text style={styles.loginText}> Sign Up </Text>
                 </TouchableOpacity>
-            </View>
-            
-            // <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            //     <SafeAreaView style={styles.container}>
-            //         <StatusBar barStyle="dark-content" backgroundColor="#000000"/>
-            //         <Image source={{uri: 'https://i.imgur.com/l8cADUr.png'}}
-            //                style={styles.myImage}
-            //         />
-            //         <View style={styles.inputs}>
-            //             <Icon name="email" size={16} style={styles.emailIcon}/>
-            //             <TextInput style={styles.emailBox}
-            //                        placeholder="Email"
-            //                        autoCapitalize="none"
-            //                        autoCorrect={false}
-            //                        textContentType={'emailAddress'}
-            //                        onChangeText={this.handleEmail}/>
-            //         </View>
-            //         <View style={styles.inputs}>
-            //             <Icon name="locked" size={16} style={styles.passwordIcon}/>
-            //             <TextInput style={styles.passwordBox}
-            //                        placeholder="Password"
-            //                        autoCapitalize="none"
-            //                        autoCorrect={false}
-            //                        secureTextEntry={true}
-            //                        textContentType={'password'}
-            //                        onChangeText={this.handlePassword}/>
-            //         </View>
-            //         <View style={styles.loginContainer}>
-            //             <TouchableOpacity
-            //                 style={styles.loginButton}
-            //                 onPress={() => this.login()}
-            //             >
-            //                 <Text style={styles.loginText}> Login </Text>
-            //             </TouchableOpacity>
-            //         </View>
-            //         <Text
-            //             style={styles.forgotPasswordText}
-            //             onPress={() => this.props.navigation.navigate('ForgotPassword')}
-            //         >Forgot password? </Text>
-            //         <View style={styles.inputs}>
-            //             <Text style={styles.signUpText}>No account? Sign up </Text>
-            //             <Text
-            //                 style={styles.hereText}
-            //                 onPress={() => this.props.navigation.navigate('SignUp')}
-            //             >here </Text>
-            //         </View>
-            //     </SafeAreaView>
-            // </TouchableWithoutFeedback>
+            </View>            
         )
     }
 }
@@ -112,48 +65,10 @@ const styles = StyleSheet.create({
         marginTop: 100,
         alignItems: 'center',
     },
-    inputs: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
     myImage: {
         width: 400,
         height: 370,
         marginTop:1,
-    },
-    emailIcon: {
-        marginLeft: 30,
-        marginBottom: -10,
-    },
-    emailBox: {
-        height: 40,
-        color: 'black',
-        marginLeft: -45,
-        borderBottomColor: 'grey',
-        fontSize: 16,
-        borderBottomWidth: 2,
-        width: '80%',
-        textAlign: 'center',
-        fontFamily: 'Futura',
-        alignItems: 'center',
-        marginTop: 10,
-    },
-    passwordIcon: {
-        marginLeft: 30,
-        marginBottom: -30,
-    },
-    passwordBox: {
-        height: 40,
-        marginTop: 30,
-        color: 'black',
-        marginLeft: -45,
-        borderBottomColor: 'grey',
-        fontSize: 16,
-        borderBottomWidth: 2,
-        width: '80%',
-        textAlign: 'center',
-        fontFamily: 'Futura',
-        alignItems: 'center',
     },
     loginContainer: {
         flex: 1,
@@ -190,28 +105,5 @@ const styles = StyleSheet.create({
         color: '#fff8dc',
         fontFamily: 'Gill Sans',
         fontSize: 20,
-    },
-    forgotPasswordText: {
-        fontFamily: 'Futura',
-        color: 'black',
-        textDecorationLine: 'underline',
-        marginTop: 50,
-        fontSize: 16,
-        marginBottom: -40,
-    },
-    signUpText: {
-        fontFamily: 'Futura',
-        color: 'black',
-        marginTop: 50,
-        fontSize: 16,
-        marginBottom: -40,
-    },
-    hereText: {
-        fontFamily: 'Futura',
-        color: 'black',
-        textDecorationLine: 'underline',
-        marginTop: 50,
-        fontSize: 16,
-        marginBottom: -40,
     }
 })
