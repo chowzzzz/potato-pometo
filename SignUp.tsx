@@ -1,4 +1,5 @@
 
+import { any } from 'prop-types';
 import React, { Component } from 'react';
 import {
     StyleSheet,
@@ -10,8 +11,9 @@ import {
     TouchableWithoutFeedback,
     Keyboard,
 } from 'react-native';
-export default class SignUp extends Component {
-    constructor(props) {
+import Navigation from './navigation';
+export default class SignUp extends Component<any> {
+    constructor(props:any) {
         super(props);
         this.state = {
             name: '',
@@ -23,11 +25,11 @@ export default class SignUp extends Component {
             samePasswords: true,
         }
     }
-    handleName = (name) => {
+    handleName = (name: any) => {
         this.setState({ name: name })
     }
 
-    handleEmail = (email) => {
+    handleEmail = (email: any) => {
         this.setState({ email: email })
     }
 
@@ -68,7 +70,6 @@ export default class SignUp extends Component {
                         <View>
                         <TouchableOpacity>
                        <Text onPress={() => this.props.navigation.navigate('Login')}>Back to Login</Text>
-
                     </TouchableOpacity>
                         </View>
                     </View>

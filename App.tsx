@@ -15,7 +15,7 @@ import SignUp from "./SignUp";
 const Stack = createStackNavigator();
 const RootStack = createStackNavigator();
 
-function StackScreen({navigation}) {
+function StackScreen() {
     return (
         <Stack.Navigator>
             <Stack.Screen name="Login"
