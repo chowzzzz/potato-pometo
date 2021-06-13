@@ -11,7 +11,7 @@ import {
     TouchableWithoutFeedback,
     Keyboard,
 } from 'react-native';
-import Navigation from './navigation';
+import Navigation from '../navigation';
 export default class SignUp extends Component<any> {
     constructor(props:any) {
         super(props);

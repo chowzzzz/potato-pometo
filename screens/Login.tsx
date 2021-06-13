@@ -40,7 +40,7 @@ export default class Login extends Component {
     render() {
         return (
             <View style={styles.loginContainer}>
-                <Image source={require('./assets/images/pometo.png')} 
+                <Image source={require('../assets/images/pometo.png')} 
                  style={styles.myImage}
                 />
                 <TouchableOpacity

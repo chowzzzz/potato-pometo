@@ -6,10 +6,10 @@ import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-
-import Login from './Login';
-import SignUp from "./SignUp";
+import Login from './screens/Login';
+import SignUp from "./screens/SignUp";
 
 
 const Stack = createStackNavigator();
@@ -33,7 +33,15 @@ function StackScreen() {
 }
 
 export default function App() {
+  const isLoadingComplete = useCachedResources();
+  const colorScheme = useColorScheme();
+
+  if (!isLoadingComplete) {
+    return null;
+  } else {
     return (
+      <SafeAreaProvider>
+        {/* <Navigation colorScheme={colorScheme} /> */}
         <NavigationContainer>
             <RootStack.Navigator mode = "modal"
                                  headerMode = "none"
@@ -42,5 +50,8 @@ export default function App() {
                                   component={StackScreen} />
             </RootStack.Navigator>
         </NavigationContainer>
+      </SafeAreaProvider>
     );
+  }
 }
+
