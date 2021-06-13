@@ -14,8 +14,8 @@ import {
     SafeAreaView
 } from 'react-native';
 
-export default class Login extends Component {
-    constructor(props) {
+export default class MainPage extends Component {
+    constructor(props: any) {
         super(props);
         this.state = {
             email: '',

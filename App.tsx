@@ -8,7 +8,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import Login from './screens/Login';
+import MainPage from './screens/MainPage';
 import SignUp from "./screens/SignUp";
 
 
@@ -18,8 +18,8 @@ const RootStack = createStackNavigator();
 function StackScreen() {
     return (
         <Stack.Navigator>
-            <Stack.Screen name="Login"
-                          component={Login}
+            <Stack.Screen name="MainPage"
+                          component={MainPage}
                                   /> 
             <Stack.Screen name="SignUp"
                           component={SignUp}
@@ -46,7 +46,7 @@ export default function App() {
             <RootStack.Navigator mode = "modal"
                                  headerMode = "none"
             >
-                <RootStack.Screen name="Login"
+                <RootStack.Screen name="MainPage"
                                   component={StackScreen} />
             </RootStack.Navigator>
         </NavigationContainer>

@@ -69,7 +69,7 @@ export default class SignUp extends Component<any> {
 
                         <View>
                         <TouchableOpacity>
-                       <Text onPress={() => this.props.navigation.navigate('Login')}>Back to Login</Text>
+                       <Text onPress={() => this.props.navigation.navigate('MainPage')}>Back to Login</Text>
                     </TouchableOpacity>
                         </View>
                     </View>
