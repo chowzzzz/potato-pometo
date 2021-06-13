@@ -1,5 +1,5 @@
-import 'react-native-gesture-handler';
-import React from 'react';
+import "react-native-gesture-handler";
+import React from "react";
 
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
@@ -10,7 +10,6 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import MainPage from './screens/MainPage';
 import SignUp from "./screens/SignUp";
-
 
 const Stack = createStackNavigator();
 const RootStack = createStackNavigator();
