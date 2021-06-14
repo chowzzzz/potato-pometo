@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { SafeAreaView, View, StyleSheet, Text, Image, FlatList, TouchableOpacity } from "react-native";
+import { SafeAreaView, View, StyleSheet, Text, Image, FlatList } from "react-native";
 import { Card, ListItem, Button, Icon } from 'react-native-elements'
-import { baseProps } from 'react-native-gesture-handler/lib/typescript/handlers/gestureHandlers';
 
 // import EditScreenInfo from '../components/EditScreenInfo';
 // import { Text, View } from '../components/Themed';
@@ -32,43 +31,42 @@ const DATA = [
 ];
 
 // TODO: pass in items param to render this for all posts
-const Post = ({ title, imageUrl, username, caption }) => (
+const Post = ({title, imageUrl, username, caption}) => (
   <Card>
     {/* <Card.Image source={ require(imageUrl) }></Card.Image> */}
-    <Text>{username}</Text>
-    <Card.Divider />
+    <Text>{ username }</Text>
+    <Card.Divider/>
     <Text>{caption}</Text>
     {/* <Card.Title>{title}</Card.Title> */}
   </Card>
 );
 
-export default function TabOneScreen(props: any) {
+export default function Game() {
   const renderItem = ({ item }) => (
     <Post
-      title={item.title}
-      imageUrl={item.imageUrl}
-      username={item.username}
-      caption={item.caption}
+      title={ item.title }
+      imageUrl={ item.imageUrl }
+      username={ item.username }
+      caption={ item.caption }
     />
   );
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
+    <SafeAreaView style={styles.container}>
+      {/* <Text style={styles.title}>Tab One</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <EditScreenInfo path="/screens/TabOneScreen.tsx" /> */}
       <Search />
-      <FlatList
+      {/* <FlatList
         data={DATA}
         renderItem={renderItem}
         keyExtractor={item => item.id}
-      />
-      {/* Adding this button for testing purposes */}
-      <TouchableOpacity
-        onPress={() => props.navigation.navigate('Game')}
-      >
-        <Text > Game page </Text>
-      </TouchableOpacity>
+      /> */}
+	  <View>
+		  <Text>
+			  hello 
+		  </Text>
+	  </View>
     </SafeAreaView>
   );
 }
@@ -77,7 +75,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    alignSelf: 'stretch',
+    justifyContent: 'flex-start',
   },
   title: {
     fontSize: 20,

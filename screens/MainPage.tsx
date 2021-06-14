@@ -31,11 +31,12 @@ export default class MainPage extends Component {
     //     this.setState({ password: password })
     // }
 
-    login = () => {
-    }
-    signUp = () => {
-        this.props.navigation.navigate('SignUp')
-    }
+	login = () => {
+		this.props.navigation.navigate('TabOneScreen')
+	};
+	signUp = () => {
+		this.props.navigation.navigate("SignUp");
+	};
 
     render() {
         return (
