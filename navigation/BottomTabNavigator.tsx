@@ -23,26 +23,26 @@ export default function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="TabOne"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
+      tabBarOptions={{ activeTintColor: '#883677', inactiveTintColor: '#AB8FDC' }}>
       <BottomTab.Screen
-        name="TabOne"
+        name="Feed"
         component={TabOneNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
+        name="Games"
         component={TabTwoNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="game-controller" color={color} />,
         }}
       />
       <BottomTab.Screen
-        name="TabThree"
+        name="Profile"
         component={TabThreeNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="person" color={color} />,
         }}
       />
     </BottomTab.Navigator>
