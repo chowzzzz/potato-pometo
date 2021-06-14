@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { StyleSheet, View, Image, StatusBar, TextInput, TouchableOpacity, Text, Keyboard, TouchableWithoutFeedback, Alert, SafeAreaView } from "react-native";
 
-import Search from "./components/Search";
+import Search from "../components/Search";
 
 export default class MainPage extends Component {
 	constructor(props: any) {
@@ -29,6 +29,7 @@ export default class MainPage extends Component {
 	render() {
 		return (
 			<View style={styles.loginContainer}>
+				<Search />
 				<Image source={require("../assets/images/pometo.png")} style={styles.myImage} />
 				<TouchableOpacity style={styles.loginButton} onPress={() => this.login()}>
 					<Text style={styles.loginText}> Login </Text>
