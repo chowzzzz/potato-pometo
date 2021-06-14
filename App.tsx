@@ -10,42 +10,54 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import MainPage from "./screens/MainPage";
 import SignUp from "./screens/SignUp";
+// import Login from "./screens/Login";
 
 const Stack = createStackNavigator();
 const RootStack = createStackNavigator();
 
 function StackScreen() {
-	return (
-		<Stack.Navigator>
-			<Stack.Screen name="MainPage" component={MainPage} />
-			<Stack.Screen
-				name="SignUp"
-				component={SignUp}
-				options={{
-					title: "Sign Up",
-					headerShown: false
-				}}
-			/>
-		</Stack.Navigator>
-	);
+    return (
+        <Stack.Navigator>
+            <Stack.Screen name="MainPage"
+                component={MainPage}
+            />
+            <Stack.Screen name="SignUp"
+                component={SignUp}
+                options={{
+                    title: 'Sign Up',
+                    headerShown: false,
+                }}
+            />
+            {/* <Stack.Screen name="Login"
+                component={Login}
+                options={{
+                    title: 'Login',
+                    headerShown: false,
+                }}
+            /> */}
+        </Stack.Navigator>
+    )
 }
 
 export default function App() {
-	const isLoadingComplete = useCachedResources();
-	const colorScheme = useColorScheme();
+    const isLoadingComplete = useCachedResources();
+    const colorScheme = useColorScheme();
 
-	if (!isLoadingComplete) {
-		return null;
-	} else {
-		return (
-			<SafeAreaProvider>
-				{/* <Navigation colorScheme={colorScheme} /> */}
-				<NavigationContainer>
-					<RootStack.Navigator mode="modal" headerMode="none">
-						<RootStack.Screen name="MainPage" component={StackScreen} />
-					</RootStack.Navigator>
-				</NavigationContainer>
-			</SafeAreaProvider>
-		);
-	}
+    if (!isLoadingComplete) {
+        return null;
+    } else {
+        return (
+            <SafeAreaProvider>
+                {/* <Navigation colorScheme={colorScheme} /> */}
+                <NavigationContainer>
+                    <RootStack.Navigator mode="modal"
+                        headerMode="none"
+                    >
+                        <RootStack.Screen name="MainPage"
+                            component={StackScreen} />
+                    </RootStack.Navigator>
+                </NavigationContainer>
+            </SafeAreaProvider>
+        );
+    }
 }
