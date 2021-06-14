@@ -33,7 +33,9 @@ export default class MainPage extends Component {
 	//     this.setState({ password: password })
 	// }
 
-	login = () => {};
+	login = () => {
+		this.props.navigation.navigate('TabOneScreen')
+	};
 	signUp = () => {
 		this.props.navigation.navigate("SignUp");
 	};
