@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { Component, useEffect } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -12,9 +12,6 @@ import {
   TextInput,
 } from "react-native";
 import { Card, ListItem, Button, Icon } from "react-native-elements";
-
-// import EditScreenInfo from '../components/EditScreenInfo';
-// import { Text, View } from '../components/Themed';
 import Search from "../components/Search";
 
 const DATA = [
@@ -36,7 +33,7 @@ const DATA = [
       "Saw this alien like thing flew past my window? Anyone got any idea?? Are we getting eaten by aliens?!?!",
   },
   {
-    id: "3ac68afc-c605-4cv3-a4f8-fbd91aa97f63",
+    id: "3ac68afc-c605-4cv3-a4f8-fbd91aa97f65",
     title: "Welcome Thomas Chua to the team! 🎉",
     imageUrl:
       "https://www.robolink.com/wp-content/uploads/2019/01/han_circle.png",
@@ -54,7 +51,7 @@ const DATA = [
       "Dope af remix! Anyone down to watch phua chu kang new hit song with me this Saturdayday 10pm? Open jio everyone!",
   },
   {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53cbb28ba",
+    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28b0",
     title: "My Dog Bobby",
     imageUrl:
       "https://4cxqn5j1afk2facwz3mfxg5r-wpengine.netdna-ssl.com/wp-content/uploads/2017/07/Pet-Dog.jpg",
@@ -63,7 +60,7 @@ const DATA = [
       "Just adopted a new dog over the weekend! Say hi to bobby (: He's a german shepard mix maltese and he looooooooooooves grapes ((((:",
   },
   {
-    id: "3ac68afc-c605-49d3-a4f8-fbd91aa97f63",
+    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f64",
     title: "Baked some fresh brownies! Anyone wanna be my guinea pig?",
     imageUrl:
       "https://static.thehoneycombers.com/wp-content/uploads/sites/2/2020/08/bundt-by-the-backyard-bakers-900x643.png",
@@ -121,296 +118,383 @@ const Post = ({ title, imageUrl, username, caption }) => (
   </Card>
 );
 
-export default function TabOneScreen(props: any) {
-  const renderItem = ({ item }) => (
-    <Post
-      key={item.id}
-      title={item.title}
-      imageUrl={item.imageUrl}
-      username={item.username}
-      caption={item.caption}
-    />
-  );
-  const [modal, setModal] = React.useState(0);
-  const [title, onChangeTitle] = React.useState("");
-  const [text, onChangeText] = React.useState("");
+export default class TabOneScreen extends React.Component {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      searchQuery: "",
+      displayedData: DATA,
+      modal: 0,
+      title: "",
+      text: "",
+    };
+    this.setSearchQuery = this.setSearchQuery.bind(this);
+    this.onChangeTitle = this.onChangeTitle.bind(this);
+    this.onChangeText = this.onChangeText.bind(this);
+  }
+  //   const [modal, setModal] = React.useState(0);
+  //   const [title, onChangeTitle] = React.useState("");
+  //   const [text, onChangeText] = React.useState("");
 
-  return (
-    <SafeAreaView>
-      <View style={styles.header}>
-        <View style={styles.headerText}>
-          <Text
-            style={{ fontSize: 15, fontFamily: "sans-serif", marginBottom: 5 }}
-          >
-            Good Afternoon 👋
-          </Text>
-          <Text
-            style={{
-              fontSize: 25,
-              fontFamily: "sans-serif",
-              fontWeight: "bold",
-            }}
-          >
-            Elizabeth Lee
-          </Text>
-        </View>
-        <Image
-          source={require("../assets/images/profilepic.png")}
-          style={styles.myImage}
-        />
-      </View>
+  componentDidMount() {
+    this.setState({ displayedData: DATA });
+  }
 
-      <ScrollView
-        contentContainerStyle={styles.container}
-        showsVerticalScrollIndicator={false}
-      >
-        <View>
-          <View style={styles.actionRow}>
-            <Search />
-            <TouchableOpacity
-              style={styles.addContainer}
-              onPress={() => setModal(1)}
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.state.searchQuery !== nextState.searchQuery) {
+      this.searchFilterFunction();
+      return true;
+    }
+    if (this.state !== nextState) {
+      return true;
+    }
+    return false;
+  }
+
+  setSearchQuery(searchQuery: string) {
+    this.setState({ searchQuery: searchQuery });
+  }
+
+  setModal(modal) {
+    this.setState({ modal });
+  }
+
+  onChangeTitle(title) {
+    this.setState({ title });
+  }
+
+  onChangeText(text) {
+    this.setState({ text });
+  }
+
+  searchFilterFunction = _.debounce(() => {
+    const text = this.state.searchQuery.toLowerCase();
+    const newData = DATA.filter(function (item) {
+      return (
+        item.title.toLowerCase().includes(text) ||
+        item.username.toLowerCase().includes(text) ||
+        item.caption.toLowerCase().includes(text)
+      );
+    });
+    this.setState({ displayedData: newData });
+  }, 150);
+
+  render() {
+    const renderItem = ({ item }) => (
+      <Post
+        key={item.id}
+        title={item.title}
+        imageUrl={item.imageUrl}
+        username={item.username}
+        caption={item.caption}
+      />
+    );
+
+    return (
+      <SafeAreaView>
+        <View style={styles.header}>
+          <View style={styles.headerText}>
+            <Text
+              style={{
+                fontSize: 15,
+                fontFamily: "sans-serif",
+                marginBottom: 5,
+              }}
             >
-              <Image
-                source={require("../assets/icons/writeicon.png")}
-                style={styles.writeicon}
-              />
-            </TouchableOpacity>
-          </View>
-          <Text
-            style={{
-              fontSize: 15,
-              fontWeight: "bold",
-              marginLeft: 20,
-              marginTop: 20,
-              marginBottom: 10,
-            }}
-          >
-            Categories
-          </Text>
-          <View style={styles.actionRow}>
-            <TouchableOpacity
-              style={styles.iconBox}
-              onPress={() => setModal(2)}
+              Good Afternoon 👋
+            </Text>
+            <Text
+              style={{
+                fontSize: 25,
+                fontFamily: "sans-serif",
+                fontWeight: "bold",
+              }}
             >
-              <Image
-                source={require("../assets/images/cake.png")}
-                style={styles.icon}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.iconBox}>
-              <Image
-                source={require("../assets/images/burger.png")}
-                style={styles.icon}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.iconBox}>
-              <Image
-                source={require("../assets/images/controller.png")}
-                style={styles.icon}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.iconBox}>
-              <Image
-                source={require("../assets/images/cloudbubble.png")}
-                style={styles.icon}
-              />
-            </TouchableOpacity>
+              Elizabeth Lee
+            </Text>
           </View>
-
-          <Text
-            style={{
-              fontSize: 15,
-              fontWeight: "bold",
-              marginLeft: 20,
-              marginTop: 20,
-            }}
-          >
-            Your Feed
-          </Text>
-
-          <FlatList
-            data={DATA}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id}
+          <Image
+            source={require("../assets/images/profilepic.png")}
+            style={styles.myImage}
           />
         </View>
-      </ScrollView>
 
-      <Modal
-        avoidKeyboard={true}
-        transparent={true}
-        visible={modal !== 0}
-        onRequestClose={() => setModal(0)}
-      >
-        {modal === 1 && (
-          <View style={styles.modalContainer}>
-            <View style={styles.modalContent1}>
-              <View style={styles.modalContent}>
-                <TouchableOpacity
-                  style={{ alignSelf: "flex-start" }}
-                  onPress={() => setModal(0)}
-                >
-                  <Image
-                    source={require("../assets/icons/cross.png")}
-                    style={styles.cross}
-                  />
-                </TouchableOpacity>
-
-                <Text style={styles.modalHeader}>Post It!</Text>
-                <View
-                  style={{
-                    flexDirection: "row",
-                    alignItems: "center",
-                    justifyContent: "flex-start",
-                    marginVertical: 10,
-                    width: "100%",
-                  }}
-                >
-                  <Image
-                    source={require("../assets/images/camerapic.png")}
-                    style={styles.camera}
-                  />
-                  <Text
-                    style={{
-                      width: 80,
-                      marginTop: 10,
-                      textAlign: "left",
-                      color: "#808080",
-                    }}
-                  >
-                    Upload {"\n"}Your Photo
-                  </Text>
-                </View>
-
-                <TextInput
-                  style={styles.input}
-                  onChangeText={onChangeTitle}
-                  value={title}
-                  placeholder="Title"
+        <ScrollView
+          contentContainerStyle={styles.container}
+          showsVerticalScrollIndicator={false}
+        >
+          <View>
+            <View style={styles.actionRow}>
+              <Search setSearchQuery={this.setSearchQuery} />
+              <TouchableOpacity
+                style={styles.addContainer}
+                onPress={() => this.setModal(1)}
+              >
+                <Image
+                  source={require("../assets/icons/writeicon.png")}
+                  style={styles.writeicon}
                 />
-
-                <TextInput
-                  style={styles.input2}
-                  onChangeText={onChangeText}
-                  value={text}
-                  placeholder="Share more about it (:"
-                  multiline={true}
-                />
-
-                <View style={{ marginTop: 20 }}>
-                  <Button
-                    title="Submit"
-                    buttonStyle={{ backgroundColor: "#8741bb" }}
-                    onPress={() => setModal(0)}
-                  />
-                </View>
-              </View>
+              </TouchableOpacity>
             </View>
+            <Text
+              style={{
+                fontSize: 15,
+                fontWeight: "bold",
+                marginLeft: 20,
+                marginTop: 20,
+                marginBottom: 10,
+              }}
+            >
+              Categories
+            </Text>
+            <View style={styles.actionRow}>
+              <TouchableOpacity
+                style={styles.iconBox}
+                onPress={() => this.setModal(2)}
+              >
+                <Image
+                  source={require("../assets/images/cake.png")}
+                  style={styles.icon}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.iconBox}>
+                <Image
+                  source={require("../assets/images/burger.png")}
+                  style={styles.icon}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.iconBox}>
+                <Image
+                  source={require("../assets/images/controller.png")}
+                  style={styles.icon}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.iconBox}>
+                <Image
+                  source={require("../assets/images/cloudbubble.png")}
+                  style={styles.icon}
+                />
+              </TouchableOpacity>
+            </View>
+
+            <Text
+              style={{
+                fontSize: 15,
+                fontWeight: "bold",
+                marginLeft: 20,
+                marginTop: 20,
+              }}
+            >
+              Your Feed
+            </Text>
+
+            <FlatList
+              data={this.state.displayedData}
+              renderItem={renderItem}
+              keyExtractor={(item) => item.id}
+            />
           </View>
-        )}
-        {modal === 2 && (
-          <View style={styles.modalContainer}>
-            <View style={styles.modalContent1}>
-              <View style={styles.modalContent}>
-                <View style={{ flexDirection: "row", alignItems: "center" }}>
+        </ScrollView>
+
+        <Modal
+          avoidKeyboard={true}
+          transparent={true}
+          visible={this.state.modal !== 0}
+          onRequestClose={() => this.setModal(0)}
+        >
+          {this.state.modal === 1 && (
+            <View style={styles.modalContainer}>
+              <View style={styles.modalContent1}>
+                <View style={styles.modalContent}>
                   <TouchableOpacity
                     style={{ alignSelf: "flex-start" }}
-                    onPress={() => setModal(0)}
+                    onPress={() => this.setModal(0)}
                   >
                     <Image
                       source={require("../assets/icons/cross.png")}
                       style={styles.cross}
                     />
                   </TouchableOpacity>
-                  <Image
-                    source={require("../assets/images/birthdays.png")}
-                    style={styles.birthday}
+
+                  <Text style={styles.modalHeader}>Post It!</Text>
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      alignItems: "center",
+                      justifyContent: "flex-start",
+                      marginVertical: 10,
+                      width: "100%",
+                    }}
+                  >
+                    <Image
+                      source={require("../assets/images/camerapic.png")}
+                      style={styles.camera}
+                    />
+                    <Text
+                      style={{
+                        width: 80,
+                        marginTop: 10,
+                        textAlign: "left",
+                        color: "#808080",
+                      }}
+                    >
+                      Upload {"\n"}Your Photo
+                    </Text>
+                  </View>
+
+                  <TextInput
+                    style={styles.input}
+                    onChangeText={this.onChangeTitle}
+                    value={this.state.title}
+                    placeholder="Title"
                   />
 
-                  <Text style={styles.modalHeader}>
-                    Birthdays & Worknnivarsaries
-                  </Text>
-                </View>
-                <Text style={styles.titles}>Today's</Text>
-                <View style={styles.input3}>
-                  <Image
-                    source={require("../assets/images/candle.png")}
-                    style={styles.candle}
+                  <TextInput
+                    style={styles.input2}
+                    onChangeText={this.onChangeText}
+                    value={this.state.text}
+                    placeholder="Share more about it (:"
+                    multiline={true}
                   />
-                  <View style={{ flexDirection: "row" }}>
-                    <Text style={{ fontWeight: "bold"}}>Marie Sim</Text>
-                    <Text>'s birthday today!</Text>
-                  </View>
-                </View>
-                <Text style={styles.titles}>Upcoming's</Text>
-                <View style={styles.input3}>
-                  <Image
-                    source={require("../assets/images/candle.png")}
-                    style={styles.candle}
-                  />
-                  <View style={{ flexDirection: "row" }}>
-                    <Text style={{ fontWeight: "bold", fontSize: 12 }}>Eliz Lu</Text>
-                    <Text style={{fontSize: 12 }}>'s birthday in 3 days!</Text>
-                  </View>
-                </View>
-                <View style={styles.input3}>
-                  <Image
-                    source={require("../assets/images/medal.png")}
-                    style={styles.candle}
-                  />
-                  <View style={{ flexDirection: "row" }}>
-                    <Text style={{ fontWeight: "bold", fontSize: 12 }}>Lynn Chew</Text>
-                    <Text style={{fontSize: 12 }}>'s 2nd worknnivarsary in 3 days!</Text>
-                  </View>
-                </View>
-                <View style={styles.input3}>
-                  <Image
-                    source={require("../assets/images/candle.png")}
-                    style={styles.candle}
-                  />
-                  <View style={{ flexDirection: "row" }}>
-                    <Text style={{ fontWeight: "bold", fontSize: 12 }}>Don Key</Text>
-                    <Text style={{fontSize: 12 }}>'s birthday in 5 days!</Text>
-                  </View>
-                </View>
-                <View style={styles.input3}>
-                  <Image
-                    source={require("../assets/images/medal.png")}
-                    style={styles.candle}
-                  />
-                  <View style={{ flexDirection: "row" }}>
-                    <Text style={{ fontWeight: "bold", fontSize: 12 }}>Matt Tan</Text>
-                    <Text style={{fontSize: 12 }}>'s 5th worknnivarsary in 9 days!</Text>
-                  </View>
-                </View>
-                <View style={styles.input3}>
-                  <Image
-                    source={require("../assets/images/candle.png")}
-                    style={styles.candle}
-                  />
-                  <View style={{ flexDirection: "row" }}>
-                    <Text style={{ fontWeight: "bold", fontSize: 12 }}>Mee Sua</Text>
-                    <Text style={{fontSize: 12 }}>'s birthday in 10 days!</Text>
-                  </View>
-                </View>
-                <View style={styles.input3}>
-                  <Image
-                    source={require("../assets/images/candle.png")}
-                    style={styles.candle}
-                  />
-                  <View style={{ flexDirection: "row" }}>
-                    <Text style={{ fontWeight: "bold", fontSize: 12 }}>Mee Pok</Text>
-                    <Text style={{fontSize: 12 }}>'s birthday in 10 days!</Text>
+
+                  <View style={{ marginTop: 20 }}>
+                    <Button
+                      title="Submit"
+                      buttonStyle={{ backgroundColor: "#8741bb" }}
+                      onPress={() => this.setModal(0)}
+                    />
                   </View>
                 </View>
               </View>
             </View>
-          </View>
-        )}
-      </Modal>
-    </SafeAreaView>
-  );
+          )}
+          {this.state.modal === 2 && (
+            <View style={styles.modalContainer}>
+              <View style={styles.modalContent1}>
+                <View style={styles.modalContent}>
+                  <View style={{ flexDirection: "row", alignItems: "center" }}>
+                    <TouchableOpacity
+                      style={{ alignSelf: "flex-start" }}
+                      onPress={() => this.setModal(0)}
+                    >
+                      <Image
+                        source={require("../assets/icons/cross.png")}
+                        style={styles.cross}
+                      />
+                    </TouchableOpacity>
+                    <Image
+                      source={require("../assets/images/birthdays.png")}
+                      style={styles.birthday}
+                    />
+
+                    <Text style={styles.modalHeader}>
+                      Birthdays & Worknnivarsaries
+                    </Text>
+                  </View>
+                  <Text style={styles.titles}>Today's</Text>
+                  <View style={styles.input3}>
+                    <Image
+                      source={require("../assets/images/candle.png")}
+                      style={styles.candle}
+                    />
+                    <View style={{ flexDirection: "row" }}>
+                      <Text style={{ fontWeight: "bold" }}>Marie Sim</Text>
+                      <Text>'s birthday today!</Text>
+                    </View>
+                  </View>
+                  <Text style={styles.titles}>Upcoming's</Text>
+                  <View style={styles.input3}>
+                    <Image
+                      source={require("../assets/images/candle.png")}
+                      style={styles.candle}
+                    />
+                    <View style={{ flexDirection: "row" }}>
+                      <Text style={{ fontWeight: "bold", fontSize: 12 }}>
+                        Eliz Lu
+                      </Text>
+                      <Text style={{ fontSize: 12 }}>
+                        's birthday in 3 days!
+                      </Text>
+                    </View>
+                  </View>
+                  <View style={styles.input3}>
+                    <Image
+                      source={require("../assets/images/medal.png")}
+                      style={styles.candle}
+                    />
+                    <View style={{ flexDirection: "row" }}>
+                      <Text style={{ fontWeight: "bold", fontSize: 12 }}>
+                        Lynn Chew
+                      </Text>
+                      <Text style={{ fontSize: 12 }}>
+                        's 2nd worknnivarsary in 3 days!
+                      </Text>
+                    </View>
+                  </View>
+                  <View style={styles.input3}>
+                    <Image
+                      source={require("../assets/images/candle.png")}
+                      style={styles.candle}
+                    />
+                    <View style={{ flexDirection: "row" }}>
+                      <Text style={{ fontWeight: "bold", fontSize: 12 }}>
+                        Don Key
+                      </Text>
+                      <Text style={{ fontSize: 12 }}>
+                        's birthday in 5 days!
+                      </Text>
+                    </View>
+                  </View>
+                  <View style={styles.input3}>
+                    <Image
+                      source={require("../assets/images/medal.png")}
+                      style={styles.candle}
+                    />
+                    <View style={{ flexDirection: "row" }}>
+                      <Text style={{ fontWeight: "bold", fontSize: 12 }}>
+                        Matt Tan
+                      </Text>
+                      <Text style={{ fontSize: 12 }}>
+                        's 5th worknnivarsary in 9 days!
+                      </Text>
+                    </View>
+                  </View>
+                  <View style={styles.input3}>
+                    <Image
+                      source={require("../assets/images/candle.png")}
+                      style={styles.candle}
+                    />
+                    <View style={{ flexDirection: "row" }}>
+                      <Text style={{ fontWeight: "bold", fontSize: 12 }}>
+                        Mee Sua
+                      </Text>
+                      <Text style={{ fontSize: 12 }}>
+                        's birthday in 10 days!
+                      </Text>
+                    </View>
+                  </View>
+                  <View style={styles.input3}>
+                    <Image
+                      source={require("../assets/images/candle.png")}
+                      style={styles.candle}
+                    />
+                    <View style={{ flexDirection: "row" }}>
+                      <Text style={{ fontWeight: "bold", fontSize: 12 }}>
+                        Mee Pok
+                      </Text>
+                      <Text style={{ fontSize: 12 }}>
+                        's birthday in 10 days!
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+          )}
+        </Modal>
+      </SafeAreaView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -599,7 +683,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     flexDirection: "row",
     alignItems: "center",
-    paddingVertical: 3
+    paddingVertical: 3,
   },
 
   camera: {
