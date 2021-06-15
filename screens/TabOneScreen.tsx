@@ -12,6 +12,7 @@ import {
   TextInput,
 } from "react-native";
 import { Card, ListItem, Button, Icon } from "react-native-elements";
+import RNPoll, { IChoice } from "react-native-poll";
 import Search from "../components/Search";
 
 const DATA = [
@@ -68,6 +69,14 @@ const DATA = [
     caption:
       "Hazelnut lava brownies dazzled with honey with a little surprise inside! Let me know if youre wanna try, dont mind delivering it to you (:",
   },
+];
+
+const choices: Array<IChoice> = [
+  { id: 1, choice: "Nike", votes: 12 },
+  { id: 2, choice: "Adidas", votes: 1 },
+  { id: 3, choice: "Puma", votes: 3 },
+  { id: 4, choice: "Reebok", votes: 5 },
+  { id: 5, choice: "Under Armour", votes: 9 },
 ];
 
 // TODO: pass in items param to render this for all posts
@@ -127,10 +136,12 @@ export default class TabOneScreen extends React.Component {
       modal: 0,
       title: "",
       text: "",
+      pollModal: 0,
     };
     this.setSearchQuery = this.setSearchQuery.bind(this);
     this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangeText = this.onChangeText.bind(this);
+    this.setPollModal = this.setPollModal.bind(this);
   }
 //   const [modal, setModal] = React.useState(0);
 //   const [title, onChangeTitle] = React.useState("");
@@ -167,6 +178,10 @@ export default class TabOneScreen extends React.Component {
     this.setState({ text });
   }
 
+  setPollModal(pollModal) {
+    this.setState({ pollModal });
+  }
+
   searchFilterFunction = _.debounce(() => {
     const text = this.state.searchQuery.toLowerCase();
     const newData = (DATA.filter(function(item) {
@@ -185,6 +200,16 @@ export default class TabOneScreen extends React.Component {
         imageUrl={item.imageUrl}
         username={item.username}
         caption={item.caption}
+      />
+    );
+
+    const renderPollItem = () => (
+      <RNPoll
+        totalVotes={30}
+        choices={choices}
+        onChoicePress={(selectedChoice: IChoice) =>
+        console.log("SelectedChoice: ", selectedChoice)
+        }
       />
     );
 
@@ -258,7 +283,10 @@ export default class TabOneScreen extends React.Component {
                 style={styles.icon}
               />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.iconBox}>
+            <TouchableOpacity 
+              style={styles.iconBox}
+              onPress={() => this.setPollModal(1)}
+            > 
               <Image
                 source={require("../assets/images/cloudbubble.png")}
                 style={styles.icon}
@@ -357,6 +385,32 @@ export default class TabOneScreen extends React.Component {
             </View>
           </View>
         )}
+      </Modal>
+      <Modal
+        avoidKeyboard={true}
+        transparent={false}
+        visible={this.state.pollModal === 1}
+        onRequestClose={() => this.setPollModal(0)}
+      >
+        <View style={styles.pollModalContainer}>
+          <TouchableOpacity
+            style={{ alignSelf: "flex-start" }}
+            onPress={() => this.setPollModal(0)}
+          >
+            <Image
+              source={require("../assets/icons/cross.png")}
+              style={styles.pollCross}
+            />
+          </TouchableOpacity>
+          <RNPoll
+            totalVotes={30}
+            choices={choices}
+            onChoicePress={(selectedChoice: IChoice) =>
+            console.log("SelectedChoice: ", selectedChoice)
+            }
+          />
+        </View>
+
       </Modal>
     </SafeAreaView>
   );
@@ -543,6 +597,20 @@ const styles = StyleSheet.create({
     width: 25,
     marginTop: -10,
     marginLeft: -10,
+    alignSelf: "flex-start",
+  },
+  pollModalContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    flex: 1,
+    backgroundColor: "#FFF",
+    width: '100%',
+  },
+  pollCross: {
+    height: 25,
+    width: 25,
+    marginTop: -10,
+    // marginLeft: -10,
     alignSelf: "flex-start",
   },
 });
