@@ -8,6 +8,8 @@ import {
   Image,
   FlatList,
   TouchableOpacity,
+  Modal,
+  TextInput,
 } from "react-native";
 import { Card, ListItem, Button, Icon } from "react-native-elements";
 
@@ -34,6 +36,15 @@ const DATA = [
       "Saw this alien like thing flew past my window? Anyone got any idea?? Are we getting eaten by aliens?!?!",
   },
   {
+    id: "3ac68afc-c605-4cv3-a4f8-fbd91aa97f63",
+    title: "Welcome Thomas Chua to the team! 🎉",
+    imageUrl:
+      "https://www.robolink.com/wp-content/uploads/2019/01/han_circle.png",
+    username: "thom.chua",
+    caption:
+      "Hi everyone, I am an incoming intern here at SkyzaHeatlhcare. I like Kpop music, and have interests in baking and netflix! Checkout my 2 truths 1 lie and guess the lie!",
+  },
+  {
     id: "58694a0f-3da1-471f-bd96-145571e29d72",
     title: "Yo anyone wna join me to watch this?",
     imageUrl:
@@ -43,7 +54,7 @@ const DATA = [
       "Dope af remix! Anyone down to watch phua chu kang new hit song with me this Saturdayday 10pm? Open jio everyone!",
   },
   {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
+    id: "bd7acbea-c1b1-46c2-aed5-3ad53cbb28ba",
     title: "My Dog Bobby",
     imageUrl:
       "https://4cxqn5j1afk2facwz3mfxg5r-wpengine.netdna-ssl.com/wp-content/uploads/2017/07/Pet-Dog.jpg",
@@ -52,7 +63,7 @@ const DATA = [
       "Just adopted a new dog over the weekend! Say hi to bobby (: He's a german shepard mix maltese and he looooooooooooves grapes ((((:",
   },
   {
-    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
+    id: "3ac68afc-c605-49d3-a4f8-fbd91aa97f63",
     title: "Baked some fresh brownies! Anyone wanna be my guinea pig?",
     imageUrl:
       "https://static.thehoneycombers.com/wp-content/uploads/sites/2/2020/08/bundt-by-the-backyard-bakers-900x643.png",
@@ -113,12 +124,16 @@ const Post = ({ title, imageUrl, username, caption }) => (
 export default function TabOneScreen(props: any) {
   const renderItem = ({ item }) => (
     <Post
+      key={item.id}
       title={item.title}
       imageUrl={item.imageUrl}
       username={item.username}
       caption={item.caption}
     />
   );
+  const [modal, setModal] = React.useState(0);
+  const [title, onChangeTitle] = React.useState("");
+  const [text, onChangeText] = React.useState("");
 
   return (
     <SafeAreaView>
@@ -150,7 +165,10 @@ export default function TabOneScreen(props: any) {
         <View>
           <View style={styles.actionRow}>
             <Search />
-            <TouchableOpacity style={styles.addContainer}>
+            <TouchableOpacity
+              style={styles.addContainer}
+              onPress={() => setModal(1)}
+            >
               <Image
                 source={require("../assets/icons/writeicon.png")}
                 style={styles.writeicon}
@@ -213,6 +231,80 @@ export default function TabOneScreen(props: any) {
           />
         </View>
       </ScrollView>
+
+      <Modal
+        avoidKeyboard={true}
+        transparent={true}
+        visible={modal !== 0}
+        onRequestClose={() => setModal(0)}
+      >
+        {modal === 1 && (
+          <View style={styles.modalContainer}>
+            <View style={styles.modalContent1}>
+              <View style={styles.modalContent}>
+                <TouchableOpacity
+                  style={{ alignSelf: "flex-start" }}
+                  onPress={() => setModal(0)}
+                >
+                  <Image
+                    source={require("../assets/icons/cross.png")}
+                    style={styles.cross}
+                  />
+                </TouchableOpacity>
+
+                <Text style={styles.modalHeader}>Post It!</Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "flex-start",
+                    marginVertical: 10,
+                    width: "100%",
+                  }}
+                >
+                  <Image
+                    source={require("../assets/images/camerapic.png")}
+                    style={styles.camera}
+                  />
+                  <Text
+                    style={{
+                      width: 80,
+                      marginTop: 10,
+                      textAlign: "left",
+                      color: "#808080",
+                    }}
+                  >
+                    Upload {"\n"}Your Photo
+                  </Text>
+                </View>
+
+                <TextInput
+                  style={styles.input}
+                  onChangeText={onChangeTitle}
+                  value={title}
+                  placeholder="Title"
+                />
+
+                <TextInput
+                  style={styles.input2}
+                  onChangeText={onChangeText}
+                  value={text}
+                  placeholder="Share more about it (:"
+                  multiline={true}
+                />
+
+                <View style={{ marginTop: 20 }}>
+                  <Button
+                    title="Submit"
+                    buttonStyle={{ backgroundColor: "#8741bb" }}
+                    onPress={() => setModal(0)}
+                  />
+                </View>
+              </View>
+            </View>
+          </View>
+        )}
+      </Modal>
     </SafeAreaView>
   );
 }
@@ -276,6 +368,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     height: 40,
     width: 40,
+    shadowColor: "#000",
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    elevation: 2,
   },
   iconBox: {
     backgroundColor: "#E8E8E8",
@@ -286,6 +383,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    shadowColor: "#000",
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    elevation: 2,
   },
   cardBox: {
     borderRadius: 15,
@@ -295,16 +397,98 @@ const styles = StyleSheet.create({
     width: 40,
   },
   image: {
-    height: 250,
-    width: 315,
+    height: 300,
+    width: 300,
     alignSelf: "center",
     marginBottom: 10,
   },
   heart: {
-    height: 15,
+    height: 14.7,
     width: 17,
     marginVertical: 8,
     marginLeft: 0,
     marginRight: 15,
+  },
+  modalContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    flex: 1,
+    backgroundColor: "rgba(56, 56, 56, 0.79)",
+  },
+  modalContent: {
+    alignItems: "center",
+    justifyContent: "flex-start",
+    backgroundColor: "white",
+    paddingVertical: 18,
+    paddingHorizontal: 24,
+    borderRadius: 6,
+    textAlign: "center",
+    borderColor: "#EE82EE",
+    borderWidth: 2,
+    height: 480,
+    width: 310,
+  },
+  modalContent1: {
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "white",
+    padding: 8,
+    borderRadius: 6,
+    textAlign: "center",
+    marginHorizontal: 30,
+    height: 500,
+    width: 330,
+  },
+  modalHeader: {
+    fontSize: 23,
+    fontWeight: "bold",
+    margin: 10,
+    marginTop: -5,
+  },
+  input: {
+    height: 40,
+    marginTop: 12,
+    marginBottom: 5,
+    shadowColor: "#000",
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    borderRadius: 5,
+    elevation: 2,
+    outlineWidth: 0,
+    width: "100%",
+    paddingHorizontal: 10,
+  },
+
+  input2: {
+    height: 40,
+    marginTop: 12,
+    marginBottom: 5,
+    shadowColor: "#000",
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    borderRadius: 5,
+    elevation: 2,
+    outlineWidth: 0,
+    width: "100%",
+    paddingHorizontal: 10,
+    height: 150,
+    textAlignVertical: "top",
+    paddingTop: 15,
+  },
+
+  camera: {
+    height: 70,
+    width: 40,
+    marginRight: 30,
+  },
+
+  cross: {
+    height: 25,
+    width: 25,
+    marginTop: -10,
+    marginLeft: -10,
+    alignSelf: "flex-start",
   },
 });
