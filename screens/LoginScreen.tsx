@@ -2,11 +2,42 @@ import React, { useState } from "react";
 import { StyleSheet, Image, View, Text, TouchableOpacity } from "react-native";
 import FormButton from "../components/FormButton";
 import FormInput from "../components/FormInput";
+
 import { windowWidth } from "../utils/Dimensions";
+import { firebase } from "../firebase/config";
 
 const LoginScreen = ({ navigation }) => {
 	const [email, setEmail] = useState();
 	const [password, setPassword] = useState();
+
+	const onLoginPress = () => {
+		firebase
+			.auth()
+			.signInWithEmailAndPassword(email, password)
+			.then((response) => {
+				const uid = response.user.uid;
+				const dbRef = firebase.database().ref();
+				dbRef
+					.child("users")
+					.child(uid)
+					.get()
+					.then((snapshot) => {
+						if (!snapshot.exists()) {
+							alert("User does not exist anymore.");
+							return;
+						}
+						const user = snapshot.val();
+						navigation.navigate("Root", { user });
+					})
+					.catch((error) => {
+						alert(error);
+					});
+			})
+			.catch((error) => {
+				alert(error);
+			});
+	};
+
 	return (
 		<View style={styles.container}>
 			<Image
@@ -32,10 +63,7 @@ const LoginScreen = ({ navigation }) => {
 				secureTextEntry={true}
 			/>
 
-			<FormButton
-				buttonTitle="Sign In"
-				onPress={() => console.log("yay")}
-			/>
+			<FormButton buttonTitle="Sign In" onPress={() => onLoginPress()} />
 
 			<TouchableOpacity
 				style={styles.link}

@@ -1,17 +1,44 @@
 import { StackScreenProps } from "@react-navigation/stack";
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { firebase } from "../firebase/config.js";
 
 import { RootStackParamList } from "../types";
 
 export default function NotFoundScreen({
 	navigation
 }: StackScreenProps<RootStackParamList, "NotFound">) {
+	const [user, setUser] = useState(null);
+
+	useEffect(() => {
+		const dbRef = firebase.database().ref();
+		firebase.auth().onAuthStateChanged((user) => {
+			if (user) {
+				dbRef
+					.child("users")
+					.child(user.uid)
+					.get()
+					.then((snapshot) => {
+						const user = snapshot.val();
+						setUser(user);
+					})
+					.catch((error) => {
+						console.error(error);
+					});
+			} else {
+				console.error("User not logged in");
+			}
+		});
+	}, []);
+
+	console.log("user: " + user);
 	return (
 		<View style={styles.container}>
 			<Text style={styles.title}>This screen doesn't exist.</Text>
 			<TouchableOpacity
-				onPress={() => navigation.replace("OnboardingScreen")}
+				onPress={() =>
+					navigation.replace(user ? "Root" : "OnboardingScreen")
+				}
 				style={styles.link}
 			>
 				<Text style={styles.linkText}>Go to home screen!</Text>

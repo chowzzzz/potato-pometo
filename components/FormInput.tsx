@@ -13,7 +13,7 @@ const FormButton = ({ iconType, labelValue, placeholder, ...rest }) => {
 			) : null}
 
 			<TextInput
-				value={labelValue}
+				value={labelValue || ""}
 				style={styles.input}
 				placeholder={placeholder}
 				placeholderTextColor="#666"

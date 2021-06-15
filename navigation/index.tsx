@@ -4,10 +4,11 @@ import {
 	DarkTheme
 } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import { ColorSchemeName } from "react-native";
-import LoginScreen from "../screens/LoginScreen";
+import { firebase } from "../firebase/config.js";
 
+import LoginScreen from "../screens/LoginScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import OnboardingScreen from "../screens/OnboardingScreen";
 import SignUpScreen from "../screens/SignUpScreen";
@@ -36,15 +37,57 @@ export default function Navigation({
 const Stack = createStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
+	const [loading, setLoading] = useState(true);
+	const [user, setUser] = useState(null);
+
+	useEffect(() => {
+		const dbRef = firebase.database().ref();
+		firebase.auth().onAuthStateChanged((user) => {
+			if (user) {
+				dbRef
+					.child("users")
+					.child(user.uid)
+					.get()
+					.then((snapshot) => {
+						const user = snapshot.val();
+						setLoading(false);
+						setUser(user);
+					})
+					.catch((error) => {
+						setLoading(false);
+					});
+			} else {
+				setLoading(false);
+			}
+		});
+	}, []);
+
+	console.log("user: " + user);
+
+	if (loading) {
+		return <></>;
+	}
+
 	return (
 		<Stack.Navigator screenOptions={{ headerShown: false }}>
-			<Stack.Screen name="Root" component={BottomTabNavigator} />
-			<Stack.Screen
-				name="OnboardingScreen"
-				component={OnboardingScreen}
-			/>
-			<Stack.Screen name="LoginScreen" component={LoginScreen} />
-			<Stack.Screen name="SignUpScreen" component={SignUpScreen} />
+			{user ? (
+				<Stack.Screen name="Root" component={BottomTabNavigator} />
+			) : (
+				// <Stack.Screen name="Home">
+				// 	{(props) => <HomeScreen {...props} extraData={user} />}
+				// </Stack.Screen>
+				<>
+					<Stack.Screen
+						name="OnboardingScreen"
+						component={OnboardingScreen}
+					/>
+					<Stack.Screen name="LoginScreen" component={LoginScreen} />
+					<Stack.Screen
+						name="SignUpScreen"
+						component={SignUpScreen}
+					/>
+				</>
+			)}
 
 			<Stack.Screen
 				name="NotFound"
