@@ -23,8 +23,8 @@ export default function Navigation({
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
-      theme={colorScheme === "light" ? DefaultTheme : DarkTheme}
-    >
+      theme={DefaultTheme} >
+        {/* theme={colorScheme === 'light' ? DefaultTheme : DarkTheme}> */}
       <RootNavigator />
     </NavigationContainer>
   );

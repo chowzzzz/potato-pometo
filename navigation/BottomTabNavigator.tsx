@@ -2,12 +2,6 @@ import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
-
-import Colors from "../constants/Colors";
-import useColorScheme from "../hooks/useColorScheme";
-import TabOneScreen from "../screens/TabOneScreen";
-import TabTwoScreen from "../screens/TabTwoScreen";
-import TabThreeScreen from "../screens/TabThreeScreen";
 import {
   BottomTabParamList,
   TabOneParamList,
@@ -15,9 +9,18 @@ import {
   TabThreeParamList,
 } from "../types";
 
+import Colors from '../constants/Colors';
+import useColorScheme from '../hooks/useColorScheme';
+import TabOneScreen from '../screens/TabOneScreen';
+import TabTwoScreen from '../screens/TabTwoScreen';
+import TabThreeScreen from '../screens/TabThreeScreen';
+import Quiz from '../screens/Quiz';
+import PlayQuiz from '../screens/PlayQuiz';
+import FinalResult from '../screens/FinalResult';
+
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
-export default function BottomTabNavigator() {
+export default function BottomTabNavigator(navigation: any) {
   const colorScheme = useColorScheme();
 
   return (
@@ -38,6 +41,7 @@ export default function BottomTabNavigator() {
       <BottomTab.Screen
         name="Games"
         component={TabTwoNavigator}
+        // children={()=><Quiz/>}
         options={{
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="game-controller" color={color} />
@@ -88,15 +92,26 @@ const TabTwoStack = createStackNavigator<TabTwoParamList>();
 
 function TabTwoNavigator() {
   return (
-    <TabTwoStack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
+    <TabTwoStack.Navigator initialRouteName="TabTwoScreen">
       <TabTwoStack.Screen
         name="TabTwoScreen"
         component={TabTwoScreen}
-        options={{ headerTitle: "Tab Two Title" }}
+        options={{ headerTitle: 'Game' }}
+      />
+      <TabTwoStack.Screen
+        name="Quiz"
+        component={Quiz}
+        options={{ headerTitle: 'Quiz' }}
+      />
+      <TabTwoStack.Screen
+        name="PlayQuiz"
+        component={PlayQuiz}
+        options={{ headerTitle: 'PlayQuiz' }}
+      />
+      <TabTwoStack.Screen
+        name="FinalResult"
+        component={FinalResult}
+        options={{ headerTitle: 'FinalResult' }}
       />
     </TabTwoStack.Navigator>
   );
