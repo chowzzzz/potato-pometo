@@ -29,12 +29,11 @@ export default function TabTwoScreen() {
 			Games Landing Page
 		</Text>
     <View>
-      <TouchableOpacity style ={styles.buttonStyle}
+      <Button style ={styles.buttonStyle}
         onPress = {() => navigation.navigate('Quiz')}
-        // type="solid"
-        >
-          <Text>Quiz</Text>
-        </TouchableOpacity>
+        type="solid"
+        title="Quiz"
+        />
       <Button style ={styles.buttonStyle}
         title="Baby Photo Guesser"
         raised
@@ -67,6 +66,6 @@ const styles = StyleSheet.create({
     color: 'red',
     alignItems:'center',
     alignSelf:'stretch',
-    justifyContent: 'center',
+    justifyContent: 'center'
   }
 });
