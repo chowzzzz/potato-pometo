@@ -56,15 +56,15 @@ export default function App() {
     } else {
         return (
             <SafeAreaProvider>
-                {/* <Navigation colorScheme={colorScheme} /> */}
-                <NavigationContainer>
+                <Navigation colorScheme={colorScheme} />
+                {/* <NavigationContainer>
                     <RootStack.Navigator mode="modal"
                         headerMode="none"
                     >
                         <RootStack.Screen name="MainPage"
                             component={StackScreen} />
                     </RootStack.Navigator>
-                </NavigationContainer>
+                </NavigationContainer> */}
             </SafeAreaProvider>
         );
     }
