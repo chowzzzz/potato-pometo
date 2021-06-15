@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
 		alignItems: "center"
 	},
 	myImage: {
-		width: 400,
+		height: 400,
 		height: 370,
 		marginTop: 1
 	},
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
 		marginTop: 100,
 		margin: 15,
 		height: 40,
-		width: 200,
+		height: 200,
 		alignItems: "center"
 	},
 	emailBox: {
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
 		borderBottomColor: "grey",
 		fontSize: 16,
 		borderBottomWidth: 2,
-		width: "80%",
+		height: "80%",
 		textAlign: "center",
 		fontFamily: "Futura",
 		alignItems: "center",
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
 		marginTop: 10,
 		margin: 15,
 		height: 40,
-		width: 200,
+		height: 200,
 		alignItems: "center"
 	},
 	loginText: {
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
 		borderBottomColor: "grey",
 		fontSize: 16,
 		borderBottomWidth: 2,
-		width: "80%",
+		height: "80%",
 		textAlign: "center",
 		fontFamily: "Futura",
 		alignItems: "center"

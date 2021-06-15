@@ -15,33 +15,36 @@ export default function TabTwoScreen() {
   const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
-      {/* <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabOneScreen.tsx" /> */}
       <Search />
-      {/* <FlatList
-        data={DATA}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-      /> */}
-	<View>
-		<Text>
-			Games Landing Page
-		</Text>
+	<Card>
+    <Card.Title> GAMES GALORE</Card.Title>
+    <Card.Divider/>
+    <Card.Image style ={styles.image} source= {require('../assets/images/ginger-cat-robot-cat-twin.png')}></Card.Image>
     <View>
       <TouchableOpacity style ={styles.buttonStyle}
         onPress = {() => navigation.navigate('Quiz')}
         // type="solid"
         >
-          <Text>Quiz</Text>
+          <Button
+            buttonStyle={{height: '100%', backgroundColor:'#c4c3f7'}}
+            title='Quiz'
+          />
         </TouchableOpacity>
-      <Button style ={styles.buttonStyle}
-        title="Baby Photo Guesser"
-        raised
-        type="solid"
-        />
         </View>
-    </View>
+      <Card.Divider/>
+      <View>
+      <Card.Image source= {require('../assets/images/ginger-cat-736.png')}></Card.Image>
+      <TouchableOpacity style ={styles.buttonStyle}
+        onPress = {() => navigation.navigate('BabyGame')}
+        // type="solid"
+        >
+          <Button
+            buttonStyle={{height:'100%', backgroundColor:'#c4c3f7'}}
+            title='Baby Guesser'
+          />
+        </TouchableOpacity>
+        </View>
+    </Card>
     </SafeAreaView>
   );
 }
@@ -60,13 +63,17 @@ const styles = StyleSheet.create({
   separator: {
     marginVertical: 30,
     height: 1,
-    width: '80%',
+    //height: '80%',
   },
   buttonStyle: {
-    width: '100%',
+    height: '100%',
     color: 'red',
     alignItems:'center',
     alignSelf:'stretch',
     justifyContent: 'center',
+  },
+  image:{
+    width:400,
+    height:300,
   }
 });
