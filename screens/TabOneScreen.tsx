@@ -789,6 +789,6 @@ const styles = StyleSheet.create({
     height: 400,
     width: 400,
     margin: 3,
-    marginTop: 12,
+    marginTop: -8,
   }
 });
