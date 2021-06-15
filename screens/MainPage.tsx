@@ -34,7 +34,7 @@ export default class MainPage extends Component {
 	// }
 
 	login = () => {
-		this.props.navigation.navigate('TabOneScreen')
+		this.props.navigation.navigate("TabOneScreen");
 	};
 	signUp = () => {
 		this.props.navigation.navigate("SignUp");

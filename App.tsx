@@ -4,9 +4,8 @@ import React from "react";
 import useCachedResources from "./hooks/useCachedResources";
 import useColorScheme from "./hooks/useColorScheme";
 import Navigation from "./navigation";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { createStackNavigator } from "@react-navigation/stack";
 
 import MainPage from "./screens/MainPage";
 import SignUp from "./screens/SignUp";
@@ -64,8 +63,8 @@ function StackScreen() {
 }
 
 export default function App() {
-    const isLoadingComplete = useCachedResources();
-    const colorScheme = useColorScheme();
+	const isLoadingComplete = useCachedResources();
+	const colorScheme = useColorScheme();
 
     if (!isLoadingComplete) {
         return null;

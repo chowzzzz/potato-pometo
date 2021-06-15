@@ -4,7 +4,6 @@ import { Card, ListItem, Button } from 'react-native-elements'
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import Search from "../components/Search";
-import Quiz from "./Quiz";
 import { useNavigation } from '@react-navigation/native';
 
 // import { TouchableOpacity } from 'react-native-gesture-handler';
