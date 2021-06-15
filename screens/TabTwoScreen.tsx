@@ -1,16 +1,43 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
-
+import { SafeAreaView, StyleSheet, Image, FlatList } from "react-native"
+import { Card, ListItem, Button} from 'react-native-elements'
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
+import Search from "../components/Search";
+
+//import {BasicButton} from '@phomea/react-native-buttons'
 
 export default function TabTwoScreen() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
+    <SafeAreaView style={styles.container}>
+      {/* <Text style={styles.title}>Tab One</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabTwoScreen.tsx" />
+      <EditScreenInfo path="/screens/TabOneScreen.tsx" /> */}
+      <Search />
+      {/* <FlatList
+        data={DATA}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+      /> */}
+	<View>
+		<Text>
+			Games Landing Page
+		</Text>
+    <View>
+      <Button style ={styles.buttonStyle}
+        title="Quiz"
+        //onPress = {() => navigation.navigate('BabyGame')}
+        
+        type="solid"
+        />
+      <Button style ={styles.buttonStyle}
+        title="Baby Photo Guesser"
+        raised
+        type="solid"
+        />
+        </View>
     </View>
+    </SafeAreaView>
   );
 }
 
@@ -18,7 +45,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    alignSelf: 'stretch',
+    justifyContent: 'flex-start',
   },
   title: {
     fontSize: 20,
@@ -29,4 +57,11 @@ const styles = StyleSheet.create({
     height: 1,
     width: '80%',
   },
+  buttonStyle: {
+    width: '100%',
+    color: 'red',
+    alignItems:'center',
+    alignSelf:'stretch',
+    justifyContent: 'center',
+  }
 });

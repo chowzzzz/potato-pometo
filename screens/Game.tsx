@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SafeAreaView, View, StyleSheet, Text, Image, FlatList } from "react-native";
 import { Card, ListItem, Button} from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {BasicButton} from '@phomea/react-native-buttons';
+//import {BasicButton} from '@phomea/react-native-buttons';
 
 // import EditScreenInfo from '../components/EditScreenInfo';
 // import { Text, View } from '../components/Themed';
@@ -50,15 +50,16 @@ export default function Game(props:any) {
 			  Games Landing Page
 		  </Text>
     <View style={styles.fixToText}>
-      <BasicButton
+      <Button
         title="Quiz"
-        animation = "bounce"
-        color = '#6c69eb'
+        //animation = "bounce"
+        //color = '#6c69eb'
 
         //onPress = {() => navigation.navigate('BabyGame')}
+        
         type="outline"
         />
-      <BasicButton
+      <Button
         title="Baby Photo Guesser"
         raised
         type="outline"
