@@ -1,57 +1,70 @@
 import React from "react";
-import { StyleSheet, Image } from "react-native";
-// import Onboarding from "react-native-onboarding-swiper";
+import {
+	StyleSheet,
+	Image,
+	View,
+	Dimensions,
+	Text,
+	TouchableOpacity
+} from "react-native";
+import FormButton from "../components/FormButton";
+import { windowWidth } from "../utils/Dimensions";
 
 const OnboardingScreen = ({ navigation }) => {
-  console.log(navigation);
-  return (
-    <View />
-    // <Onboarding
-    //   pages={[
-    //     {
-    //       backgroundColor: "#fff",
-    //       image: (
-    //         <Image
-    //           source={require("../assets/illustrations/ginger-cat-work-from-home.png")}
-    //         />
-    //       ),
-    //       title: "Tired of working from home all day?",
-    //       subtitle:
-    //         "Pometo is your virtual team building mobile application that keeps you happy and entertained at anytime of the day!",
-    //     },
-    //     {
-    //       backgroundColor: "#fff",
-    //       image: (
-    //         <Image
-    //           source={require("../assets/illustrations/ginger-cat-718.png")}
-    //         />
-    //       ),
-    //       title: "What is a team without team bonding?",
-    //       subtitle:
-    //         "With a social feed, your team can bond together by having fun and keeping one another updated!",
-    //     },
-    //     {
-    //       backgroundColor: "#fff",
-    //       image: (
-    //         <Image
-    //           source={require("../assets/illustrations/ginger-cat-739.png")}
-    //         />
-    //       ),
-    //       title: "Work hard, but also play hard!",
-    //       subtitle:
-    //         "Play mini games with one another in the team to get to know each other better and see who gets the highest scores!",
-    //     },
-    //   ]}
-    // />
-  );
+	console.log(navigation);
+	return (
+		<View style={styles.container}>
+			<Image
+				style={styles.illustration}
+				source={require("../assets/illustrations/ginger-cat-718.png")}
+			/>
+			<Text
+				style={[
+					{
+						fontWeight: "bold",
+						fontSize: 25,
+						textAlign: "center"
+					},
+					styles.text
+				]}
+			>
+				What is a team without team bonding?
+			</Text>
+			<Text style={[styles.text, { marginBottom: 50, fontSize: 14 }]}>
+				Welcome to Pometo! Where there are games and fun that allow you
+				to interact with your team mates and bond together even meeting
+				each other
+			</Text>
+			<FormButton
+				buttonTitle="Login"
+				onPress={() => navigation.navigate("LoginScreen")}
+			></FormButton>
+			<FormButton
+				buttonTitle="Sign up"
+				onPress={() => navigation.navigate("SignUpScreen")}
+			></FormButton>
+		</View>
+	);
 };
 
 export default OnboardingScreen;
+const ratio = windowWidth / 1216;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
+	container: {
+		flex: 1,
+		alignItems: "center",
+		justifyContent: "center",
+		backgroundColor: "#a7a5f3"
+	},
+	illustration: {
+		width: "100%",
+		height: ratio * 912
+	},
+	text: {
+		textAlign: "center",
+		paddingHorizontal: 30,
+		paddingBottom: 10,
+		color: "#fff"
+	}
 });
