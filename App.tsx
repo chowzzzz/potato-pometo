@@ -6,6 +6,61 @@ import useColorScheme from "./hooks/useColorScheme";
 import Navigation from "./navigation";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
+import MainPage from "./screens/MainPage";
+import SignUp from "./screens/SignUp";
+import TabOneScreen from "./screens/TabOneScreen";
+import TabTwoScreen from "./screens/TabTwoScreen";
+import Quiz from "./screens/Quiz";
+import Game from "./screens/Game";
+
+const Stack = createStackNavigator();
+const RootStack = createStackNavigator();
+
+function StackScreen() {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen name="MainPage"
+                component={MainPage}
+            />
+            <Stack.Screen name="SignUp"
+                component={SignUp}
+                options={{
+                    title: 'Sign Up',
+                    headerShown: false,
+                }}
+            />
+            <Stack.Screen name="TabOneScreen"
+                component={TabOneScreen}
+                options={{
+                    title: 'TabOneScreen',
+                    headerShown: false,
+                }}
+            />
+            <Stack.Screen name="TabTwoScreen"
+                component={TabTwoScreen}
+                options={{
+                    title: 'TabTwoScreen',
+                    headerShown: false,
+                }}
+            />
+            <Stack.Screen name="Quiz"
+                component={Quiz}
+                options={{
+                    title: 'Quiz',
+                    headerShown: false,
+                }}
+            />
+            <Stack.Screen name="Game"
+                component={Game}
+                options={{
+                    title: 'Game',
+                    headerShown: false,
+                }}
+            />
+        </Stack.Navigator>
+    )
+}
+
 export default function App() {
 	const isLoadingComplete = useCachedResources();
 	const colorScheme = useColorScheme();
