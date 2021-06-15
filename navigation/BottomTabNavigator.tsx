@@ -13,11 +13,12 @@ import useColorScheme from '../hooks/useColorScheme';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import TabThreeScreen from '../screens/TabThreeScreen';
+import Quiz from '../screens/Quiz';
 import { BottomTabParamList, TabOneParamList, TabTwoParamList, TabThreeParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
-export default function BottomTabNavigator() {
+export default function BottomTabNavigator(navigation: any) {
   const colorScheme = useColorScheme();
 
   return (
@@ -34,6 +35,7 @@ export default function BottomTabNavigator() {
       <BottomTab.Screen
         name="Games"
         component={TabTwoNavigator}
+        // children={()=><Quiz/>}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="game-controller" color={color} />,
         }}
@@ -75,11 +77,16 @@ const TabTwoStack = createStackNavigator<TabTwoParamList>();
 
 function TabTwoNavigator() {
   return (
-    <TabTwoStack.Navigator>
+    <TabTwoStack.Navigator initialRouteName="TabTwoScreen">
       <TabTwoStack.Screen
         name="TabTwoScreen"
         component={TabTwoScreen}
         options={{ headerTitle: 'Game' }}
+      />
+      <TabTwoStack.Screen
+        name="Quiz"
+        component={Quiz}
+        options={{ headerTitle: 'Quiz' }}
       />
     </TabTwoStack.Navigator>
   );

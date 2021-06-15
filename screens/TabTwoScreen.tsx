@@ -1,13 +1,18 @@
 import * as React from 'react';
-import { SafeAreaView, StyleSheet, Image, FlatList } from "react-native"
+import { SafeAreaView, StyleSheet, Image, FlatList, TouchableOpacity } from "react-native"
 import { Card, ListItem, Button} from 'react-native-elements'
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import Search from "../components/Search";
+import Quiz from "./Quiz";
+import { useNavigation } from '@react-navigation/native';
+
+// import { TouchableOpacity } from 'react-native-gesture-handler';
 
 //import {BasicButton} from '@phomea/react-native-buttons'
 
 export default function TabTwoScreen() {
+  const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
       {/* <Text style={styles.title}>Tab One</Text>
@@ -24,12 +29,12 @@ export default function TabTwoScreen() {
 			Games Landing Page
 		</Text>
     <View>
-      <Button style ={styles.buttonStyle}
-        title="Quiz"
-        //onPress = {() => navigation.navigate('BabyGame')}
-        
-        type="solid"
-        />
+      <TouchableOpacity style ={styles.buttonStyle}
+        onPress = {() => navigation.navigate('Quiz')}
+        // type="solid"
+        >
+          <Text>Quiz</Text>
+        </TouchableOpacity>
       <Button style ={styles.buttonStyle}
         title="Baby Photo Guesser"
         raised
