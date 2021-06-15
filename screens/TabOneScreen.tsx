@@ -62,12 +62,7 @@ export default function TabOneScreen(props: any) {
         renderItem={renderItem}
         keyExtractor={item => item.id}
       />
-      {/* Adding this button for testing purposes */}
-      <TouchableOpacity
-        onPress={() => props.navigation.navigate('Game')}
-      >
-        <Text > Game page </Text>
-      </TouchableOpacity>
+
     </SafeAreaView>
   );
 }
