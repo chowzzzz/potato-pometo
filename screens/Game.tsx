@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { SafeAreaView, View, StyleSheet, Text, Image, FlatList } from "react-native";
-import { Card, ListItem, Button, Icon } from 'react-native-elements'
+import { Card, ListItem, Button} from 'react-native-elements'
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {BasicButton} from '@phomea/react-native-buttons';
 
 // import EditScreenInfo from '../components/EditScreenInfo';
 // import { Text, View } from '../components/Themed';
@@ -30,26 +32,7 @@ const DATA = [
   },
 ];
 
-// TODO: pass in items param to render this for all posts
-const Post = ({title, imageUrl, username, caption}) => (
-  <Card>
-    {/* <Card.Image source={ require(imageUrl) }></Card.Image> */}
-    <Text>{ username }</Text>
-    <Card.Divider/>
-    <Text>{caption}</Text>
-    {/* <Card.Title>{title}</Card.Title> */}
-  </Card>
-);
-
-export default function Game() {
-  const renderItem = ({ item }) => (
-    <Post
-      title={ item.title }
-      imageUrl={ item.imageUrl }
-      username={ item.username }
-      caption={ item.caption }
-    />
-  );
+export default function Game(props:any) {
 
   return (
     <SafeAreaView style={styles.container}>
@@ -64,9 +47,24 @@ export default function Game() {
       /> */}
 	  <View>
 		  <Text>
-			  hello 
+			  Games Landing Page
 		  </Text>
-	  </View>
+    <View style={styles.fixToText}>
+      <BasicButton
+        title="Quiz"
+        animation = "bounce"
+        color = '#6c69eb'
+
+        //onPress = {() => navigation.navigate('BabyGame')}
+        type="outline"
+        />
+      <BasicButton
+        title="Baby Photo Guesser"
+        raised
+        type="outline"
+        />
+        </View>
+    </View>
     </SafeAreaView>
   );
 }
@@ -81,6 +79,11 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+    color:'#6c69eb'
+  },
+  fixToText: {
+    flexDirection:'column',
+    justifyContent: 'space-around'
   },
   separator: {
     marginVertical: 30,
