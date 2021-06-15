@@ -16,6 +16,7 @@ import TabTwoScreen from '../screens/TabTwoScreen';
 import TabThreeScreen from '../screens/TabThreeScreen';
 import Quiz from '../screens/Quiz';
 import PlayQuiz from '../screens/PlayQuiz';
+import PlayQuizIntro from '../screens/PlayQuizIntro';
 import FinalResult from '../screens/FinalResult';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -108,6 +109,11 @@ function TabTwoNavigator() {
         component={PlayQuiz}
         options={{ headerTitle: 'PlayQuiz' }}
       />
+      <TabTwoStack.Screen
+        name="PlayQuizIntro"
+        component={PlayQuizIntro}
+        options={{ headerTitle: 'PlayQuizIntro' }}
+      />      
       <TabTwoStack.Screen
         name="FinalResult"
         component={FinalResult}
