@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
 	},
 	myImage: {
 		height: 400,
-		height: 370,
+		// height: 370,
 		marginTop: 1
 	},
 	loginContainer: {
