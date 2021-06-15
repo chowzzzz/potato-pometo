@@ -139,13 +139,15 @@ export default function TabOneScreen(props: any) {
     <SafeAreaView>
       <View style={styles.header}>
         <View style={styles.headerText}>
-          <Text style={{ fontSize: 15, fontFamily: "ChalkboardSE" }}>
+          <Text
+            style={{ fontSize: 15, fontFamily: "sans-serif", marginBottom: 5 }}
+          >
             Good Afternoon 👋
           </Text>
           <Text
             style={{
               fontSize: 25,
-              fontFamily: "ChalkboardSE-Bold",
+              fontFamily: "sans-serif",
               fontWeight: "bold",
             }}
           >
@@ -187,7 +189,10 @@ export default function TabOneScreen(props: any) {
             Categories
           </Text>
           <View style={styles.actionRow}>
-            <TouchableOpacity style={styles.iconBox}>
+            <TouchableOpacity
+              style={styles.iconBox}
+              onPress={() => setModal(2)}
+            >
               <Image
                 source={require("../assets/images/cake.png")}
                 style={styles.icon}
@@ -304,6 +309,43 @@ export default function TabOneScreen(props: any) {
             </View>
           </View>
         )}
+        {modal === 2 && (
+          <View style={styles.modalContainer}>
+            <View style={styles.modalContent1}>
+              <View style={styles.modalContent}>
+                <View style={{ flexDirection: "row", alignItems: "center" }}>
+                  <TouchableOpacity
+                    style={{ alignSelf: "flex-start" }}
+                    onPress={() => setModal(0)}
+                  >
+                    <Image
+                      source={require("../assets/icons/cross.png")}
+                      style={styles.cross}
+                    />
+                  </TouchableOpacity>
+                  <Image
+                    source={require("../assets/images/birthdays.png")}
+                    style={styles.birthday}
+                  />
+
+                  <Text style={styles.modalHeader}>
+                    Birthdays & Worknnivarsaries
+                  </Text>
+                </View>
+
+                <Text style={styles.titles}>Today's</Text>
+                <View style={styles.input3}></View>
+
+                <Text style={styles.titles}>Upcoming's</Text>
+                <View style={styles.input3}></View>
+                <View style={styles.input3}></View>
+                <View style={styles.input3}></View>
+                <View style={styles.input3}></View>
+                <View style={styles.input3}></View>
+              </View>
+            </View>
+          </View>
+        )}
       </Modal>
     </SafeAreaView>
   );
@@ -402,6 +444,14 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginBottom: 10,
   },
+  birthday: {
+    height: 80,
+    width: 80,
+    alignSelf: "center",
+    marginBottom: 5,
+    marginRight: 5,
+    marginTop: 10
+  },
   heart: {
     height: 14.7,
     width: 17,
@@ -440,7 +490,7 @@ const styles = StyleSheet.create({
     width: 330,
   },
   modalHeader: {
-    fontSize: 23,
+    fontSize: 18,
     fontWeight: "bold",
     margin: 10,
     marginTop: -5,
@@ -450,30 +500,37 @@ const styles = StyleSheet.create({
     marginTop: 12,
     marginBottom: 5,
     shadowColor: "#000",
-    shadowOffset: { width: 1, height: 1 },
     shadowOpacity: 0.3,
     shadowRadius: 2,
     borderRadius: 5,
     elevation: 2,
-    outlineWidth: 0,
+    width: "100%",
+    paddingHorizontal: 10,
+  },
+  input3: {
+    height: 40,
+    marginTop: 3,
+    marginBottom: 3,
+    shadowColor: "#000",
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    borderRadius: 5,
+    elevation: 2,
     width: "100%",
     paddingHorizontal: 10,
   },
 
   input2: {
-    height: 40,
     marginTop: 12,
     marginBottom: 5,
     shadowColor: "#000",
-    shadowOffset: { width: 1, height: 1 },
     shadowOpacity: 0.3,
     shadowRadius: 2,
     borderRadius: 5,
     elevation: 2,
-    outlineWidth: 0,
     width: "100%",
     paddingHorizontal: 10,
-    height: 150,
+    height: 200,
     textAlignVertical: "top",
     paddingTop: 15,
   },
@@ -490,5 +547,11 @@ const styles = StyleSheet.create({
     marginTop: -10,
     marginLeft: -10,
     alignSelf: "flex-start",
+  },
+  titles: {
+    alignSelf: "flex-start",
+    fontWeight: "bold",
+    marginBottom: 3,
+    marginTop: 10
   },
 });
