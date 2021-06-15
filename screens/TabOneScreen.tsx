@@ -8,6 +8,8 @@ import {
   Image,
   FlatList,
   TouchableOpacity,
+  Modal,
+  TextInput,
 } from "react-native";
 import { Card, ListItem, Button, Icon } from "react-native-elements";
 import Search from "../components/Search";
@@ -29,6 +31,15 @@ const DATA = [
     username: "wheee.geee",
     caption:
       "Saw this alien like thing flew past my window? Anyone got any idea?? Are we getting eaten by aliens?!?!",
+  },
+  {
+    id: "3ac68afc-c605-4cv3-a4f8-fbd91aa97f65",
+    title: "Welcome Thomas Chua to the team! 🎉",
+    imageUrl:
+      "https://www.robolink.com/wp-content/uploads/2019/01/han_circle.png",
+    username: "thom.chua",
+    caption:
+      "Hi everyone, I am an incoming intern here at SkyzaHeatlhcare. I like Kpop music, and have interests in baking and netflix! Checkout my 2 truths 1 lie and guess the lie!",
   },
   {
     id: "58694a0f-3da1-471f-bd96-145571e29d72",
@@ -113,9 +124,17 @@ export default class TabOneScreen extends React.Component {
     this.state = { 
       searchQuery: "",
       displayedData: DATA,
+      modal: 0,
+      title: "",
+      text: "",
     };
     this.setSearchQuery = this.setSearchQuery.bind(this);
+    this.onChangeTitle = this.onChangeTitle.bind(this);
+    this.onChangeText = this.onChangeText.bind(this);
   }
+//   const [modal, setModal] = React.useState(0);
+//   const [title, onChangeTitle] = React.useState("");
+//   const [text, onChangeText] = React.useState("");
 
   componentDidMount () {
     this.setState({ displayedData: DATA });
@@ -126,7 +145,7 @@ export default class TabOneScreen extends React.Component {
       this.searchFilterFunction();
       return true;
     }
-    if (this.state.displayedData !== nextState.displayedData) {
+    if (this.state !== nextState) {
       return true;
     }
     return false;
@@ -135,6 +154,18 @@ export default class TabOneScreen extends React.Component {
   setSearchQuery (searchQuery: string) {
     this.setState({ searchQuery: searchQuery });
   };
+
+  setModal(modal) {
+    this.setState({ modal });
+  }
+
+  onChangeTitle (title) {
+    this.setState({ title });
+  }
+
+  onChangeText(text) {
+    this.setState({ text });
+  }
 
   searchFilterFunction = _.debounce(() => {
     const text = this.state.searchQuery.toLowerCase();
@@ -149,6 +180,7 @@ export default class TabOneScreen extends React.Component {
   render() {
     const renderItem = ({ item }) => (
       <Post
+        key={item.id}
         title={item.title}
         imageUrl={item.imageUrl}
         username={item.username}
@@ -158,100 +190,177 @@ export default class TabOneScreen extends React.Component {
 
     return (
       <SafeAreaView>
-        <View style={styles.header}>
-          <View style={styles.headerText}>
-            <Text style={{ fontSize: 15, fontFamily: "ChalkboardSE" }}>
-              Good Afternoon 👋
-            </Text>
-            <Text
-              style={{
-                fontSize: 25,
-                fontFamily: "ChalkboardSE-Bold",
-                fontWeight: "bold",
-              }}
+      <View style={styles.header}>
+        <View style={styles.headerText}>
+          <Text style={{ fontSize: 15, fontFamily: "ChalkboardSE" }}>
+            Good Afternoon 👋
+          </Text>
+          <Text
+            style={{
+              fontSize: 25,
+              fontFamily: "ChalkboardSE-Bold",
+              fontWeight: "bold",
+            }}
+          >
+            Elizabeth Lee
+          </Text>
+        </View>
+        <Image
+          source={require("../assets/images/profilepic.png")}
+          style={styles.myImage}
+        />
+      </View>
+
+      <ScrollView
+        contentContainerStyle={styles.container}
+        showsVerticalScrollIndicator={false}
+      >
+        <View>
+          <View style={styles.actionRow}>
+            <Search setSearchQuery={this.setSearchQuery}/>
+            <TouchableOpacity
+              style={styles.addContainer}
+              onPress={() => this.setModal(1)}
             >
-              Elizabeth Lee
-            </Text>
+              <Image
+                source={require("../assets/icons/writeicon.png")}
+                style={styles.writeicon}
+              />
+            </TouchableOpacity>
           </View>
-          <Image
-            source={require("../assets/images/profilepic.png")}
-            style={styles.myImage}
+          <Text
+            style={{
+              fontSize: 15,
+              fontWeight: "bold",
+              marginLeft: 20,
+              marginTop: 20,
+              marginBottom: 10,
+            }}
+          >
+            Categories
+          </Text>
+          <View style={styles.actionRow}>
+            <TouchableOpacity style={styles.iconBox}>
+              <Image
+                source={require("../assets/images/cake.png")}
+                style={styles.icon}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.iconBox}>
+              <Image
+                source={require("../assets/images/burger.png")}
+                style={styles.icon}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.iconBox}>
+              <Image
+                source={require("../assets/images/controller.png")}
+                style={styles.icon}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.iconBox}>
+              <Image
+                source={require("../assets/images/cloudbubble.png")}
+                style={styles.icon}
+              />
+            </TouchableOpacity>
+          </View>
+
+          <Text
+            style={{
+              fontSize: 15,
+              fontWeight: "bold",
+              marginLeft: 20,
+              marginTop: 20,
+            }}
+          >
+            Your Feed
+          </Text>
+
+          <FlatList
+            data={this.state.displayedData}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
           />
         </View>
+      </ScrollView>
 
-        <ScrollView
-          contentContainerStyle={styles.container}
-          showsVerticalScrollIndicator={false}
-        >
-          <View>
-            <View style={styles.actionRow}>
-              <Search setSearchQuery={this.setSearchQuery}/>
-              <TouchableOpacity style={styles.addContainer}>
-                <Image
-                  source={require("../assets/icons/writeicon.png")}
-                  style={styles.writeicon}
+      <Modal
+        avoidKeyboard={true}
+        transparent={true}
+        visible={this.state.modal === 1}
+        onRequestClose={() => this.setModal(0)}
+      >
+        {this.state.modal === 1 && (
+          <View style={styles.modalContainer}>
+            <View style={styles.modalContent1}>
+              <View style={styles.modalContent}>
+                <TouchableOpacity
+                  style={{ alignSelf: "flex-start" }}
+                  onPress={() => this.setModal(0)}
+                >
+                  <Image
+                    source={require("../assets/icons/cross.png")}
+                    style={styles.cross}
+                  />
+                </TouchableOpacity>
+
+                <Text style={styles.modalHeader}>Post It!</Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "flex-start",
+                    marginVertical: 10,
+                    width: "100%",
+                  }}
+                >
+                  <Image
+                    source={require("../assets/images/camerapic.png")}
+                    style={styles.camera}
+                  />
+                  <Text
+                    style={{
+                      width: 80,
+                      marginTop: 10,
+                      textAlign: "left",
+                      color: "#808080",
+                    }}
+                  >
+                    Upload {"\n"}Your Photo
+                  </Text>
+                </View>
+
+                <TextInput
+                  style={styles.input}
+                  onChangeText={this.onChangeTitle}
+                  value={this.state.title}
+                  placeholder="Title"
                 />
-              </TouchableOpacity>
+
+                <TextInput
+                  style={styles.input2}
+                  onChangeText={this.onChangeText}
+                  value={this.state.text}
+                  placeholder="Share more about it (:"
+                  multiline={true}
+                />
+
+                <View style={{ marginTop: 20 }}>
+                  <Button
+                    title="Submit"
+                    buttonStyle={{ backgroundColor: "#8741bb" }}
+                    onPress={() => this.setModal(0)}
+                  />
+                </View>
+              </View>
             </View>
-            <Text
-              style={{
-                fontSize: 15,
-                fontWeight: "bold",
-                marginLeft: 20,
-                marginTop: 20,
-                marginBottom: 10,
-              }}
-            >
-              Categories
-            </Text>
-            <View style={styles.actionRow}>
-              <TouchableOpacity style={styles.iconBox}>
-                <Image
-                  source={require("../assets/images/cake.png")}
-                  style={styles.icon}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.iconBox}>
-                <Image
-                  source={require("../assets/images/burger.png")}
-                  style={styles.icon}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.iconBox}>
-                <Image
-                  source={require("../assets/images/controller.png")}
-                  style={styles.icon}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.iconBox}>
-                <Image
-                  source={require("../assets/images/cloudbubble.png")}
-                  style={styles.icon}
-                />
-              </TouchableOpacity>
-            </View>
-
-            <Text
-              style={{
-                fontSize: 15,
-                fontWeight: "bold",
-                marginLeft: 20,
-                marginTop: 20,
-              }}
-            >
-              Your Feed
-            </Text>
-
-            <FlatList
-              data={this.state.displayedData}
-              renderItem={renderItem}
-              keyExtractor={(item) => item.id}
-            />
           </View>
-        </ScrollView>
-      </SafeAreaView>
-    );
-  }
+        )}
+      </Modal>
+    </SafeAreaView>
+  );
+}
 }
 
 const styles = StyleSheet.create({
@@ -313,6 +422,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     height: 40,
     width: 40,
+    shadowColor: "#000",
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    elevation: 2,
   },
   iconBox: {
     backgroundColor: "#E8E8E8",
@@ -323,6 +437,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    shadowColor: "#000",
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    elevation: 2,
   },
   cardBox: {
     borderRadius: 15,
@@ -332,16 +451,98 @@ const styles = StyleSheet.create({
     width: 40,
   },
   image: {
-    height: 250,
-    width: 315,
+    height: 300,
+    width: 300,
     alignSelf: "center",
     marginBottom: 10,
   },
   heart: {
-    height: 15,
+    height: 14.7,
     width: 17,
     marginVertical: 8,
     marginLeft: 0,
     marginRight: 15,
+  },
+  modalContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    flex: 1,
+    backgroundColor: "rgba(56, 56, 56, 0.79)",
+  },
+  modalContent: {
+    alignItems: "center",
+    justifyContent: "flex-start",
+    backgroundColor: "white",
+    paddingVertical: 18,
+    paddingHorizontal: 24,
+    borderRadius: 6,
+    textAlign: "center",
+    borderColor: "#EE82EE",
+    borderWidth: 2,
+    height: 480,
+    width: 310,
+  },
+  modalContent1: {
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "white",
+    padding: 8,
+    borderRadius: 6,
+    textAlign: "center",
+    marginHorizontal: 30,
+    height: 500,
+    width: 330,
+  },
+  modalHeader: {
+    fontSize: 23,
+    fontWeight: "bold",
+    margin: 10,
+    marginTop: -5,
+  },
+  input: {
+    height: 40,
+    marginTop: 12,
+    marginBottom: 5,
+    shadowColor: "#000",
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    borderRadius: 5,
+    elevation: 2,
+    // outlineWidth: 0,
+    width: "100%",
+    paddingHorizontal: 10,
+  },
+
+  input2: {
+    height: 40,
+    marginTop: 12,
+    marginBottom: 5,
+    shadowColor: "#000",
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    borderRadius: 5,
+    elevation: 2,
+    // outlineWidth: 0,
+    width: "100%",
+    paddingHorizontal: 10,
+    height: 150,
+    textAlignVertical: "top",
+    paddingTop: 15,
+  },
+
+  camera: {
+    height: 70,
+    width: 40,
+    marginRight: 30,
+  },
+
+  cross: {
+    height: 25,
+    width: 25,
+    marginTop: -10,
+    marginLeft: -10,
+    alignSelf: "flex-start",
   },
 });
