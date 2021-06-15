@@ -332,17 +332,78 @@ export default function TabOneScreen(props: any) {
                     Birthdays & Worknnivarsaries
                   </Text>
                 </View>
-
                 <Text style={styles.titles}>Today's</Text>
-                <View style={styles.input3}></View>
-
+                <View style={styles.input3}>
+                  <Image
+                    source={require("../assets/images/candle.png")}
+                    style={styles.candle}
+                  />
+                  <View style={{ flexDirection: "row" }}>
+                    <Text style={{ fontWeight: "bold"}}>Marie Sim</Text>
+                    <Text>'s birthday today!</Text>
+                  </View>
+                </View>
                 <Text style={styles.titles}>Upcoming's</Text>
-                <View style={styles.input3}></View>
-                <View style={styles.input3}></View>
-                <View style={styles.input3}></View>
-                <View style={styles.input3}></View>
-                <View style={styles.input3}></View>
-                <View style={styles.input3}></View>
+                <View style={styles.input3}>
+                  <Image
+                    source={require("../assets/images/candle.png")}
+                    style={styles.candle}
+                  />
+                  <View style={{ flexDirection: "row" }}>
+                    <Text style={{ fontWeight: "bold", fontSize: 12 }}>Eliz Lu</Text>
+                    <Text style={{fontSize: 12 }}>'s birthday in 3 days!</Text>
+                  </View>
+                </View>
+                <View style={styles.input3}>
+                  <Image
+                    source={require("../assets/images/medal.png")}
+                    style={styles.candle}
+                  />
+                  <View style={{ flexDirection: "row" }}>
+                    <Text style={{ fontWeight: "bold", fontSize: 12 }}>Lynn Chew</Text>
+                    <Text style={{fontSize: 12 }}>'s 2nd worknnivarsary in 3 days!</Text>
+                  </View>
+                </View>
+                <View style={styles.input3}>
+                  <Image
+                    source={require("../assets/images/candle.png")}
+                    style={styles.candle}
+                  />
+                  <View style={{ flexDirection: "row" }}>
+                    <Text style={{ fontWeight: "bold", fontSize: 12 }}>Don Key</Text>
+                    <Text style={{fontSize: 12 }}>'s birthday in 5 days!</Text>
+                  </View>
+                </View>
+                <View style={styles.input3}>
+                  <Image
+                    source={require("../assets/images/medal.png")}
+                    style={styles.candle}
+                  />
+                  <View style={{ flexDirection: "row" }}>
+                    <Text style={{ fontWeight: "bold", fontSize: 12 }}>Matt Tan</Text>
+                    <Text style={{fontSize: 12 }}>'s 5th worknnivarsary in 9 days!</Text>
+                  </View>
+                </View>
+                <View style={styles.input3}>
+                  <Image
+                    source={require("../assets/images/candle.png")}
+                    style={styles.candle}
+                  />
+                  <View style={{ flexDirection: "row" }}>
+                    <Text style={{ fontWeight: "bold", fontSize: 12 }}>Mee Sua</Text>
+                    <Text style={{fontSize: 12 }}>'s birthday in 10 days!</Text>
+                  </View>
+                </View>
+                <View style={styles.input3}>
+                  <Image
+                    source={require("../assets/images/candle.png")}
+                    style={styles.candle}
+                  />
+                  <View style={{ flexDirection: "row" }}>
+                    <Text style={{ fontWeight: "bold", fontSize: 12 }}>Mee Pok</Text>
+                    <Text style={{fontSize: 12 }}>'s birthday in 10 days!</Text>
+                  </View>
+                </View>
               </View>
             </View>
           </View>
@@ -449,9 +510,8 @@ const styles = StyleSheet.create({
     height: 80,
     width: 80,
     alignSelf: "center",
-    marginBottom: 5,
     marginRight: 5,
-    marginTop: 10
+    marginTop: 15,
   },
   heart: {
     height: 14.7,
@@ -471,12 +531,12 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     backgroundColor: "white",
     paddingVertical: 18,
-    paddingHorizontal: 24,
+    paddingHorizontal: 14,
     borderRadius: 6,
     textAlign: "center",
     borderColor: "#EE82EE",
     borderWidth: 2,
-    height: 480,
+    height: 530,
     width: 310,
   },
   modalContent1: {
@@ -487,7 +547,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     textAlign: "center",
     marginHorizontal: 30,
-    height: 500,
+    height: 550,
     width: 330,
   },
   modalHeader: {
@@ -528,18 +588,18 @@ const styles = StyleSheet.create({
 
   input3: {
     marginTop: 5,
-    marginBottom: 5,
+    marginBottom: 7,
     shadowColor: "#000",
     shadowOpacity: 0.3,
     shadowRadius: 2,
     borderRadius: 5,
     elevation: 2,
-    height: 30,
     // outlineWidth: 0,
     width: "100%",
     paddingHorizontal: 10,
-    textAlignVertical: "top",
-    paddingTop: 15,
+    flexDirection: "row",
+    alignItems: "center",
+    paddingVertical: 3
   },
 
   camera: {
@@ -559,6 +619,12 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     fontWeight: "bold",
     marginBottom: 3,
-    marginTop: 10
+    marginTop: 10,
+  },
+  candle: {
+    height: 21,
+    width: 17.5,
+    margin: 3,
+    marginRight: 12,
   },
 });
