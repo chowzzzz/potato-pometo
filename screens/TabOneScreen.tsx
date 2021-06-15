@@ -342,6 +342,7 @@ export default function TabOneScreen(props: any) {
                 <View style={styles.input3}></View>
                 <View style={styles.input3}></View>
                 <View style={styles.input3}></View>
+                <View style={styles.input3}></View>
               </View>
             </View>
           </View>
@@ -521,6 +522,22 @@ const styles = StyleSheet.create({
     width: "100%",
     paddingHorizontal: 10,
     height: 200,
+    textAlignVertical: "top",
+    paddingTop: 15,
+  },
+
+  input3: {
+    marginTop: 5,
+    marginBottom: 5,
+    shadowColor: "#000",
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    borderRadius: 5,
+    elevation: 2,
+    height: 30,
+    // outlineWidth: 0,
+    width: "100%",
+    paddingHorizontal: 10,
     textAlignVertical: "top",
     paddingTop: 15,
   },
