@@ -1,17 +1,19 @@
-/**
- * If you are not familiar with React Navigation, check out the "Fundamentals" guide:
- * https://reactnavigation.org/docs/getting-started
- *
- */
-import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import * as React from 'react';
-import { ColorSchemeName } from 'react-native';
+import {
+	NavigationContainer,
+	DefaultTheme,
+	DarkTheme
+} from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import * as React from "react";
+import { ColorSchemeName } from "react-native";
+import MainPage from "../screens/MainPage";
 
-import NotFoundScreen from '../screens/NotFoundScreen';
-import { RootStackParamList } from '../types';
-import BottomTabNavigator from './BottomTabNavigator';
-import LinkingConfiguration from './LinkingConfiguration';
+import NotFoundScreen from "../screens/NotFoundScreen";
+import OnboardingScreen from "../screens/OnboardingScreen";
+import SignUp from "../screens/SignUp";
+import { RootStackParamList } from "../types";
+import BottomTabNavigator from "./BottomTabNavigator";
+import LinkingConfiguration from "./LinkingConfiguration";
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -28,10 +30,27 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
 const Stack = createStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
-  return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Root" component={BottomTabNavigator} />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
-    </Stack.Navigator>
-  );
+	return (
+		<Stack.Navigator screenOptions={{ headerShown: false }}>
+			<Stack.Screen name="MainPage" component={MainPage} />
+			<Stack.Screen
+				name="OnboardingScreen"
+				component={OnboardingScreen}
+			/>
+			<Stack.Screen
+				name="SignUp"
+				component={SignUp}
+				options={{
+					title: "Sign Up",
+					headerShown: false
+				}}
+			/>
+			<Stack.Screen name="Root" component={BottomTabNavigator} />
+			<Stack.Screen
+				name="NotFound"
+				component={NotFoundScreen}
+				options={{ title: "Oops!" }}
+			/>
+		</Stack.Navigator>
+	);
 }

@@ -4,23 +4,26 @@
  */
 
 export type RootStackParamList = {
-  Root: undefined;
-  NotFound: undefined;
+	Root: undefined;
+	NotFound: undefined;
+	OnboardingScreen: undefined;
+	MainPage: undefined;
+	SignUp: undefined;
 };
 
 export type BottomTabParamList = {
-  TabOne: undefined;
-  TabTwo: undefined;
+	TabOne: undefined;
+	TabTwo: undefined;
 };
 
 export type TabOneParamList = {
-  TabOneScreen: undefined;
+	TabOneScreen: undefined;
 };
 
 export type TabTwoParamList = {
-  TabTwoScreen: undefined;
+	TabTwoScreen: undefined;
 };
 
 export type TabThreeParamList = {
-  TabThreeScreen: undefined;
+	TabThreeScreen: undefined;
 };
