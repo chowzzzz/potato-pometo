@@ -3,26 +3,64 @@ import { StyleSheet, Image, View, Text, TouchableOpacity } from "react-native";
 import FormButton from "../components/FormButton";
 import FormInput from "../components/FormInput";
 import { windowWidth } from "../utils/Dimensions";
+import { firebase } from "../firebase/config.js";
 
 const SignUpScreen = ({ navigation }) => {
-	const [teamId, setTeamId] = useState();
+	// const [teamId, setTeamId] = useState();
 	const [email, setEmail] = useState();
 	const [password, setPassword] = useState();
 	const [confirmPassword, setConfirmPassword] = useState();
 	const [name, setName] = useState();
 	const [username, setUsername] = useState();
-	const [gender, setGender] = useState();
-	const [profilePic, setProfilePic] = useState();
+	// const [gender, setGender] = useState();
+	// const [profilePic, setProfilePic] = useState();
+
+	const onSignupPress = () => {
+		if (password !== confirmPassword) {
+			alert("Passwords don't match.");
+			return;
+		}
+		firebase
+			.auth()
+			.createUserWithEmailAndPassword(email, password)
+			.then((response) => {
+				const uid = response.user.uid;
+				const data = {
+					id: uid,
+					email,
+					name,
+					username
+				};
+				const usersRef = firebase
+					.database()
+					.ref("users/" + uid)
+					.set({
+						username: username,
+						email: email,
+						name: name
+					})
+					.then(() => {
+						navigation.navigate("Root", { user: data });
+					})
+					.catch((error) => {
+						alert(error);
+					});
+			})
+			.catch((error) => {
+				alert(error);
+			});
+	};
+
 	return (
 		<View style={styles.container}>
 			<Text style={styles.title}>Sign up with us</Text>
 
-			<FormInput
+			{/* <FormInput
 				labelValue={teamId}
 				onChangeText={(userTeamId) => setTeamId(userTeamId)}
 				placeholder="Team ID"
 				iconType=""
-			/>
+			/> */}
 			<FormInput
 				labelValue={email}
 				onChangeText={(userEmail) => setEmail(userEmail)}
@@ -63,10 +101,7 @@ const SignUpScreen = ({ navigation }) => {
 				iconType=""
 			/>
 
-			<FormButton
-				buttonTitle="Sign Up"
-				onPress={() => console.log("yay")}
-			/>
+			<FormButton buttonTitle="Sign Up" onPress={() => onSignupPress()} />
 
 			<TouchableOpacity
 				style={styles.link}
