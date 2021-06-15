@@ -533,12 +533,21 @@ export default class TabOneScreen extends React.Component {
                 style={styles.pollCross}
               />
             </TouchableOpacity>
+            <Text style={{fontSize: 25, fontWeight: "bold", marginTop: -15}}>Poll Of The Week</Text>
+            <Text style={{fontSize: 12}}>by @wheee.geee</Text>
+            <Text style={{fontSize: 18, fontWeight: "bold", marginTop: 5}}>What is your favourite sports brand?</Text>
             <RNPoll
               totalVotes={30}
               choices={choices}
               onChoicePress={(selectedChoice: IChoice) =>
               console.log("SelectedChoice: ", selectedChoice)
               }
+              style={{width: '100%', paddingHorizontal: 20}}
+              pollContainerStyle={{width: '100%'}}
+            />
+            <Image
+              source={require("../assets/illustrations/ginger-cat-729.png")}
+              style={styles.pollPicture}
             />
           </View>
         </Modal>
@@ -751,16 +760,17 @@ const styles = StyleSheet.create({
   },
   pollModalContainer: {
     alignItems: "center",
-    justifyContent: "center",
+    // justifyContent: "center",
     flex: 1,
     backgroundColor: "#FFF",
     width: '100%',
+    marginTop: 40
   },
   pollCross: {
     height: 25,
     width: 25,
     marginTop: -10,
-    // marginLeft: -10,
+    marginLeft: 7,
     alignSelf: "flex-start",
   },
   titles: {
@@ -775,4 +785,10 @@ const styles = StyleSheet.create({
     margin: 3,
     marginRight: 12,
   },
+  pollPicture: {
+    height: 400,
+    width: 400,
+    margin: 3,
+    marginTop: 12,
+  }
 });
