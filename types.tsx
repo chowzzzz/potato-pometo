@@ -7,8 +7,8 @@ export type RootStackParamList = {
 	Root: undefined;
 	NotFound: undefined;
 	OnboardingScreen: undefined;
-	MainPage: undefined;
-	SignUp: undefined;
+	LoginScreen: undefined;
+	SignUpScreen: undefined;
 };
 
 export type BottomTabParamList = {
