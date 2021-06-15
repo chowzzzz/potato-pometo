@@ -10,7 +10,6 @@ export default function App() {
 	const isLoadingComplete = useCachedResources();
 	const colorScheme = useColorScheme();
 
-<<<<<<< HEAD
     if (!isLoadingComplete) {
         return null;
     } else {
@@ -28,15 +27,4 @@ export default function App() {
             </SafeAreaProvider>
         );
     }
-=======
-	if (!isLoadingComplete) {
-		return null;
-	} else {
-		return (
-			<SafeAreaProvider>
-				<Navigation colorScheme={colorScheme} />
-			</SafeAreaProvider>
-		);
-	}
->>>>>>> 5f53800a131811a872cff9296d8335ed2577bcef
 }
