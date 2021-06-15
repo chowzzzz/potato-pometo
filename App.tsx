@@ -10,13 +10,21 @@ export default function App() {
 	const isLoadingComplete = useCachedResources();
 	const colorScheme = useColorScheme();
 
-	if (!isLoadingComplete) {
-		return null;
-	} else {
-		return (
-			<SafeAreaProvider>
-				<Navigation colorScheme={colorScheme} />
-			</SafeAreaProvider>
-		);
-	}
+    if (!isLoadingComplete) {
+        return null;
+    } else {
+        return (
+            <SafeAreaProvider>
+                <Navigation colorScheme={colorScheme} />
+                {/* <NavigationContainer>
+                    <RootStack.Navigator mode="modal"
+                        headerMode="none"
+                    >
+                        <RootStack.Screen name="MainPage"
+                            component={StackScreen} />
+                    </RootStack.Navigator>
+                </NavigationContainer> */}
+            </SafeAreaProvider>
+        );
+    }
 }
