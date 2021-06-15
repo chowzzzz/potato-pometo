@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { Component, useEffect } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -10,9 +10,6 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Card, ListItem, Button, Icon } from "react-native-elements";
-
-// import EditScreenInfo from '../components/EditScreenInfo';
-// import { Text, View } from '../components/Themed';
 import Search from "../components/Search";
 
 const DATA = [
@@ -43,7 +40,7 @@ const DATA = [
       "Dope af remix! Anyone down to watch phua chu kang new hit song with me this Saturdayday 10pm? Open jio everyone!",
   },
   {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
+    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28b0",
     title: "My Dog Bobby",
     imageUrl:
       "https://4cxqn5j1afk2facwz3mfxg5r-wpengine.netdna-ssl.com/wp-content/uploads/2017/07/Pet-Dog.jpg",
@@ -52,7 +49,7 @@ const DATA = [
       "Just adopted a new dog over the weekend! Say hi to bobby (: He's a german shepard mix maltese and he looooooooooooves grapes ((((:",
   },
   {
-    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
+    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f64",
     title: "Baked some fresh brownies! Anyone wanna be my guinea pig?",
     imageUrl:
       "https://static.thehoneycombers.com/wp-content/uploads/sites/2/2020/08/bundt-by-the-backyard-bakers-900x643.png",
@@ -110,111 +107,151 @@ const Post = ({ title, imageUrl, username, caption }) => (
   </Card>
 );
 
-export default function TabOneScreen(props: any) {
-  const renderItem = ({ item }) => (
-    <Post
-      title={item.title}
-      imageUrl={item.imageUrl}
-      username={item.username}
-      caption={item.caption}
-    />
-  );
+export default class TabOneScreen extends React.Component {
+  constructor(props: any) {
+    super(props);
+    this.state = { 
+      searchQuery: "",
+      displayedData: DATA,
+    };
+    this.setSearchQuery = this.setSearchQuery.bind(this);
+  }
 
-  return (
-    <SafeAreaView>
-      <View style={styles.header}>
-        <View style={styles.headerText}>
-          <Text style={{ fontSize: 15, fontFamily: "ChalkboardSE" }}>
-            Good Afternoon 👋
-          </Text>
-          <Text
-            style={{
-              fontSize: 25,
-              fontFamily: "ChalkboardSE-Bold",
-              fontWeight: "bold",
-            }}
-          >
-            Elizabeth Lee
-          </Text>
-        </View>
-        <Image
-          source={require("../assets/images/profilepic.png")}
-          style={styles.myImage}
-        />
-      </View>
+  componentDidMount () {
+    this.setState({ displayedData: DATA });
+  }
 
-      <ScrollView
-        contentContainerStyle={styles.container}
-        showsVerticalScrollIndicator={false}
-      >
-        <View>
-          <View style={styles.actionRow}>
-            <Search />
-            <TouchableOpacity style={styles.addContainer}>
-              <Image
-                source={require("../assets/icons/writeicon.png")}
-                style={styles.writeicon}
-              />
-            </TouchableOpacity>
+  shouldComponentUpdate (nextProps, nextState) {
+    if (this.state.searchQuery !== nextState.searchQuery) {
+      this.searchFilterFunction();
+      return true;
+    }
+    if (this.state.displayedData !== nextState.displayedData) {
+      return true;
+    }
+    return false;
+  }
+
+  setSearchQuery (searchQuery: string) {
+    this.setState({ searchQuery: searchQuery });
+  };
+
+  searchFilterFunction = _.debounce(() => {
+    const text = this.state.searchQuery.toLowerCase();
+    const newData = (DATA.filter(function(item) {
+      return item.title.toLowerCase().includes(text)
+        || item.username.toLowerCase().includes(text) 
+        || item.caption.toLowerCase().includes(text);
+    }));
+    this.setState({ displayedData: newData });
+  }, 150);
+  
+  render() {
+    const renderItem = ({ item }) => (
+      <Post
+        title={item.title}
+        imageUrl={item.imageUrl}
+        username={item.username}
+        caption={item.caption}
+      />
+    );
+
+    return (
+      <SafeAreaView>
+        <View style={styles.header}>
+          <View style={styles.headerText}>
+            <Text style={{ fontSize: 15, fontFamily: "ChalkboardSE" }}>
+              Good Afternoon 👋
+            </Text>
+            <Text
+              style={{
+                fontSize: 25,
+                fontFamily: "ChalkboardSE-Bold",
+                fontWeight: "bold",
+              }}
+            >
+              Elizabeth Lee
+            </Text>
           </View>
-          <Text
-            style={{
-              fontSize: 15,
-              fontWeight: "bold",
-              marginLeft: 20,
-              marginTop: 20,
-              marginBottom: 10,
-            }}
-          >
-            Categories
-          </Text>
-          <View style={styles.actionRow}>
-            <TouchableOpacity style={styles.iconBox}>
-              <Image
-                source={require("../assets/images/cake.png")}
-                style={styles.icon}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.iconBox}>
-              <Image
-                source={require("../assets/images/burger.png")}
-                style={styles.icon}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.iconBox}>
-              <Image
-                source={require("../assets/images/controller.png")}
-                style={styles.icon}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.iconBox}>
-              <Image
-                source={require("../assets/images/cloudbubble.png")}
-                style={styles.icon}
-              />
-            </TouchableOpacity>
-          </View>
-
-          <Text
-            style={{
-              fontSize: 15,
-              fontWeight: "bold",
-              marginLeft: 20,
-              marginTop: 20,
-            }}
-          >
-            Your Feed
-          </Text>
-
-          <FlatList
-            data={DATA}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id}
+          <Image
+            source={require("../assets/images/profilepic.png")}
+            style={styles.myImage}
           />
         </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
+
+        <ScrollView
+          contentContainerStyle={styles.container}
+          showsVerticalScrollIndicator={false}
+        >
+          <View>
+            <View style={styles.actionRow}>
+              <Search setSearchQuery={this.setSearchQuery}/>
+              <TouchableOpacity style={styles.addContainer}>
+                <Image
+                  source={require("../assets/icons/writeicon.png")}
+                  style={styles.writeicon}
+                />
+              </TouchableOpacity>
+            </View>
+            <Text
+              style={{
+                fontSize: 15,
+                fontWeight: "bold",
+                marginLeft: 20,
+                marginTop: 20,
+                marginBottom: 10,
+              }}
+            >
+              Categories
+            </Text>
+            <View style={styles.actionRow}>
+              <TouchableOpacity style={styles.iconBox}>
+                <Image
+                  source={require("../assets/images/cake.png")}
+                  style={styles.icon}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.iconBox}>
+                <Image
+                  source={require("../assets/images/burger.png")}
+                  style={styles.icon}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.iconBox}>
+                <Image
+                  source={require("../assets/images/controller.png")}
+                  style={styles.icon}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.iconBox}>
+                <Image
+                  source={require("../assets/images/cloudbubble.png")}
+                  style={styles.icon}
+                />
+              </TouchableOpacity>
+            </View>
+
+            <Text
+              style={{
+                fontSize: 15,
+                fontWeight: "bold",
+                marginLeft: 20,
+                marginTop: 20,
+              }}
+            >
+              Your Feed
+            </Text>
+
+            <FlatList
+              data={this.state.displayedData}
+              renderItem={renderItem}
+              keyExtractor={(item) => item.id}
+            />
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
