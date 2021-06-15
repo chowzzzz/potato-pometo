@@ -11,6 +11,8 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import MainPage from "./screens/MainPage";
 import SignUp from "./screens/SignUp";
 import TabOneScreen from "./screens/TabOneScreen";
+import TabTwoScreen from "./screens/TabTwoScreen";
+import Quiz from "./screens/Quiz";
 import Game from "./screens/Game";
 
 const Stack = createStackNavigator();
@@ -33,6 +35,20 @@ function StackScreen() {
                 component={TabOneScreen}
                 options={{
                     title: 'TabOneScreen',
+                    headerShown: false,
+                }}
+            />
+            <Stack.Screen name="TabTwoScreen"
+                component={TabTwoScreen}
+                options={{
+                    title: 'TabTwoScreen',
+                    headerShown: false,
+                }}
+            />
+            <Stack.Screen name="Quiz"
+                component={Quiz}
+                options={{
+                    title: 'Quiz',
                     headerShown: false,
                 }}
             />
