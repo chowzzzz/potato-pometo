@@ -31,7 +31,7 @@ export default function NotFoundScreen({
 		});
 	}, []);
 
-	console.log("user: " + user);
+	// console.log("user: " + user);
 	return (
 		<View style={styles.container}>
 			<Text style={styles.title}>This screen doesn't exist.</Text>

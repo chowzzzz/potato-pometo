@@ -9,6 +9,7 @@ export type RootStackParamList = {
 	OnboardingScreen: undefined;
 	LoginScreen: undefined;
 	SignUpScreen: undefined;
+	CreateOrgIdScreen: undefined;
 };
 
 export type BottomTabParamList = {

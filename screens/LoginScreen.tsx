@@ -45,6 +45,8 @@ const LoginScreen = ({ navigation }) => {
 				source={require("../assets/images/pometo.png")}
 			/>
 
+			<Text style={styles.title}>Welcome back!</Text>
+
 			<FormInput
 				labelValue={email}
 				onChangeText={(userEmail) => setEmail(userEmail)}
@@ -68,7 +70,7 @@ const LoginScreen = ({ navigation }) => {
 			<TouchableOpacity
 				style={styles.link}
 				onPress={() => {
-					navigation.navigate("SignUpScreen");
+					navigation.navigate("SignUpScreen", { orgId: "" });
 				}}
 			>
 				<Text style={styles.navButtonText}>
@@ -94,6 +96,12 @@ const styles = StyleSheet.create({
 		height: ratio * 733,
 		width: "100%",
 		resizeMode: "cover"
+	},
+	title: {
+		fontSize: 30,
+		fontWeight: "bold",
+		color: "#fff",
+		margin: 20
 	},
 	text: {
 		fontSize: 28,

@@ -1,8 +1,4 @@
-import {
-	NavigationContainer,
-	DefaultTheme,
-	DarkTheme
-} from "@react-navigation/native";
+import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import React, { useEffect, useState } from "react";
 import { ColorSchemeName } from "react-native";
@@ -12,7 +8,9 @@ import LoginScreen from "../screens/LoginScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import OnboardingScreen from "../screens/OnboardingScreen";
 import SignUpScreen from "../screens/SignUpScreen";
+import CreateOrgIdScreen from "../screens/CreateOrgIdScreen";
 import { RootStackParamList } from "../types";
+import AuthStack from "./AuthStack";
 import BottomTabNavigator from "./BottomTabNavigator";
 import LinkingConfiguration from "./LinkingConfiguration";
 
@@ -73,15 +71,17 @@ function RootNavigator() {
 			{user ? (
 				<Stack.Screen name="Root" component={BottomTabNavigator} />
 			) : (
-				// <Stack.Screen name="Home">
-				// 	{(props) => <HomeScreen {...props} extraData={user} />}
-				// </Stack.Screen>
+				// <AuthStack />
 				<>
 					<Stack.Screen
 						name="OnboardingScreen"
 						component={OnboardingScreen}
 					/>
 					<Stack.Screen name="LoginScreen" component={LoginScreen} />
+					<Stack.Screen
+						name="CreateOrgIdScreen"
+						component={CreateOrgIdScreen}
+					/>
 					<Stack.Screen
 						name="SignUpScreen"
 						component={SignUpScreen}
