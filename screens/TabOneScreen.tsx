@@ -19,6 +19,12 @@ import AngelScreen from "./AngelScreen";
 
 const DATA = [
   {
+    id: "3ac68afc-c705-40d3-a4f8-fbd918b97f63",
+    title: "If I had nine hours to chop down a tree, I’d spend the first six sharpening my axe. — Abraham Lincoln 💭",
+    username: "QuoteBot",
+    caption: "",
+  },
+  {
     id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
     title: "My Yummy Lunch!",
     likes: 5,
