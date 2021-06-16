@@ -14,15 +14,31 @@ export default function FinalResult() {
 
 
 	return (
+		//if(score >= 10){}
 		<View>
-			<Text style={styles.header}>
-				Final Results
-			</Text>
-			<Button title="back" 
-            // onPress={() => navigation.navigate('FinalResult')} 
-            />
+			<View style={styles.container}>
+				<Text style={styles.header}>
+					Final Results
+				</Text>
+				<Image 
+				style={styles.image}
+				source={require("../assets/images/lime-409.png")}
+				/>
+				<Text style={styles.modalContent}
+				> Congratulations You're a Aerin's best friend you got 10/10
+				</Text>
+			</View>
+			<View style={styles.container}>
+				<TouchableOpacity style={styles.buttonStyle}
+					onPress={() => navigation.navigate('BabyGame')}
+				// type="solid"
+				>
+				<Text style={styles.textStyle}>
+					Back
+				</Text>
+				</TouchableOpacity>
+			</View>
 		</View>
-
 	);
 
 }
@@ -53,11 +69,16 @@ const styles = StyleSheet.create({
 		marginTop: -20,
 	},
 	buttonStyle: {
+		marginTop: 0,
+		padding: 10,
 		width: '100%',
-		color: 'red',
 		alignItems: 'center',
 		alignSelf: 'stretch',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		backgroundColor: '#c4c3f7',
+		height: 35,
+		marginBottom: 0,
+		borderRadius: 10,
 	},
 	answer: {
 		marginTop: 30,
@@ -69,5 +90,26 @@ const styles = StyleSheet.create({
 		color: 'grey',
 		fontFamily: 'Futura',
         textAlign: "center"
+	},
+	image: {
+		width: 350,
+		height: 250,
+		marginBottom: 50,
+	},
+	modalContent: {
+		alignItems: "center",
+		justifyContent: "center",
+		backgroundColor: "white",
+		padding:8,
+		borderRadius: 6,
+		textAlign: "center",
+		borderColor: "c4c3f7",
+		borderWidth: 2,
+		height: 100,
+		width: '90%',
+	},
+	textStyle: {
+		color: 'black',
+		fontSize:20,
 	}
 });
