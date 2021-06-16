@@ -25,10 +25,20 @@ export default function FinalResult() {
 				source={require("../assets/images/lime-409.png")}
 				/>
 				<Text style={styles.modalContent}
-				> Congratulations You're a Aerin's best friend you got 10/10
+				> Congratulations You're Aerin's best friend you got 5/5!🎉 {"\n"}
+				<View style={styles.container}>
+				<TouchableOpacity style={styles.buttonStyle}
+					onPress={() => navigation.navigate('Quiz')}
+				// type="solid"
+				>
+				<Text style={styles.textStyle}>
+					Back
+				</Text>
+				</TouchableOpacity>
+			</View>
 				</Text>
 			</View>
-			<View style={styles.container}>
+			{/* <View style={styles.container}>
 				<TouchableOpacity style={styles.buttonStyle}
 					onPress={() => navigation.navigate('BabyGame')}
 				// type="solid"
@@ -37,8 +47,33 @@ export default function FinalResult() {
 					Back
 				</Text>
 				</TouchableOpacity>
-			</View>
+			</View> */}
 		</View>
+		// //else{}
+		// <View>
+		// 	<View style={styles.container}>
+		// 		<Text style={styles.header}>
+		// 			Final Results
+		// 		</Text>
+		// 		<Image 
+		// 		style={styles.image}
+		// 		source={require("")}
+		// 		/>
+		// 		<Text style={styles.modalContent}
+		// 		> Come on, You can do better!
+		// 		</Text>
+		// 	</View>
+		// 	<View style={styles.container}>
+		// 		<TouchableOpacity style={styles.buttonStyle}
+		// 			onPress={() => navigation.navigate('BabyGame')}
+		// 		// type="solid"
+		// 		>
+		// 		<Text style={styles.textStyle}>
+		// 			Back
+		// 		</Text>
+		// 		</TouchableOpacity>
+		// 	</View>
+		// </View>
 	);
 
 }
@@ -87,9 +122,10 @@ const styles = StyleSheet.create({
 	},
 	header: {
 		fontSize: 50,
-		color: 'grey',
+		color: '#404040',
 		fontFamily: 'Futura',
-        textAlign: "center"
+        textAlign: "center",
+		fontWeight: "bold"
 	},
 	image: {
 		width: 350,
@@ -105,8 +141,10 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 		borderColor: "c4c3f7",
 		borderWidth: 2,
-		height: 100,
+		height: 95,
 		width: '90%',
+		fontSize: 18,
+		fontFamily: 'Sans'
 	},
 	textStyle: {
 		color: 'black',
