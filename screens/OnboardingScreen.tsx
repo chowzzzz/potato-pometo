@@ -1,17 +1,13 @@
-import React from "react";
-import {
-	StyleSheet,
-	Image,
-	View,
-	Dimensions,
-	Text,
-	TouchableOpacity
-} from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, Image, View, Text } from "react-native";
+import AwesomeAlert from "react-native-awesome-alerts";
+
 import FormButton from "../components/FormButton";
 import { windowWidth } from "../utils/Dimensions";
 
 const OnboardingScreen = ({ navigation }) => {
-	console.log(navigation);
+	const [alertVisible, setAlertVisible] = useState(false);
+
 	return (
 		<View style={styles.container}>
 			<Image
@@ -22,8 +18,7 @@ const OnboardingScreen = ({ navigation }) => {
 				style={[
 					{
 						fontWeight: "bold",
-						fontSize: 25,
-						textAlign: "center"
+						fontSize: 28
 					},
 					styles.text
 				]}
@@ -39,9 +34,30 @@ const OnboardingScreen = ({ navigation }) => {
 				buttonTitle="Login"
 				onPress={() => navigation.navigate("LoginScreen")}
 			></FormButton>
+
+			<AwesomeAlert
+				show={alertVisible}
+				title="Do you have an Organisation ID?"
+				showCancelButton={true}
+				showConfirmButton={true}
+				cancelText="No"
+				confirmText="Yes"
+				confirmButtonColor="#6b5b95"
+				alertContainerStyle={styles.alertContainer}
+				cancelButtonStyle={styles.alertBtn}
+				confirmButtonStyle={styles.alertBtn}
+				onCancelPressed={() => {
+					navigation.navigate("CreateOrgIdScreen");
+				}}
+				onConfirmPressed={() => {
+					navigation.navigate("SignUpScreen", { orgId: "" });
+				}}
+				onDismiss={() => setAlertVisible(false)}
+			/>
+
 			<FormButton
 				buttonTitle="Sign up"
-				onPress={() => navigation.navigate("SignUpScreen")}
+				onPress={() => setAlertVisible(true)}
 			></FormButton>
 		</View>
 	);
@@ -62,9 +78,14 @@ const styles = StyleSheet.create({
 		height: ratio * 912
 	},
 	text: {
-		textAlign: "center",
 		paddingHorizontal: 30,
 		paddingBottom: 10,
 		color: "#fff"
+	},
+	alertContainer: {
+		textAlign: "center"
+	},
+	alertBtn: {
+		width: 80
 	}
 });
