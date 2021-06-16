@@ -24,7 +24,7 @@ const DATA = [
       "https://www.topasiatour.com/pic/Singapore/guide/bak-kut-teh-2.jpg",
     username: "aerrng",
     caption:
-      "Delivered from ichigo bakuteh bowl from @tan.wee.wee, this was outstanding! The ground pork on hand, shredded carrots, coleslaw cabbage mix; substituted Maggi seasoning and Tabasco with good balance of soy sauce and Sriracha. Served it with red quinoa which was tasty mixed together. There were no left overs ;-)",
+      "Delivered from ichigo bakuteh bowl from @tan.jun.wee, this was outstanding! The ground pork on hand, shredded carrots, coleslaw cabbage mix; substituted Maggi seasoning and Tabasco with good balance of soy sauce and Sriracha. Served it with red quinoa which was tasty mixed together. There were no left overs ;-)",
   },
   {
     id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
@@ -48,7 +48,7 @@ const DATA = [
     title: "Yo anyone wna join me to watch this?",
     imageUrl:
       "https://i1.sndcdn.com/artworks-xJyBsmHzLbJgaAr6-yDrC3A-t500x500.jpg",
-    username: "tan.wee.wee",
+    username: "tan.jun.wee",
     caption:
       "Dope af remix! Anyone down to watch phua chu kang new hit song with me this Saturdayday 10pm? Open jio everyone!",
   },

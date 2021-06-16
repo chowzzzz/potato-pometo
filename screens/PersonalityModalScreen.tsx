@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {
   View,
+  ScrollView,
   StyleSheet,
   Text,
   Image,
@@ -15,9 +16,18 @@ const displayedDATA = [
     title: "SkyzaHealthcare's Protagonists",
     imageUrl:
       "https://i.pinimg.com/564x/14/12/7d/14127dac83cd355b19c0ce6d90c1c0f8.jpg",
-    username: "tan.wee.wee",
+    username: "tan.jun.wee",
     caption:
       "Anybody would love to be a protagonist in a movie, just like our very own Thomas Chua and Don Key whom have the same Protagonist personality of ENFJ! They love helping others so reach out to them if you ever need help 🤪",
+  },
+  {
+    id: "abcd-0002",
+    title: "Curiosity doesn't kill the cat!",
+    imageUrl:
+      "https://static.neris-assets.com/images/personality-types/avatars/intp-logician.png",
+    username: "tan.jun.wee",
+    caption:
+      "Curious, logical and innovative? Yes, we want you! Candace, our Marketing Director and Joseph, our newly joined Engineer are both Logicians. Being INTPs, being curious is part of them so be prepared to pick your brains when talking to them!",
   },
 ]
 
@@ -56,7 +66,10 @@ export default function PersonalityModalScreen({ setModal }) {
   );
 
   return (
-    <View style={styles.container}>
+    <ScrollView 
+      contentContainerStyle={styles.container}
+      showsVerticalScrollIndicator={false}
+    >
       <TouchableOpacity
         style={{ alignSelf: "flex-start" }}
         onPress={() => setModal(0)}
@@ -71,12 +84,13 @@ export default function PersonalityModalScreen({ setModal }) {
         style={styles.picture}
       />
       <Text style={styles.title}>What's Your Type?</Text>
+      <Text style={{fontSize: 12, marginBottom: 50}}>~ just for fun ~</Text>
       <FlatList
         data={displayedDATA}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
-    </View>
+    </ScrollView>
   )
 };
 
@@ -97,7 +111,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     fontWeight: 'bold',
-    marginBottom: 50,
   },
   cardBox: {
     borderRadius: 15,
