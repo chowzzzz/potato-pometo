@@ -21,6 +21,7 @@ import FinalResult from '../screens/FinalResult';
 import GamerTimer from '../screens/GamerTimer';
 import BabyGame from "../screens/BabyGame";
 import ProfileScreen from "../screens/ProfileScreen";
+import MyPostsScreen from "../screens/MyPostsScreen";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -157,6 +158,10 @@ function TabThreeNavigator() {
 			<TabThreeStack.Screen
 				name="ProfileScreen"
 				component={ProfileScreen}
+			/>
+			<TabThreeStack.Screen
+				name="MyPostsScreen"
+				component={MyPostsScreen}
 			/>
 		</TabThreeStack.Navigator>
 	);
