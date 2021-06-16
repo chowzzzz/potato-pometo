@@ -47,7 +47,7 @@ const SignUpScreen = ({ route, navigation }) => {
 						name: name
 					})
 					.then(() => {
-						navigation.navigate("Root", { user: data });
+						navigation.navigate("Root");
 					})
 					.catch((error) => {
 						alert(error);

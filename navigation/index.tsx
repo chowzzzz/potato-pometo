@@ -40,16 +40,16 @@ function RootNavigator() {
 
 	useEffect(() => {
 		const dbRef = firebase.database().ref();
-		firebase.auth().onAuthStateChanged((user) => {
-			if (user) {
+		firebase.auth().onAuthStateChanged((u) => {
+			if (u) {
 				dbRef
 					.child("users")
-					.child(user.uid)
+					.child(u.uid)
 					.get()
 					.then((snapshot) => {
-						const user = snapshot.val();
+						const data = snapshot.val();
 						setLoading(false);
-						setUser(user);
+						setUser(data);
 					})
 					.catch((error) => {
 						setLoading(false);
@@ -67,7 +67,12 @@ function RootNavigator() {
 	}
 
 	return (
-		<Stack.Navigator screenOptions={{ headerShown: false }}>
+		<Stack.Navigator
+			screenOptions={{
+				headerShown: false,
+				cardStyle: { backgroundColor: "#fff" }
+			}}
+		>
 			{user ? (
 				<Stack.Screen name="Root" component={BottomTabNavigator} />
 			) : (
