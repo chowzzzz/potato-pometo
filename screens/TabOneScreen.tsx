@@ -20,6 +20,7 @@ const DATA = [
   {
     id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
     title: "My Yummy Lunch!",
+    likes: 5,
     imageUrl:
       "https://www.topasiatour.com/pic/Singapore/guide/bak-kut-teh-2.jpg",
     username: "aerrng",
@@ -29,6 +30,7 @@ const DATA = [
   {
     id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
     title: "WTS??? WHATS THIS",
+    likes: 0,
     imageUrl: "https://yp.sg/wp-content/uploads/2017/06/ufo2.png",
     username: "wheee.geee",
     caption:
@@ -37,6 +39,7 @@ const DATA = [
   {
     id: "3ac68afc-c605-4cv3-a4f8-fbd91aa97f65",
     title: "Welcome Thomas Chua to the team! 🎉",
+    likes: 5,
     imageUrl:
       "https://www.robolink.com/wp-content/uploads/2019/01/han_circle.png",
     username: "thom.chua",
@@ -46,6 +49,7 @@ const DATA = [
   {
     id: "58694a0f-3da1-471f-bd96-145571e29d72",
     title: "Yo anyone wna join me to watch this?",
+    likes: 5,
     imageUrl:
       "https://i1.sndcdn.com/artworks-xJyBsmHzLbJgaAr6-yDrC3A-t500x500.jpg",
     username: "tan.jun.wee",
@@ -55,6 +59,7 @@ const DATA = [
   {
     id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28b0",
     title: "My Dog Bobby",
+    likes: 5,
     imageUrl:
       "https://4cxqn5j1afk2facwz3mfxg5r-wpengine.netdna-ssl.com/wp-content/uploads/2017/07/Pet-Dog.jpg",
     username: "don_key",
@@ -64,6 +69,7 @@ const DATA = [
   {
     id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f64",
     title: "Baked some fresh brownies! Anyone wanna be my guinea pig?",
+    likes: 5,
     imageUrl:
       "https://static.thehoneycombers.com/wp-content/uploads/sites/2/2020/08/bundt-by-the-backyard-bakers-900x643.png",
     username: "caniscan",
@@ -81,7 +87,7 @@ const choices: Array<IChoice> = [
 ];
 
 // TODO: pass in items param to render this for all posts
-const Post = ({ title, imageUrl, username, caption }) => (
+const Post = ({ title, imageUrl, username, caption, likes }) => (
   <Card containerStyle={styles.cardBox}>
     <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
       <TouchableOpacity>
@@ -102,10 +108,11 @@ const Post = ({ title, imageUrl, username, caption }) => (
 
     <View style={{ flexDirection: "row" }}>
       <TouchableOpacity>
-        <Image
+        {/* <Image
           source={require("../assets/icons/heart.png")}
           style={styles.heart}
-        />
+        /> */}
+        <Hearts likes={likes}/>
       </TouchableOpacity>
       <TouchableOpacity>
         <Image
@@ -127,6 +134,24 @@ const Post = ({ title, imageUrl, username, caption }) => (
     <Text>{caption}</Text>
   </Card>
 );
+
+function Hearts ({likes}) {
+  if (likes === 0) {
+    return (
+      <Image
+          source={require("../assets/icons/heart.png")}
+          style={styles.heart}
+        />
+    );
+  } else {
+    return (
+      <Image
+        source={require("../assets/icons/hearted.png")}
+        style={styles.heart}
+      />
+    );
+  }
+}
 
 export default class TabOneScreen extends React.Component {
   constructor(props: any) {
@@ -201,6 +226,7 @@ export default class TabOneScreen extends React.Component {
         imageUrl={item.imageUrl}
         username={item.username}
         caption={item.caption}
+        likes={item.likes}
       />
     );
 
