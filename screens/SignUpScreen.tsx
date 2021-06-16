@@ -3,25 +3,99 @@ import { StyleSheet, Image, View, Text, TouchableOpacity } from "react-native";
 import FormButton from "../components/FormButton";
 import FormInput from "../components/FormInput";
 import { windowWidth } from "../utils/Dimensions";
+import { firebase } from "../firebase/config.js";
 
-const SignUpScreen = ({ navigation }) => {
-	const [teamId, setTeamId] = useState();
+const SignUpScreen = ({ route, navigation }) => {
+	const { orgId } = route.params;
+	const [id, setId] = useState(orgId);
 	const [email, setEmail] = useState();
 	const [password, setPassword] = useState();
 	const [confirmPassword, setConfirmPassword] = useState();
 	const [name, setName] = useState();
 	const [username, setUsername] = useState();
-	const [gender, setGender] = useState();
-	const [profilePic, setProfilePic] = useState();
+	// const [gender, setGender] = useState();
+	// const [profilePic, setProfilePic] = useState();
+
+	const checkOrgId = () => {
+		return orgId === "";
+	};
+
+	console.log("check org id: " + checkOrgId());
+	const onSignupPress = () => {
+		if (password !== confirmPassword) {
+			alert("Passwords don't match.");
+			return;
+		}
+		firebase
+			.auth()
+			.createUserWithEmailAndPassword(email, password)
+			.then((response) => {
+				const uid = response.user.uid;
+				const data = {
+					id: uid,
+					email,
+					name,
+					username
+				};
+				const usersRef = firebase
+					.database()
+					.ref("users/" + uid)
+					.set({
+						orgId: id,
+						username: username,
+						email: email,
+						name: name
+					})
+					.then(() => {
+						navigation.navigate("Root", { user: data });
+					})
+					.catch((error) => {
+						alert(error);
+					});
+			})
+			.catch((error) => {
+				alert(error);
+			});
+	};
+
 	return (
 		<View style={styles.container}>
+			<Image
+				style={styles.illustration}
+				source={require("../assets/illustrations/ginger-cat-721.png")}
+			/>
 			<Text style={styles.title}>Sign up with us</Text>
 
+			<Text
+				style={{
+					alignSelf: "flex-start",
+					marginLeft: 25,
+					color: "#fff"
+				}}
+			>
+				Organisation ID
+			</Text>
 			<FormInput
-				labelValue={teamId}
-				onChangeText={(userTeamId) => setTeamId(userTeamId)}
-				placeholder="Team ID"
+				labelValue={id}
+				onChangeText={(orgId) => setId(orgId)}
+				placeholder="Organisation ID"
 				iconType=""
+				editable={checkOrgId()}
+				style={styles.input}
+			/>
+			<FormInput
+				labelValue={name}
+				onChangeText={(userName) => setName(userName)}
+				placeholder="Name"
+				iconType=""
+				style={styles.input}
+			/>
+			<FormInput
+				labelValue={username}
+				onChangeText={(username) => setUsername(username)}
+				placeholder="Username"
+				iconType=""
+				style={styles.input}
 			/>
 			<FormInput
 				labelValue={email}
@@ -31,6 +105,7 @@ const SignUpScreen = ({ navigation }) => {
 				keyboardType="email-address"
 				autoCapitalize="none"
 				autoCorrect={false}
+				style={styles.input}
 			/>
 			<FormInput
 				labelValue={password}
@@ -38,6 +113,7 @@ const SignUpScreen = ({ navigation }) => {
 				placeholder="Password"
 				iconType=""
 				secureTextEntry={true}
+				style={styles.input}
 			/>
 
 			<FormInput
@@ -48,25 +124,10 @@ const SignUpScreen = ({ navigation }) => {
 				placeholder="Confirm Password"
 				iconType=""
 				secureTextEntry={true}
+				style={styles.input}
 			/>
 
-			<FormInput
-				labelValue={name}
-				onChangeText={(userName) => setName(userName)}
-				placeholder="Name"
-				iconType=""
-			/>
-			<FormInput
-				labelValue={username}
-				onChangeText={(username) => setUsername(username)}
-				placeholder="Username"
-				iconType=""
-			/>
-
-			<FormButton
-				buttonTitle="Sign Up"
-				onPress={() => console.log("yay")}
-			/>
+			<FormButton buttonTitle="Sign Up" onPress={() => onSignupPress()} />
 
 			<TouchableOpacity
 				style={styles.link}
@@ -93,11 +154,16 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		backgroundColor: "#a7a5f3"
 	},
+	illustration: {
+		width: "100%",
+		height: ratio * 912 * 0.8,
+		marginTop: 10
+	},
 	title: {
 		fontSize: 30,
 		fontWeight: "bold",
 		color: "#fff",
-		margin: 20
+		marginBottom: 20
 	},
 	logo: {
 		height: ratio * 733,
@@ -118,5 +184,8 @@ const styles = StyleSheet.create({
 		fontSize: 14,
 		fontWeight: "500",
 		color: "#2e64e5"
+	},
+	input: {
+		paddingLeft: 15
 	}
 });

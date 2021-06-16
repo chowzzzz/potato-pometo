@@ -3,7 +3,7 @@ import { StyleSheet, TextInput, View } from "react-native";
 import { windowHeight } from "../utils/Dimensions";
 import Icon from "react-native-vector-icons/FontAwesome5";
 
-const FormButton = ({ iconType, labelValue, placeholder, ...rest }) => {
+const FormInput = ({ iconType, labelValue, placeholder, ...rest }) => {
 	return (
 		<View style={styles.inputContainer}>
 			{iconType !== "" ? (
@@ -13,7 +13,7 @@ const FormButton = ({ iconType, labelValue, placeholder, ...rest }) => {
 			) : null}
 
 			<TextInput
-				value={labelValue}
+				value={labelValue || ""}
 				style={styles.input}
 				placeholder={placeholder}
 				placeholderTextColor="#666"
@@ -23,7 +23,7 @@ const FormButton = ({ iconType, labelValue, placeholder, ...rest }) => {
 	);
 };
 
-export default FormButton;
+export default FormInput;
 
 const styles = StyleSheet.create({
 	inputContainer: {
