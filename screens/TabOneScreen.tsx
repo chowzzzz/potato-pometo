@@ -15,6 +15,7 @@ import { Card, ListItem, Button, Icon } from "react-native-elements";
 import RNPoll, { IChoice } from "react-native-poll";
 import Search from "../components/Search";
 import PersonalityModalScreen from "./PersonalityModalScreen";
+import AngelScreen from "./AngelScreen";
 
 const DATA = [
   {
@@ -24,13 +25,18 @@ const DATA = [
       "https://www.topasiatour.com/pic/Singapore/guide/bak-kut-teh-2.jpg",
     username: "aerrng",
     caption:
-      "Delivered from haijiabin bakuteh bowl from @tan.jun.wee, this was outstanding! The ground pork on hand, shredded carrots, coleslaw cabbage mix; substituted Maggi seasoning and Tabasco with good balance of soy sauce and Sriracha. Served it with red quinoa which was tasty mixed together. There were no left overs ;-)",
+      "Delivered from haijiabin bakuteh bowl from @tan.jun.wee, this was outstanding! The ground pork on hand, shredded carrots, coleslaw cabbage mix was amazing. What a beautiful meal! There were no left overs ;-) Thanks Jun Wee for being a great Angel! ",
     url: "https://hanjiabkt.com/wordpress/",
   },
-
+  {
+    id: "3ac68afc-c705-40d3-a4f8-fbd918a97f63",
+    title: "A new poll is created by @dokey! 📊 Check it out here!",
+    username: "PollMaster",
+    caption: "",
+  },
   {
     id: "3ac68afc-c605-4cv3-a4f8-fbd91aa97f65",
-    title: "Welcome Thomas Chua to the team! 🎉",
+    title: "🎉 Welcome Thom Chua to the team! 🎉",
     imageUrl:
       "https://www.robolink.com/wp-content/uploads/2019/01/han_circle.png",
     username: "thom.chua",
@@ -38,8 +44,8 @@ const DATA = [
   },
   {
     id: "3ac68afc-c705-48d3-a4f8-fbd918a97f63",
-    title: "Joseph #1 on leaderboard! 🏆",
-    imageUrl: require("../assets/images/leaderboard3.png"),
+    title:
+      "🏆 Congrats! @lynnys won 3 points in @GameQuiz & is #4 on leaderboard! 🏆",
     username: "GameMaster",
     caption: "",
   },
@@ -50,6 +56,12 @@ const DATA = [
     username: "wheee.geee",
     caption:
       "Saw this alien like thing flew past my window? Anyone got any idea?? Are we getting eaten by aliens?!?!",
+  },
+  {
+    id: "3ac68arsdcc-c605-48d3-a4f8-fbd91aa97f63",
+    title: "📢📢📢TECH TEAM GAME NIGHT 18 JUNE 7PM!📢📢📢 ",
+    username: "GameMaster",
+    caption: "",
   },
   {
     id: "58694a0f-3da1-471f-bd96-145571e29d72",
@@ -106,28 +118,30 @@ const Post = ({ title, imageUrl, username, caption, url }) => (
 
     <Card.Divider />
 
-    <Image source={imageUrl} style={styles.image} />
+    {imageUrl && <Image source={imageUrl} style={styles.image} />}
 
-    <View style={{ flexDirection: "row" }}>
-      <TouchableOpacity>
-        <Image
-          source={require("../assets/icons/heart.png")}
-          style={styles.heart}
-        />
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Image
-          source={require("../assets/icons/forward.png")}
-          style={styles.heart}
-        />
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Image
-          source={require("../assets/icons/iconaeroplane.png")}
-          style={styles.heart}
-        />
-      </TouchableOpacity>
-    </View>
+    {imageUrl && (
+      <View style={{ flexDirection: "row" }}>
+        <TouchableOpacity>
+          <Image
+            source={require("../assets/icons/heart.png")}
+            style={styles.heart}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Image
+            source={require("../assets/icons/forward.png")}
+            style={styles.heart}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Image
+            source={require("../assets/icons/iconaeroplane.png")}
+            style={styles.heart}
+          />
+        </TouchableOpacity>
+      </View>
+    )}
 
     <Text style={{ fontWeight: "bold", fontSize: 16, marginVertical: 5 }}>
       {title}
@@ -274,17 +288,26 @@ export default class TabOneScreen extends React.Component {
                 />
               </TouchableOpacity>
             </View>
-            <Text
-              style={{
-                fontSize: 15,
-                fontWeight: "bold",
-                marginLeft: 20,
-                marginTop: 20,
-                marginBottom: 10,
-              }}
-            >
-              Categories
-            </Text>
+            <View style ={{flexDirection: 'row', justifyContent: 'space-between' ,alignItems:'center'}}>
+              <Text
+                style={{
+                  fontSize: 15,
+                  fontWeight: "bold",
+                  marginLeft: 20,
+                  marginTop: 20,
+                  marginBottom: 10,
+                }}
+              >
+                Categories
+              </Text>
+              <TouchableOpacity>
+                <Image
+                  source={require("../assets/icons/premium.png")}
+                  style={styles.threedot2}
+                />
+              </TouchableOpacity>
+            </View>
+
             <View style={styles.actionRow}>
               <TouchableOpacity
                 style={styles.iconBox}
@@ -295,10 +318,13 @@ export default class TabOneScreen extends React.Component {
                   style={styles.icon}
                 />
               </TouchableOpacity>
-              <TouchableOpacity style={styles.iconBox}>
+              <TouchableOpacity
+                style={styles.iconBox}
+                onPress={() => this.setModal(5)}
+              >
                 <Image
                   source={require("../assets/images/angel.png")}
-                  style={{ width: 45, height: 40}}
+                  style={{ width: 45, height: 40 }}
                 />
               </TouchableOpacity>
               <TouchableOpacity
@@ -579,6 +605,14 @@ export default class TabOneScreen extends React.Component {
         </Modal>
         <Modal
           avoidKeyboard={true}
+          transparent={true}
+          visible={this.state.modal === 5}
+          onRequestClose={() => this.setModal(0)}
+        >
+          <AngelScreen setModal={this.setModal} />
+        </Modal>
+        <Modal
+          avoidKeyboard={true}
           transparent={false}
           visible={this.state.pollModal === 1}
           onRequestClose={() => this.setPollModal(0)}
@@ -706,6 +740,12 @@ const styles = StyleSheet.create({
   threedot: {
     height: 25,
     width: 40,
+  },
+  threedot2: {
+    height: 23,
+    width: 23,
+    marginBottom: -12,
+    marginRight: 30
   },
   image: {
     height: 300,
