@@ -8,42 +8,10 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 
 import FormButton from "../components/FormButton";
 
-const posts = [
-	{
-		id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-		title: "My Yummy Lunch!",
-		imageUrl:
-			"https://www.topasiatour.com/pic/Singapore/guide/bak-kut-teh-2.jpg",
-		username: "aerrng",
-		caption:
-			"Delivered from ichigo bakuteh bowl from @tan.wee.wee, this was outstanding! The ground pork on hand, shredded carrots, coleslaw cabbage mix; substituted Maggi seasoning and Tabasco with good balance of soy sauce and Sriracha. Served it with red quinoa which was tasty mixed together. There were no left overs ;-)"
-	},
-	{
-		id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-		title: "My Yummy Lunch!",
-		imageUrl:
-			"https://www.topasiatour.com/pic/Singapore/guide/bak-kut-teh-2.jpg",
-		username: "aerrng",
-		caption:
-			"Delivered from ichigo bakuteh bowl from @tan.wee.wee, this was outstanding! The ground pork on hand, shredded carrots, coleslaw cabbage mix; substituted Maggi seasoning and Tabasco with good balance of soy sauce and Sriracha. Served it with red quinoa which was tasty mixed together. There were no left overs ;-)"
-	},
-	{
-		id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-		title: "My Yummy Lunch!",
-		imageUrl:
-			"https://www.topasiatour.com/pic/Singapore/guide/bak-kut-teh-2.jpg",
-		username: "aerrng",
-		caption:
-			"Delivered from ichigo bakuteh bowl from @tan.wee.wee, this was outstanding! The ground pork on hand, shredded carrots, coleslaw cabbage mix; substituted Maggi seasoning and Tabasco with good balance of soy sauce and Sriracha. Served it with red quinoa which was tasty mixed together. There were no left overs ;-)"
-	}
-];
-
 export default function TabThreeScreen({ navigation }) {
 	const [name, setName] = useState();
 	const [username, setUsername] = useState();
 
-	const [activeIndex, setActiveIndex] = useState(0);
-	const [carouselItems, setCarouselItems] = useState(posts);
 	const ref = useRef(null);
 
 	firebase.auth().onAuthStateChanged((user) => {
