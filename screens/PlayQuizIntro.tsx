@@ -34,7 +34,8 @@ export default function PlayQuizIntro() {
 					<Picker.Item label="Josh" value="Josh" />
 				</Picker>
 			</View>
-			<Button style={styles.buttonStyle} title="I'm ready!" onPress={() => navigation.navigate('PlayQuiz',{chosenColleague: 90})} />
+			<Button style={styles.buttonStyle} title="I'm ready!" onPress={() => navigation.navigate('GamerTimer')} />
+			{/* <Button style={styles.buttonStyle} title="I'm ready!" onPress={() => navigation.navigate('PlayQuiz',{chosenColleague: 90})} /> */}
 		</View>
 
 	);

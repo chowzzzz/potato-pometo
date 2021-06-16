@@ -18,6 +18,7 @@ import Quiz from '../screens/Quiz';
 import PlayQuiz from '../screens/PlayQuiz';
 import PlayQuizIntro from '../screens/PlayQuizIntro';
 import FinalResult from '../screens/FinalResult';
+import GamerTimer from '../screens/GamerTimer';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -113,11 +114,16 @@ function TabTwoNavigator() {
         name="PlayQuizIntro"
         component={PlayQuizIntro}
         options={{ headerTitle: 'Introduction' }}
-      />      
+      />
       <TabTwoStack.Screen
         name="FinalResult"
         component={FinalResult}
         options={{ headerTitle: 'FinalResult' }}
+      />
+      <TabTwoStack.Screen
+        name="GamerTimer"
+        component={GamerTimer}
+        options={{ headerTitle: 'GamerTimer' }}
       />
     </TabTwoStack.Navigator>
   );
