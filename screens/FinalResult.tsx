@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { SafeAreaView, View, StyleSheet, Text, Image, FlatList, TouchableOpacity, TextInput } from "react-native";
 import { Card, ListItem, Button, Icon } from 'react-native-elements'
 import { useNavigation } from '@react-navigation/native';
-import Search from "../components/Search";
+
 
 export default function FinalResult() {
 	const [ans1, setTextInputValueans1] = React.useState('');
@@ -38,16 +38,6 @@ export default function FinalResult() {
 			</View>
 				</Text>
 			</View>
-			{/* <View style={styles.container}>
-				<TouchableOpacity style={styles.buttonStyle}
-					onPress={() => navigation.navigate('BabyGame')}
-				// type="solid"
-				>
-				<Text style={styles.textStyle}>
-					Back
-				</Text>
-				</TouchableOpacity>
-			</View> */}
 		</View>
 		// //else{}
 		// <View>
@@ -117,13 +107,11 @@ const styles = StyleSheet.create({
 	},
 	answer: {
 		marginTop: 30,
-		fontFamily: 'Futura',
 
 	},
 	header: {
 		fontSize: 50,
 		color: '#404040',
-		fontFamily: 'Futura',
         textAlign: "center",
 		fontWeight: "bold"
 	},
@@ -144,7 +132,6 @@ const styles = StyleSheet.create({
 		height: 95,
 		width: '90%',
 		fontSize: 18,
-		fontFamily: 'Sans'
 	},
 	textStyle: {
 		color: 'black',

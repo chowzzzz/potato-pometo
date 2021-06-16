@@ -17,7 +17,7 @@ export default function TabTwoScreen() {
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <View>
-          <Text style={{ fontSize: 25, fontFamily: "Sans", fontWeight: "bold" }}>
+          <Text style={{ fontSize: 25, fontWeight: "bold" }}>
             Games Galore! 🎮
           </Text>
         </View>
@@ -26,7 +26,6 @@ export default function TabTwoScreen() {
 
       <ScrollView>
         <Card containerStyle={styles.card}>
-          <Card.Divider />
           <Card.Image style={styles.image} source={require('../assets/images/ginger-cat-robot-cat-twin.png')}>
             <TouchableOpacity style={styles.buttonStyle}
               onPress={() => navigation.navigate('Quiz')}

@@ -17,6 +17,7 @@ import TabThreeScreen from '../screens/TabThreeScreen';
 import Quiz from '../screens/Quiz';
 import PlayQuiz from '../screens/PlayQuiz';
 import FinalResult from '../screens/FinalResult';
+import BabyGame from "../screens/BabyGame";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -113,6 +114,10 @@ function TabTwoNavigator() {
         name="FinalResult"
         component={FinalResult}
         options={{ headerTitle: 'FinalResult' }}
+      />
+      <TabTwoStack.Screen
+        name="BabyGame"
+        component={BabyGame}
       />
     </TabTwoStack.Navigator>
   );
