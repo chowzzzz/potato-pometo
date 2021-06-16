@@ -30,7 +30,7 @@ export default function GamerTimer() {
 
     const animation = React.useCallback(() => {
         textInputAnimation.setValue(duration);
-        setTimeout(()=>{ navigation.navigate("PlayQuiz") }, 5000);
+        setTimeout(() => { navigation.navigate("PlayQuiz") }, 5000);
         Animated.sequence([
             Animated.timing(buttonAnimation, {
                 toValue: 1,
@@ -53,7 +53,7 @@ export default function GamerTimer() {
                     duration: duration * 1000,
                     useNativeDriver: true
                 }),
-                
+
             ]),
             Animated.timing(timerAnimation, {
                 toValue: height,
@@ -123,16 +123,20 @@ export default function GamerTimer() {
                     <Animated.View
                         style={{
                             position: 'absolute',
-                            width: 100,
+                            width: 250,
                             justifyContent: 'content',
                             alignSelf: 'center',
                             alignItems: 'center',
                         }}>
                         <TouchableOpacity
-                        
-                         ref={inputRef} onPress={animation} ><Text>
-                            Start the timer!
-                        </Text></TouchableOpacity>
+                            ref={inputRef} onPress={animation} >
+                            <Text style={{
+                                color: 'black',
+                                fontSize: 35,
+                            }}>
+                                Start timer! 😊
+                            </Text>
+                        </TouchableOpacity>
                         <TextInput ref={inputRef}
                             style={{
                                 fontSize: 30,

@@ -21,7 +21,7 @@ export default function Quiz() {
 					<TouchableOpacity style={styles.buttonStyle}
 						onPress={() => navigation.navigate('PlayQuizIntro')}
 					>
-						<Text>Play Quiz</Text>
+						<Text style={styles.textStyle}>Play Quiz</Text>
 					</TouchableOpacity>
 				</Card.Image>
 				<Card.Divider />
@@ -31,7 +31,7 @@ export default function Quiz() {
 							onPress={() => navigation.navigate('CreateQuiz')}
 						// type="solid"
 						>
-							<Text>
+							<Text style={styles.textStyle}>
 								Create Quiz
 							</Text>
 							{/* <Button
@@ -83,11 +83,16 @@ const styles = StyleSheet.create({
 		alignSelf: 'stretch',
 		justifyContent: 'center',
 		backgroundColor: '#c4c3f7',
-		marginBottom: -100
+		marginBottom: -100,
+    borderRadius: 10,
 	  },
 	image: {
 	  width: 350,
 	  height: 200,
 	  marginBottom: 50,
-	}
+	},
+  textStyle: {
+    color: 'black',
+    fontSize:20,
+  },
 });

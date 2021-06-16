@@ -18,74 +18,93 @@ export default function PlayQuiz(route: any) {
 			<Text style={styles.header}>
 				Quiz Time!
 			</Text>
-			<View style={styles.form}>
-				<View>
-					<Text  style={styles.answer} >What is {JSON.stringify(chosenColleague)} favourite food </Text>
-					<TextInput
-						style={{
-							height: 40,
-							borderColor: 'gray',
-							borderWidth: 1,
-							fontFamily: 'Futura',
-							paddingLeft:10,
-						}}
-						onChangeText={text => setTextInputValueans1(text)}
-						value={ans1}
-						placeholder="Insert your answer"
-					/>
-				</View>
+			<Card containerStyle={{borderRadius: 15}}>
+				<View style={styles.form}>
+					<View>
+						<Text style={styles.answer} >What is Aerin's favourite food </Text>
+						<TextInput
+							style={{
+								height: 40,
+								borderColor: 'gray',
+								borderWidth: 1,
+								fontFamily: 'Futura',
+								paddingLeft: 10,
+							}}
+							onChangeText={text => setTextInputValueans1(text)}
+							value={ans1}
+							placeholder="Insert your answer"
+						/>
+					</View>
 
-				<View>
-					<Text  style={styles.answer} >What is your favourite music? </Text>
-					<TextInput
-						style={{
-							height: 40,
-							borderColor: 'gray',
-							borderWidth: 1,
-							paddingLeft:10,
-							fontFamily: 'Futura',
-						}}
-						onChangeText={text => setTextInputValueans2(text)}
-						value={ans2}
-						placeholder="Insert your answer"
-					// defaultValue="testing"
-					/>
-				</View>
+					<View>
+						<Text style={styles.answer} >What is Aerin's favourite music? </Text>
+						<TextInput
+							style={{
+								height: 40,
+								borderColor: 'gray',
+								borderWidth: 1,
+								paddingLeft: 10,
+								fontFamily: 'Futura',
+							}}
+							onChangeText={text => setTextInputValueans2(text)}
+							value={ans2}
+							placeholder="Insert your answer"
+						// defaultValue="testing"
+						/>
+					</View>
 
-				<View>
-					<Text style={styles.answer} >What is your favourite music? </Text>
-					<TextInput
-						style={{
-							height: 40,
-							borderColor: 'gray',
-							borderWidth: 1,
-							fontFamily: 'Futura',
-							paddingLeft:10,
-						}}
-						onChangeText={text => setTextInputValueans3(text)}
-						value={ans3}
-						placeholder="Insert your answer"
-					// defaultValue="testing"
-					/>
-				</View>				
-				<View >
-					<Text style={styles.answer} >What is your favourite music? </Text>
-					<TextInput
-						style={{
-							height: 40,
-							borderColor: 'gray',
-							borderWidth: 1,
-							fontFamily: 'Futura',
-							paddingLeft:10,
-						}}
-						onChangeText={text => setTextInputValueans4(text)}
-						value={ans4}
-						placeholder="Insert your answer"
-					// defaultValue="testing"
-					/>
+					<View>
+						<Text style={styles.answer} >How often does Aerin has Bakuteh? </Text>
+						<TextInput
+							style={{
+								height: 40,
+								borderColor: 'gray',
+								borderWidth: 1,
+								fontFamily: 'Futura',
+								paddingLeft: 10,
+							}}
+							onChangeText={text => setTextInputValueans3(text)}
+							value={ans3}
+							placeholder="Insert your answer"
+						// defaultValue="testing"
+						/>
+					</View>
+					<View >
+						<Text style={styles.answer} >What is Aerin's personality type? </Text>
+						<TextInput
+							style={{
+								height: 40,
+								borderColor: 'gray',
+								borderWidth: 1,
+								fontFamily: 'Futura',
+								paddingLeft: 10,
+							}}
+							onChangeText={text => setTextInputValueans4(text)}
+							value={ans4}
+							placeholder="Insert your answer"
+						// defaultValue="testing"
+						/>
+					</View>
+					<View >
+						<Text style={styles.answer} >Which department is Aerin working in? </Text>
+						<TextInput
+							style={{
+								height: 40,
+								borderColor: 'gray',
+								borderWidth: 1,
+								fontFamily: 'Futura',
+								paddingLeft: 10,
+							}}
+							onChangeText={text => setTextInputValueans4(text)}
+							value={ans4}
+							placeholder="Insert your answer"
+						// defaultValue="testing"
+						/>
+					</View>
 				</View>
-			</View>
-			<Button title="Submit Quiz" onPress={() => navigation.navigate('FinalResult')} />
+			</Card>
+
+			<Button style={{marginTop:20}}title="Submit Quiz" onPress={() => navigation.navigate('FinalResult')} />
 		</View>
 
 	);

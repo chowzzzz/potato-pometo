@@ -9,34 +9,44 @@ export default function PlayQuizIntro() {
 	const navigation = useNavigation();
 
 	return (
-		<View>
-			<Text style={styles.header}>
-				A Quiz?
-			</Text>
-			<View  >
-				<Text style={styles.text}>
-					Want to know out more about your colleague, but unsure how to break the ice with them? This quiz is the purr-fect solution. Take this
-					small quiz to find out their likes and dislikes, maybe this will be a great conversation starter for the two of you! Whether or not
-					you're curious about someone and will want to know them better (wink wink), this minimizes any awkwardness when you want to talk to someone new.
-					But no guarantees though....
-					Oh, and did we mention that there is a point system to this as well?
+		<Card>
+			<View>
+				<Text style={styles.header}>
+					A Quiz?
 				</Text>
+				<View  >
+					<Text style={styles.text}>
+						Want to know out more about your colleague, but unsure how to break the ice with them? This quiz is the purr-fect solution. Take this
+						small quiz to find out their likes and dislikes, maybe this will be a great conversation starter for the two of you! Whether or not
+						you're curious about someone and will want to know them better (wink wink), this minimizes any awkwardness when you want to talk to someone new.
+						But no guarantees though....
+						Oh, and did we mention that there is a point system to this as well?
+					</Text>
 
-				<Text style={styles.text}>
-					Select the person you'd like to find out more about:
-				</Text>
-				<Picker
-					style={styles.picker}
-					selectedValue={selectedValue}
-					onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+					<Text style={styles.text}>
+						Select the person you'd like to find out more about:
+					</Text>
+					<Picker
+						style={styles.picker}
+						selectedValue={selectedValue}
+						onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+					>
+						<Picker.Item label="Aerin" value="Aerin" />
+						<Picker.Item label="Josh" value="Josh" />
+					</Picker>
+				</View>
+
+				<TouchableOpacity style={styles.buttonStyle}
+					onPress={() => navigation.navigate('GamerTimer')}
 				>
-					<Picker.Item label="Aerin" value="Aerin" />
-					<Picker.Item label="Josh" value="Josh" />
-				</Picker>
+					<Text style={styles.textStyle}>
+						I'm ready!
+					</Text>
+				</TouchableOpacity>
+				{/* <Button style={styles.buttonStyle} title="I'm ready!" onPress={() => navigation.navigate('GamerTimer')} /> */}
 			</View>
-			<Button style={styles.buttonStyle} title="I'm ready!" onPress={() => navigation.navigate('GamerTimer')} />
-			{/* <Button style={styles.buttonStyle} title="I'm ready!" onPress={() => navigation.navigate('PlayQuiz',{chosenColleague: 90})} /> */}
-		</View>
+		</Card>
+
 
 	);
 
@@ -96,19 +106,22 @@ const styles = StyleSheet.create({
 	buttonStyle: {
 		width: '100%',
 		color: 'red',
+		padding: 10,
 		alignItems: 'center',
 		alignSelf: 'stretch',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		backgroundColor: '#c4c3f7',
+		borderRadius: 10,
 	},
-	picker:{
+	picker: {
 		height: '100%',
 		width: 75,
 		textAlign: "center",
 		alignItems: 'center',
 		alignSelf: 'stretch',
 		justifyContent: 'center',
-		margin:20,
-		marginTop:10
+		margin: 20,
+		marginTop: 10
 
 	},
 	header: {
@@ -116,5 +129,9 @@ const styles = StyleSheet.create({
 		color: 'grey',
 		fontFamily: 'Futura',
 		textAlign: "center"
+	},
+	textStyle: {
+		color: 'black',
+		fontSize: 20,
 	}
 });
