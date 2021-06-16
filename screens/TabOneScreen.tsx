@@ -541,7 +541,7 @@ export default class TabOneScreen extends React.Component {
 										</Text>
 									</View>
 									<Text style={styles.titles}>Today's</Text>
-									<View style={styles.input3}>
+									<TouchableOpacity style={styles.input3}>
 										<Image
 											source={require("../assets/images/candle.png")}
 											style={styles.candle}
@@ -554,7 +554,7 @@ export default class TabOneScreen extends React.Component {
 											</Text>
 											<Text>'s birthday today!</Text>
 										</View>
-									</View>
+									</TouchableOpacity>
 									<Text style={styles.titles}>
 										Upcoming's
 									</Text>
