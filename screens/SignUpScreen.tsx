@@ -4,54 +4,85 @@ import FormButton from "../components/FormButton";
 import FormInput from "../components/FormInput";
 import { windowWidth } from "../utils/Dimensions";
 
-const LoginScreen = ({ navigation }) => {
+const SignUpScreen = ({ navigation }) => {
+	const [teamId, setTeamId] = useState();
 	const [email, setEmail] = useState();
 	const [password, setPassword] = useState();
+	const [confirmPassword, setConfirmPassword] = useState();
+	const [name, setName] = useState();
+	const [username, setUsername] = useState();
+	const [gender, setGender] = useState();
+	const [profilePic, setProfilePic] = useState();
 	return (
 		<View style={styles.container}>
-			<Image
-				style={styles.logo}
-				source={require("../assets/images/pometo.png")}
-			/>
+			<Text style={styles.title}>Sign up with us</Text>
 
+			<FormInput
+				labelValue={teamId}
+				onChangeText={(userTeamId) => setTeamId(userTeamId)}
+				placeholder="Team ID"
+				iconType=""
+			/>
 			<FormInput
 				labelValue={email}
 				onChangeText={(userEmail) => setEmail(userEmail)}
 				placeholder="Email"
-				iconType="user"
+				iconType=""
 				keyboardType="email-address"
 				autoCapitalize="none"
 				autoCorrect={false}
 			/>
-
 			<FormInput
 				labelValue={password}
 				onChangeText={(userPassword) => setPassword(userPassword)}
 				placeholder="Password"
-				iconType="lock"
+				iconType=""
 				secureTextEntry={true}
 			/>
 
+			<FormInput
+				labelValue={confirmPassword}
+				onChangeText={(userConfirmPassword) =>
+					setConfirmPassword(userConfirmPassword)
+				}
+				placeholder="Confirm Password"
+				iconType=""
+				secureTextEntry={true}
+			/>
+
+			<FormInput
+				labelValue={name}
+				onChangeText={(userName) => setName(userName)}
+				placeholder="Name"
+				iconType=""
+			/>
+			<FormInput
+				labelValue={username}
+				onChangeText={(username) => setUsername(username)}
+				placeholder="Username"
+				iconType=""
+			/>
+
 			<FormButton
-				buttonTitle="Sign In"
+				buttonTitle="Sign Up"
 				onPress={() => console.log("yay")}
 			/>
 
 			<TouchableOpacity
 				style={styles.link}
 				onPress={() => {
-					navigation.navigate("SignUpScreen");
+					navigation.navigate("LoginScreen");
 				}}
 			>
 				<Text style={styles.navButtonText}>
-					Don't have an account? Sign up here
+					Already have an account? Sign in here
 				</Text>
 			</TouchableOpacity>
 		</View>
 	);
 };
 
-export default LoginScreen;
+export default SignUpScreen;
 
 const ratio = windowWidth / 1205;
 
@@ -61,6 +92,12 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		justifyContent: "center",
 		backgroundColor: "#a7a5f3"
+	},
+	title: {
+		fontSize: 30,
+		fontWeight: "bold",
+		color: "#fff",
+		margin: 20
 	},
 	logo: {
 		height: ratio * 733,

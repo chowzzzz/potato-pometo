@@ -5,6 +5,7 @@ import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import Search from "../components/Search";
 import { useNavigation } from '@react-navigation/native';
+import { processFontFamily } from 'expo-font';
 
 // import { TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -14,7 +15,6 @@ export default function TabTwoScreen() {
   const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
-      <Search />
       <ScrollView>
 
         <Card>
@@ -24,7 +24,9 @@ export default function TabTwoScreen() {
             <TouchableOpacity style={styles.buttonStyle}
               onPress={() => navigation.navigate('Quiz')}
             >
-              <Text>Quiz</Text>
+              <Text style={styles.textStyle}>
+                Quiz
+              </Text>
             </TouchableOpacity>
           </Card.Image>
           <Card.Divider />
@@ -34,13 +36,9 @@ export default function TabTwoScreen() {
                 onPress={() => navigation.navigate('BabyGame')}
               // type="solid"
               >
-                <Text>
+                <Text style={styles.textStyle}>
                   Baby Picture Guesser
                 </Text>
-                {/* <Button
-                  buttonStyle={{ height: '100%', backgroundColor: '#c4c3f7' }}
-                  title='Baby Guesser'
-                /> */}
               </TouchableOpacity>
             </Card.Image>
           </View>
@@ -75,11 +73,16 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'center',
     backgroundColor: '#c4c3f7',
-    marginBottom: -100
+    marginBottom: -100,
+    borderRadius: 10,
   },
   image: {
     width: 350,
     height: 200,
     marginBottom: 50,
+  },
+  textStyle: {
+    color: 'black',
+    fontSize:20,
   }
 });
