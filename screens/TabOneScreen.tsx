@@ -290,7 +290,7 @@ export default class TabOneScreen extends React.Component {
 								fontWeight: "bold"
 							}}
 						>
-							Elizabeth Lee
+							Aerin Ng Na Na
 						</Text>
 					</View>
 					<Image

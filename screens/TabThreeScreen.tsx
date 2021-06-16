@@ -69,7 +69,7 @@ export default function TabThreeScreen({ navigation }) {
 
 	return (
 		<View style={styles.container}>
-			<View style={[styles.card, { flex: 1.2 }]}>
+			<View style={[styles.card, { flex: 1.1 }]}>
 				<View style={styles.profileCard}>
 					<View style={{ flex: 1 }}>
 						<Image
@@ -91,6 +91,7 @@ export default function TabThreeScreen({ navigation }) {
 				</View>
 				<FormButton
 					buttonTitle="View My Profile"
+					bgColor="#d2afff"
 					onPress={() => navigation.navigate("ProfileScreen")}
 				/>
 			</View>
@@ -104,8 +105,7 @@ export default function TabThreeScreen({ navigation }) {
 				<View
 					style={{
 						flexDirection: "row",
-						alignContent: "center",
-						marginTop: 15
+						alignContent: "center"
 					}}
 				>
 					<Text style={styles.title}>My Posts</Text>
@@ -135,10 +135,12 @@ export default function TabThreeScreen({ navigation }) {
 			<View style={styles.btnCard}>
 				<FormButton
 					buttonTitle="Settings"
+					bgColor="#d2afff"
 					onPress={() => console.log("Oops, coming soon!")}
 				/>
 				<FormButton
 					buttonTitle="Sign Out"
+					bgColor="#d2afff"
 					onPress={() => onLogoutPress()}
 				/>
 			</View>
@@ -161,13 +163,22 @@ const styles = StyleSheet.create({
 		fontSize: 15
 	},
 	card: {
-		marginTop: 40,
+		marginTop: 35,
 		paddingHorizontal: 10,
 		width: "85%",
 		justifyContent: "center",
 		alignItems: "center",
 		border: "solid lightgrey 0.5px",
-		borderRadius: 10
+		backgroundColor: "#FFF",
+		marginVertical: 10,
+		shadowColor: "#6c69eb",
+		shadowOpacity: 0.3,
+		shadowRadius: 2,
+		borderRadius: 5,
+		elevation: 2,
+		paddingVertical: 14,
+		marginHorizontal: 15,
+		shadowOffset: { width: 2, height: 2 }
 	},
 	profileCard: {
 		justifyContent: "center",

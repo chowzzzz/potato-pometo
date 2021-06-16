@@ -127,7 +127,11 @@ const SignUpScreen = ({ route, navigation }) => {
 				style={styles.input}
 			/>
 
-			<FormButton buttonTitle="Sign Up" onPress={() => onSignupPress()} />
+			<FormButton
+				buttonTitle="Sign Up"
+				bgColor="#6b5b95"
+				onPress={() => onSignupPress()}
+			/>
 
 			<TouchableOpacity
 				style={styles.link}

@@ -60,7 +60,11 @@ const CreateOrgIdScreen = ({ navigation }) => {
 				style={styles.input}
 			/>
 
-			<FormButton buttonTitle="Generate" onPress={() => createOrgId()} />
+			<FormButton
+				buttonTitle="Generate"
+				bgColor="#6b5b95"
+				onPress={() => createOrgId()}
+			/>
 
 			<TouchableOpacity
 				style={styles.link}
