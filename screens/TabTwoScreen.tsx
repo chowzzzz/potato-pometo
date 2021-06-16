@@ -98,14 +98,14 @@ const styles = StyleSheet.create({
     //height: '80%',
   },
   buttonStyle: {
-    marginTop: 200,
+    marginTop: 205,
     padding: 10,
     width: '100%',
     alignItems: 'center',
     alignSelf: 'stretch',
     justifyContent: 'center',
     backgroundColor: '#c4c3f7',
-    marginBottom: -100,
+    marginBottom: -150,
     borderRadius: 10,
   },
   image: {

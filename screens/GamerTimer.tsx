@@ -6,7 +6,7 @@ import { Text, View } from '../components/Themed';
 import { useNavigation } from '@react-navigation/native';
 
 export default function GamerTimer() {
-    const [duration, setDuration] = React.useState(5);
+    const [duration, setDuration] = React.useState(3);
     const timers = [...Array(13).keys()].map((i) => (i === 0 ? 1 : i * 5));
     const timerAnimation = React.useRef(new Animated.Value(height)).current;
     const textInputAnimation = React.useRef(new Animated.Value(timers[0])).current;
@@ -30,7 +30,7 @@ export default function GamerTimer() {
 
     const animation = React.useCallback(() => {
         textInputAnimation.setValue(duration);
-        setTimeout(() => { navigation.navigate("PlayQuiz") }, 5000);
+        setTimeout(() => { navigation.navigate("PlayQuiz") }, 3000);
         Animated.sequence([
             Animated.timing(buttonAnimation, {
                 toValue: 1,

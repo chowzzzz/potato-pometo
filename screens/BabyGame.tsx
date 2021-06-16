@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { SafeAreaView,ScrollView, View, StyleSheet, Text, Image, FlatList, TouchableOpacity, TextInput } from "react-native";
+import { SafeAreaView, ScrollView, View, StyleSheet, Text, Image, FlatList, TouchableOpacity, TextInput } from "react-native";
 import { Card, ListItem, Button, Icon } from 'react-native-elements'
 import { useNavigation } from '@react-navigation/native';
 
@@ -9,76 +9,76 @@ export default function BabyGame() {
 
 	return (
 		//if(score >= 10){}
-    <SafeAreaView style={styles.container}>
-		  <View>
-			  <View style={styles.container}>
-				  <Text style={styles.header}>
-					  GUESS WHO 🤔
-				  </Text>
-        <ScrollView>
-				  <Image 
-				    style={styles.image}
-				    source={require("../assets/images/iu-baby.jpg")}
-				  />
-				  <Text style={styles.modalContent}>
-            Who is this beautiful baby? {"\n"}
-				  <View style={styles.container}>
-				    <TouchableOpacity style={styles.buttonStyle}
-					    onPress={() => {alert("You're wrong :(")}}>
-				  <Text style={styles.textStyle}>
-					  Aerin
-				  </Text>
-				    </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonStyle}
-					    onPress={() => {alert("You're wrong :(")}}>
-				  <Text style={styles.textStyle}>
-					  Queenie
-				  </Text>
-				    </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonStyle}
-					    onPress={() => {alert("You're right!")}}>
-				  <Text style={styles.textStyle}>
-					  Ji Eun
-				  </Text>
-				    </TouchableOpacity>
-            </View>
-              </Text>
-
-        <Image 
-				style={styles.image}
-				source={require("../assets/images/baby-Photo.jpg")}
-				/>
-				<Text style={styles.modalContent}
-				> Who is this beautiful baby? {"\n"}
+		<SafeAreaView style={styles.container}>
+			<View>
 				<View style={styles.container}>
-				<TouchableOpacity style={styles.buttonStyle}
-					onPress={() => {alert("You're wrong :(")}}
-				>
-				<Text style={styles.textStyle}>
-					Aerin
-				</Text>
-				</TouchableOpacity>
-        <TouchableOpacity style={styles.buttonStyle}
-					onPress={() => {alert("You're wrong :(")}}
-				>
-				<Text style={styles.textStyle}>
-					Queenie
-				</Text>
-				</TouchableOpacity>
-        <TouchableOpacity style={styles.buttonStyle}
-					onPress={() => {alert("You're right!")}}
-				>
-				<Text style={styles.textStyle}>
-					Julien
-				</Text>
-				</TouchableOpacity>
+					<Text style={styles.header}>
+						GUESS WHO 🤔
+					</Text>
+					<ScrollView>
+						<Image
+							style={styles.image}
+							source={require("../assets/images/iu-baby.jpg")}
+						/>
+						<Text style={styles.modalContent}>
+							Who is this beautiful baby? {"\n"}
+							<View style={styles.container}>
+								<TouchableOpacity style={styles.buttonStyle}
+									onPress={() => { alert("You're wrong :(") }}>
+									<Text style={styles.textStyle}>
+										Aerin
+									</Text>
+								</TouchableOpacity>
+								<TouchableOpacity style={styles.buttonStyle}
+									onPress={() => { alert("You're wrong :(") }}>
+									<Text style={styles.textStyle}>
+										Queenie
+									</Text>
+								</TouchableOpacity>
+								<TouchableOpacity style={styles.buttonStyle}
+									onPress={() => { alert("You're right!") }}>
+									<Text style={styles.textStyle}>
+										Ji Eun
+									</Text>
+								</TouchableOpacity>
+							</View>
+						</Text>
+
+						<Image
+							style={styles.image}
+							source={require("../assets/images/baby-Photo.jpg")}
+						/>
+						<Text style={styles.modalContent}
+						> Who is this beautiful baby? {"\n"}
+							<View style={styles.container}>
+								<TouchableOpacity style={styles.buttonStyle}
+									onPress={() => { alert("You're wrong :(") }}
+								>
+									<Text style={styles.textStyle}>
+										Aerin
+									</Text>
+								</TouchableOpacity>
+								<TouchableOpacity style={styles.buttonStyle}
+									onPress={() => { alert("You're wrong :(") }}
+								>
+									<Text style={styles.textStyle}>
+										Queenie
+									</Text>
+								</TouchableOpacity>
+								<TouchableOpacity style={styles.buttonStyle}
+									onPress={() => { alert("You're right!") }}
+								>
+									<Text style={styles.textStyle}>
+										Julien
+									</Text>
+								</TouchableOpacity>
+							</View>
+						</Text>
+					</ScrollView>
+
+				</View>
 			</View>
-				</Text>
-        </ScrollView>
-        
-			</View>
-    </View>
-    </SafeAreaView>
+		</SafeAreaView>
 	);
 }
 
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
 		marginTop: -20,
 	},
 	buttonStyle: {
-		marginTop: 0,
+		marginTop: 10,
 		padding: 10,
 		width: '100%',
 		alignItems: 'center',
@@ -122,30 +122,32 @@ const styles = StyleSheet.create({
 	header: {
 		fontSize: 40,
 		color: '#404040',
-    textAlign: "center",
+		textAlign: "center",
 		fontWeight: "bold"
 	},
 	image: {
 		width: 350,
 		height: 250,
 		marginBottom: 50,
-    borderRadius: 10
+		borderRadius: 10,
+		marginTop: 20,
 	},
 	modalContent: {
 		alignItems: "center",
 		justifyContent: "center",
 		backgroundColor: "white",
-		padding:4,
+		padding: 4,
 		borderRadius: 6,
 		textAlign: "center",
 		borderColor: "c4c3f7",
 		borderWidth: 2,
-		height: 150,
+		height: 175,
 		width: '100%',
 		fontSize: 18,
+		marginTop:-10
 	},
 	textStyle: {
 		color: 'black',
-		fontSize:20,
+		fontSize: 20,
 	}
 });

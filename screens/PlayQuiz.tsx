@@ -21,7 +21,7 @@ export default function PlayQuiz(route: any) {
 			<Card containerStyle={{borderRadius: 15}}>
 				<View style={styles.form}>
 					<View>
-						<Text style={styles.answer} >What is Aerin's favourite food </Text>
+						<Text style={styles.answer} >What is Josh's favourite food </Text>
 						<TextInput
 							style={{
 								height: 40,
@@ -37,7 +37,7 @@ export default function PlayQuiz(route: any) {
 					</View>
 
 					<View>
-						<Text style={styles.answer} >What is Aerin's favourite music? </Text>
+						<Text style={styles.answer} >What is Josh's favourite music? </Text>
 						<TextInput
 							style={{
 								height: 40,
@@ -54,7 +54,7 @@ export default function PlayQuiz(route: any) {
 					</View>
 
 					<View>
-						<Text style={styles.answer} >How often does Aerin has Bakuteh? </Text>
+						<Text style={styles.answer} >How often does Josh has Bakuteh? </Text>
 						<TextInput
 							style={{
 								height: 40,
@@ -70,7 +70,7 @@ export default function PlayQuiz(route: any) {
 						/>
 					</View>
 					<View >
-						<Text style={styles.answer} >What is Aerin's personality type? </Text>
+						<Text style={styles.answer} >What is Josh's personality type? </Text>
 						<TextInput
 							style={{
 								height: 40,
@@ -86,7 +86,7 @@ export default function PlayQuiz(route: any) {
 						/>
 					</View>
 					<View >
-						<Text style={styles.answer} >Which department is Aerin working in? </Text>
+						<Text style={styles.answer} >Which department is Josh working in? </Text>
 						<TextInput
 							style={{
 								height: 40,
