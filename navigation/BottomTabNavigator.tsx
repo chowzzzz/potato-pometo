@@ -18,6 +18,7 @@ import Quiz from "../screens/Quiz";
 import PlayQuiz from "../screens/PlayQuiz";
 import FinalResult from "../screens/FinalResult";
 import ProfileScreen from "../screens/ProfileScreen";
+import MyPostsScreen from "../screens/MyPostsScreen";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -142,6 +143,10 @@ function TabThreeNavigator() {
 			<TabThreeStack.Screen
 				name="ProfileScreen"
 				component={ProfileScreen}
+			/>
+			<TabThreeStack.Screen
+				name="MyPostsScreen"
+				component={MyPostsScreen}
 			/>
 		</TabThreeStack.Navigator>
 	);

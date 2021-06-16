@@ -2,6 +2,8 @@ import React, { useState, useCallback, useRef } from "react";
 import { StyleSheet, Image, Text, View, TouchableOpacity } from "react-native";
 import { Card } from "react-native-elements";
 import { firebase } from "../firebase/config";
+import { Divider } from "react-native-elements";
+import Icon from "react-native-vector-icons/FontAwesome5";
 // import Carousel from "react-native-snap-carousel";
 
 import FormButton from "../components/FormButton";
@@ -102,12 +104,7 @@ export default function TabThreeScreen({ navigation }) {
 
 	return (
 		<View style={styles.container}>
-			<View
-				style={[
-					styles.card,
-					{ flex: 1, border: "solid lightgrey 1px", borderRadius: 10 }
-				]}
-			>
+			<View style={[styles.card, { flex: 1.2 }]}>
 				<View style={styles.profileCard}>
 					<View style={{ flex: 1 }}>
 						<Image
@@ -119,7 +116,8 @@ export default function TabThreeScreen({ navigation }) {
 						style={{
 							flex: 1,
 							justifyContent: "center",
-							marginLeft: 15
+							textAlign: "center",
+							marginBottom: 10
 						}}
 					>
 						<Text style={styles.title}>{name}</Text>
@@ -132,26 +130,43 @@ export default function TabThreeScreen({ navigation }) {
 				/>
 			</View>
 
-			<View style={[styles.postsCard, styles.card]}>
-				<Text style={styles.title}>My Posts</Text>
+			<TouchableOpacity
+				style={[styles.postsCard, styles.card]}
+				onPress={() => {
+					navigation.navigate("MyPostsScreen");
+				}}
+			>
 				<View
 					style={{
-						flex: 1,
 						flexDirection: "row",
-						justifyContent: "center"
+						alignContent: "center",
+						marginTop: 15
 					}}
 				>
-					{/* <Carousel
-						layout="default"
-						ref={ref}
-						data={carouselItems}
-						sliderWidth={300}
-						itemWidth={300}
-						renderItem={renderItem}
-						onSnapToItem={(index) => setActiveIndex(index)}
-					/> */}
+					<Text style={styles.title}>My Posts</Text>
+					{/* <Icon
+						style={{ alignSelf: "center" }}
+						name="chevron-right"
+						size={25}
+						color="#666"
+					></Icon> */}
 				</View>
-			</View>
+				<Divider orientation="horizontal" width={2} style={styles.hr} />
+
+				<View style={[styles.postInfo, { width: "80%" }]}>
+					<View style={{ alignItems: "center" }}>
+						<Text style={styles.bigNo}>12</Text>
+						<Text style={styles.smallWords}>Posts</Text>
+					</View>
+					<View style={{ alignItems: "center" }}>
+						<Text style={styles.bigNo}>60</Text>
+						<Image
+							source={require("../assets/icons/hearted.png")}
+							style={styles.heart}
+						/>
+					</View>
+				</View>
+			</TouchableOpacity>
 			<View style={styles.btnCard}>
 				<FormButton
 					buttonTitle="Settings"
@@ -174,31 +189,33 @@ const styles = StyleSheet.create({
 		color: "#000"
 	},
 	title: {
-		fontSize: 20,
+		fontSize: 25,
 		fontWeight: "bold"
 	},
 	subtitle: {
 		fontSize: 15
 	},
 	card: {
-		marginTop: 20,
+		marginTop: 40,
 		paddingHorizontal: 10,
 		width: "85%",
 		justifyContent: "center",
-		alignItems: "center"
+		alignItems: "center",
+		border: "solid lightgrey 0.5px",
+		borderRadius: 10
 	},
 	profileCard: {
-		justifyContent: "space-between",
-		flexDirection: "row"
+		justifyContent: "center",
+		alignItems: "center"
 	},
 	myImage: {
-		height: 60,
-		width: 60,
+		height: 80,
+		width: 80,
 		margin: 5,
 		alignSelf: "flex-end"
 	},
 	postsCard: {
-		flex: 2
+		flex: 1
 	},
 	btnCard: {
 		flex: 1,
@@ -222,10 +239,22 @@ const styles = StyleSheet.create({
 		marginBottom: 10
 	},
 	heart: {
-		height: 14.7,
-		width: 17,
-		marginVertical: 8,
-		marginLeft: 0,
-		marginRight: 15
+		height: 14,
+		width: 14,
+		alignSelf: "center"
+	},
+	postInfo: {
+		flex: 1,
+		flexDirection: "row",
+		justifyContent: "space-between",
+		textAlign: "center"
+	},
+	bigNo: {
+		fontSize: 80,
+		fontWeight: "bold"
+	},
+	hr: {
+		marginTop: 10,
+		width: "90%"
 	}
 });
