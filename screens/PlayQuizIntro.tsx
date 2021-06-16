@@ -1,17 +1,12 @@
 import React, { Component } from "react";
-import { SafeAreaView, View, StyleSheet, Text, Image, FlatList, TouchableOpacity, TextInput } from "react-native";
-import { Card, ListItem, Button, Icon } from 'react-native-elements'
+import { SafeAreaView, View, StyleSheet, Text, Picker, FlatList, TouchableOpacity, TextInput } from "react-native";
+import { Card, ListItem, Button, Icon, CheckBox } from 'react-native-elements'
 import { useNavigation } from '@react-navigation/native';
 import Search from "../components/Search";
 
 export default function PlayQuizIntro() {
-	const [ans1, setTextInputValueans1] = React.useState('');
-	const [ans2, setTextInputValueans2] = React.useState('');
-	const [ans3, setTextInputValueans3] = React.useState('');
-	const [ans4, setTextInputValueans4] = React.useState('');
+	const [selectedValue, setSelectedValue] = React.useState("Bob");
 	const navigation = useNavigation();
-
-
 
 	return (
 		<View>
@@ -28,13 +23,18 @@ export default function PlayQuizIntro() {
 				</Text>
 
 				<Text style={styles.text}>
-					Select the person you'd like to find out more about
+					Select the person you'd like to find out more about:
 				</Text>
-				
+				<Picker
+					style={styles.picker}
+					selectedValue={selectedValue}
+					onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+				>
+					<Picker.Item label="Bob" value="Bob" />
+					<Picker.Item label="Josh" value="Josh" />
+				</Picker>
 			</View>
-
-
-			<Button title="I'm ready!" onPress={() => navigation.navigate('FinalResult')} />
+			<Button style={styles.buttonStyle} title="I'm ready!" onPress={() => navigation.navigate('PlayQuiz',{chosenColleague: 90})} />
 		</View>
 
 	);
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
 	},
 	text: {
 		padding: 10,
-		margin:10,
+		marginTop: 10,
 	},
 	buttonStyle: {
 		width: '100%',
@@ -99,9 +99,15 @@ const styles = StyleSheet.create({
 		alignSelf: 'stretch',
 		justifyContent: 'center'
 	},
-	answer: {
-		marginTop: 30,
-		fontFamily: 'Futura',
+	picker:{
+		height: '100%',
+		width: 75,
+		textAlign: "center",
+		alignItems: 'center',
+		alignSelf: 'stretch',
+		justifyContent: 'center',
+		margin:20,
+		marginTop:10
 
 	},
 	header: {

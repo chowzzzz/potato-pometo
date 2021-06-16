@@ -112,7 +112,7 @@ function TabTwoNavigator() {
       <TabTwoStack.Screen
         name="PlayQuizIntro"
         component={PlayQuizIntro}
-        options={{ headerTitle: 'PlayQuizIntro' }}
+        options={{ headerTitle: 'Introduction' }}
       />      
       <TabTwoStack.Screen
         name="FinalResult"

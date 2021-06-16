@@ -5,14 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import Search from "../components/Search";
 
 export default function FinalResult() {
-	const [ans1, setTextInputValueans1] = React.useState('');
-	const [ans2, setTextInputValueans2] = React.useState('');
-	const [ans3, setTextInputValueans3] = React.useState('');
-	const [ans4, setTextInputValueans4] = React.useState('');
 	const navigation = useNavigation();
-
-
-
 	return (
 		//if(score >= 10){}
 		<View>
@@ -25,12 +18,12 @@ export default function FinalResult() {
 				source={require("../assets/images/lime-409.png")}
 				/>
 				<Text style={styles.modalContent}
-				> Congratulations You're a Aerin's best friend you got 10/10
+				> Congratulations You're Aerin's best friend you got 10/10
 				</Text>
 			</View>
 			<View style={styles.container}>
 				<TouchableOpacity style={styles.buttonStyle}
-					onPress={() => navigation.navigate('BabyGame')}
+					onPress={() => navigation.navigate('Quiz')}
 				// type="solid"
 				>
 				<Text style={styles.textStyle}>
@@ -69,7 +62,7 @@ const styles = StyleSheet.create({
 		marginTop: -20,
 	},
 	buttonStyle: {
-		marginTop: 0,
+		marginTop: 120,
 		padding: 10,
 		width: '100%',
 		alignItems: 'center',
@@ -77,7 +70,6 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		backgroundColor: '#c4c3f7',
 		height: 35,
-		marginBottom: 0,
 		borderRadius: 10,
 	},
 	answer: {

@@ -4,13 +4,13 @@ import { Card, ListItem, Button, Icon } from 'react-native-elements'
 import { useNavigation } from '@react-navigation/native';
 import Search from "../components/Search";
 
-export default function PlayQuiz() {
+export default function PlayQuiz(route: any) {
 	const [ans1, setTextInputValueans1] = React.useState('');
 	const [ans2, setTextInputValueans2] = React.useState('');
 	const [ans3, setTextInputValueans3] = React.useState('');
 	const [ans4, setTextInputValueans4] = React.useState('');
 	const navigation = useNavigation();
-
+	const chosenColleague = route.params;
 
 
 	return (
@@ -20,7 +20,7 @@ export default function PlayQuiz() {
 			</Text>
 			<View style={styles.form}>
 				<View>
-					<Text  style={styles.answer} >What is your favourite food </Text>
+					<Text  style={styles.answer} >What is {JSON.stringify(chosenColleague)} favourite food </Text>
 					<TextInput
 						style={{
 							height: 40,
