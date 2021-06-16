@@ -14,6 +14,7 @@ import {
 import { Card, ListItem, Button, Icon } from "react-native-elements";
 import RNPoll, { IChoice } from "react-native-poll";
 import Search from "../components/Search";
+import PersonalityModalScreen from './PersonalityModalScreen';
 
 const DATA = [
   {
@@ -142,6 +143,7 @@ export default class TabOneScreen extends React.Component {
     this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangeText = this.onChangeText.bind(this);
     this.setPollModal = this.setPollModal.bind(this);
+    this.setModal = this.setModal.bind(this);
   }
 
   componentDidMount() {
@@ -285,7 +287,10 @@ export default class TabOneScreen extends React.Component {
                   style={styles.icon}
                 />
               </TouchableOpacity>
-              <TouchableOpacity style={styles.iconBox}>
+              <TouchableOpacity 
+                style={styles.iconBox}
+                onPress={() => this.setModal(4)}
+              >
                 <Image
                   source={require("../assets/images/controller.png")}
                   style={styles.icon}
@@ -516,6 +521,14 @@ export default class TabOneScreen extends React.Component {
               </View>
             </View>
           )}
+        </Modal>
+        <Modal
+          avoidKeyboard={true}
+          transparent={true}
+          visible={this.state.modal === 4}
+          onRequestClose={() => this.setModal(0)}
+        >
+          <PersonalityModalScreen setModal={this.setModal}/>
         </Modal>
         <Modal
           avoidKeyboard={true}
