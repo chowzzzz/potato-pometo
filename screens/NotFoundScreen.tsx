@@ -36,6 +36,7 @@ export default function NotFoundScreen({
 		<View style={styles.container}>
 			<Text style={styles.title}>This screen doesn't exist.</Text>
 			<TouchableOpacity
+
 				onPress={() =>
 					navigation.replace(user ? "Root" : "OnboardingScreen")
 				}
@@ -66,5 +67,18 @@ const styles = StyleSheet.create({
 	linkText: {
 		fontSize: 14,
 		color: "#2e78b7"
-	}
+	},
+	modalContent: {
+		alignItems: "center",
+		justifyContent: "flex-start",
+		backgroundColor: "white",
+		paddingVertical: 18,
+		paddingHorizontal: 24,
+		borderRadius: 6,
+		textAlign: "center",
+		borderColor: "#EE82EE",
+		borderWidth: 2,
+		height: 480,
+		width: 310,
+	},
 });
