@@ -19,12 +19,12 @@ const styles = StyleSheet.create({
 		borderRadius: 10,
 		padding: 10,
 		margin: 5,
-		width: "90%",
-		height: windowHeight / 15,
+		width: "75%",
+		height: 38,
 		alignItems: "center"
 	},
 	btnText: {
 		color: "#fff8dc",
-		fontSize: 20
+		fontSize: 15
 	}
 });
