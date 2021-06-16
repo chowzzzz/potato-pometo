@@ -14,9 +14,16 @@ import {
 import { Card, ListItem, Button, Icon } from "react-native-elements";
 import RNPoll, { IChoice } from "react-native-poll";
 import Search from "../components/Search";
-import PersonalityModalScreen from './PersonalityModalScreen';
+import PersonalityModalScreen from "./PersonalityModalScreen";
+import AngelScreen from "./AngelScreen";
 
 const DATA = [
+  {
+    id: "3ac68afc-c705-40d3-a4f8-fbd918b97f63",
+    title: "If I had nine hours to chop down a tree, I’d spend the first six sharpening my axe. — Abraham Lincoln 💭",
+    username: "QuoteBot",
+    caption: "",
+  },
   {
     id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
     title: "My Yummy Lunch!",
@@ -25,7 +32,29 @@ const DATA = [
       "https://www.topasiatour.com/pic/Singapore/guide/bak-kut-teh-2.jpg",
     username: "aerrng",
     caption:
-      "Delivered from ichigo bakuteh bowl from @tan.jun.wee, this was outstanding! The ground pork on hand, shredded carrots, coleslaw cabbage mix; substituted Maggi seasoning and Tabasco with good balance of soy sauce and Sriracha. Served it with red quinoa which was tasty mixed together. There were no left overs ;-)",
+      "Delivered from haijiabin bakuteh bowl from @tan.jun.wee, this was outstanding! The ground pork on hand, shredded carrots, coleslaw cabbage mix was amazing. What a beautiful meal! There were no left overs ;-) Thanks Jun Wee for being a great Angel! ",
+    url: "https://hanjiabkt.com/wordpress/",
+  },
+  {
+    id: "3ac68afc-c705-40d3-a4f8-fbd918a97f63",
+    title: "A new poll is created by @dokey! 📊 Check it out here!",
+    username: "PollMaster",
+    caption: "",
+  },
+  {
+    id: "3ac68afc-c605-4cv3-a4f8-fbd91aa97f65",
+    title: "🎉 Welcome Thom Chua to the team! 🎉",
+    imageUrl:
+      "https://www.robolink.com/wp-content/uploads/2019/01/han_circle.png",
+    username: "thom.chua",
+    caption: "",
+  },
+  {
+    id: "3ac68afc-c705-48d3-a4f8-fbd918a97f63",
+    title:
+      "🏆 Congrats! @lynnys won 3 points in @GameQuiz & is #4 on leaderboard! 🏆",
+    username: "GameMaster",
+    caption: "",
   },
   {
     id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
@@ -37,14 +66,10 @@ const DATA = [
       "Saw this alien like thing flew past my window? Anyone got any idea?? Are we getting eaten by aliens?!?!",
   },
   {
-    id: "3ac68afc-c605-4cv3-a4f8-fbd91aa97f65",
-    title: "Welcome Thomas Chua to the team! 🎉",
-    likes: 5,
-    imageUrl:
-      "https://www.robolink.com/wp-content/uploads/2019/01/han_circle.png",
-    username: "thom.chua",
-    caption:
-      "Hi everyone, I am an incoming intern here at SkyzaHeatlhcare. I like Kpop music, and have interests in baking and netflix! Checkout my 2 truths 1 lie and guess the lie!",
+    id: "3ac68arsdcc-c605-48d3-a4f8-fbd91aa97f63",
+    title: "📢📢📢TECH TEAM GAME NIGHT 18 JUNE 7PM!📢📢📢 ",
+    username: "GameMaster",
+    caption: "",
   },
   {
     id: "58694a0f-3da1-471f-bd96-145571e29d72",
@@ -87,7 +112,7 @@ const choices: Array<IChoice> = [
 ];
 
 // TODO: pass in items param to render this for all posts
-const Post = ({ title, imageUrl, username, caption, likes }) => (
+const Post = ({ title, imageUrl, username, caption, likes, url }) => (
   <Card containerStyle={styles.cardBox}>
     <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
       <TouchableOpacity>
@@ -104,34 +129,37 @@ const Post = ({ title, imageUrl, username, caption, likes }) => (
 
     <Card.Divider />
 
-    <Image source={imageUrl} style={styles.image} />
+    {imageUrl && <Image source={imageUrl} style={styles.image} />}
 
-    <View style={{ flexDirection: "row" }}>
-      <TouchableOpacity>
-        {/* <Image
-          source={require("../assets/icons/heart.png")}
-          style={styles.heart}
-        /> */}
+    {imageUrl && (
+      <View style={{ flexDirection: "row" }}>
+        <TouchableOpacity>
         <Hearts likes={likes}/>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Image
-          source={require("../assets/icons/forward.png")}
-          style={styles.heart}
-        />
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Image
-          source={require("../assets/icons/iconaeroplane.png")}
-          style={styles.heart}
-        />
-      </TouchableOpacity>
-    </View>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Image
+            source={require("../assets/icons/forward.png")}
+            style={styles.heart}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Image
+            source={require("../assets/icons/iconaeroplane.png")}
+            style={styles.heart}
+          />
+        </TouchableOpacity>
+      </View>
+    )}
 
     <Text style={{ fontWeight: "bold", fontSize: 16, marginVertical: 5 }}>
       {title}
     </Text>
     <Text>{caption}</Text>
+    <TouchableOpacity
+      style={{ textDecorationLine: "underline", marginVertical: 5 }}
+    >
+      {url}
+    </TouchableOpacity>
   </Card>
 );
 
@@ -226,6 +254,7 @@ export default class TabOneScreen extends React.Component {
         imageUrl={item.imageUrl}
         username={item.username}
         caption={item.caption}
+        url={item.url}
         likes={item.likes}
       />
     );
@@ -235,7 +264,7 @@ export default class TabOneScreen extends React.Component {
         totalVotes={30}
         choices={choices}
         onChoicePress={(selectedChoice: IChoice) =>
-        console.log("SelectedChoice: ", selectedChoice)
+          console.log("SelectedChoice: ", selectedChoice)
         }
       />
     );
@@ -286,17 +315,26 @@ export default class TabOneScreen extends React.Component {
                 />
               </TouchableOpacity>
             </View>
-            <Text
-              style={{
-                fontSize: 15,
-                fontWeight: "bold",
-                marginLeft: 20,
-                marginTop: 20,
-                marginBottom: 10,
-              }}
-            >
-              Categories
-            </Text>
+            <View style ={{flexDirection: 'row', justifyContent: 'space-between' ,alignItems:'center'}}>
+              <Text
+                style={{
+                  fontSize: 15,
+                  fontWeight: "bold",
+                  marginLeft: 20,
+                  marginTop: 20,
+                  marginBottom: 10,
+                }}
+              >
+                Categories
+              </Text>
+              <TouchableOpacity>
+                <Image
+                  source={require("../assets/icons/premium.png")}
+                  style={styles.threedot2}
+                />
+              </TouchableOpacity>
+            </View>
+
             <View style={styles.actionRow}>
               <TouchableOpacity
                 style={styles.iconBox}
@@ -307,22 +345,25 @@ export default class TabOneScreen extends React.Component {
                   style={styles.icon}
                 />
               </TouchableOpacity>
-              <TouchableOpacity style={styles.iconBox}>
+              <TouchableOpacity
+                style={styles.iconBox}
+                onPress={() => this.setModal(5)}
+              >
                 <Image
-                  source={require("../assets/images/burger.png")}
-                  style={styles.icon}
+                  source={require("../assets/images/angel.png")}
+                  style={{ width: 45, height: 40 }}
                 />
               </TouchableOpacity>
-              <TouchableOpacity 
+              <TouchableOpacity
                 style={styles.iconBox}
                 onPress={() => this.setModal(4)}
               >
                 <Image
-                  source={require("../assets/images/controller.png")}
-                  style={styles.icon}
+                  source={require("../assets/icons/hearticon.png")}
+                  style={{ width: 40, height: 38 }}
                 />
               </TouchableOpacity>
-              <TouchableOpacity 
+              <TouchableOpacity
                 style={styles.iconBox}
                 onPress={() => this.setPollModal(1)}
               >
@@ -377,19 +418,18 @@ export default class TabOneScreen extends React.Component {
                     style={{
                       flexDirection: "row",
                       alignItems: "center",
-                      justifyContent: "flex-start",
+                      justifyContent: "center",
                       marginVertical: 10,
                       width: "100%",
                     }}
                   >
                     <Image
-                      source={require("../assets/images/camerapic.png")}
+                      source={require("../assets/icons/camera2.png")}
                       style={styles.camera}
                     />
                     <Text
                       style={{
                         width: 80,
-                        marginTop: 10,
                         textAlign: "left",
                         color: "#808080",
                       }}
@@ -413,12 +453,46 @@ export default class TabOneScreen extends React.Component {
                     multiline={true}
                   />
 
-                  <View style={{ marginTop: 20 }}>
+                  <View style={{ marginTop: 10, marginBottom: 20 }}>
                     <Button
+                      titleStyle={{ fontSize: 15 }}
                       title="Submit"
-                      buttonStyle={{ backgroundColor: "#8741bb" }}
+                      buttonStyle={{
+                        backgroundColor: "#8741bb",
+                        paddingVertical: 8,
+                      }}
                       onPress={() => this.setModal(0)}
                     />
+                  </View>
+
+                  <Text style={{ marginTop: 15 }}>
+                    Sync to your other social medias too!
+                  </Text>
+                  <View style={{ flexDirection: "row" }}>
+                    <TouchableOpacity>
+                      <Image
+                        source={require("../assets/icons/instagram.png")}
+                        style={styles.smIcon}
+                      />
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                      <Image
+                        source={require("../assets/icons/facebook.png")}
+                        style={styles.smIcon}
+                      />
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                      <Image
+                        source={require("../assets/icons/twitter.png")}
+                        style={styles.smIcon}
+                      />
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                      <Image
+                        source={require("../assets/icons/youtube.png")}
+                        style={styles.smIcon}
+                      />
+                    </TouchableOpacity>
                   </View>
                 </View>
               </View>
@@ -554,7 +628,15 @@ export default class TabOneScreen extends React.Component {
           visible={this.state.modal === 4}
           onRequestClose={() => this.setModal(0)}
         >
-          <PersonalityModalScreen setModal={this.setModal}/>
+          <PersonalityModalScreen setModal={this.setModal} />
+        </Modal>
+        <Modal
+          avoidKeyboard={true}
+          transparent={true}
+          visible={this.state.modal === 5}
+          onRequestClose={() => this.setModal(0)}
+        >
+          <AngelScreen setModal={this.setModal} />
         </Modal>
         <Modal
           avoidKeyboard={true}
@@ -572,17 +654,21 @@ export default class TabOneScreen extends React.Component {
                 style={styles.pollCross}
               />
             </TouchableOpacity>
-            <Text style={{fontSize: 25, fontWeight: "bold", marginTop: -15}}>Poll Of The Week</Text>
-            <Text style={{fontSize: 12}}>by @wheee.geee</Text>
-            <Text style={{fontSize: 18, fontWeight: "bold", marginTop: 5}}>What is your favourite sports brand?</Text>
+            <Text style={{ fontSize: 25, fontWeight: "bold", marginTop: -15 }}>
+              Poll Of The Week
+            </Text>
+            <Text style={{ fontSize: 12 }}>by @wheee.geee</Text>
+            <Text style={{ fontSize: 18, fontWeight: "bold", marginTop: 5 }}>
+              What is your favourite sports brand?
+            </Text>
             <RNPoll
               totalVotes={30}
               choices={choices}
               onChoicePress={(selectedChoice: IChoice) =>
-              console.log("SelectedChoice: ", selectedChoice)
+                console.log("SelectedChoice: ", selectedChoice)
               }
-              style={{width: '100%', paddingHorizontal: 20}}
-              pollContainerStyle={{width: '100%'}}
+              style={{ width: "100%", paddingHorizontal: 20 }}
+              pollContainerStyle={{ width: "100%" }}
             />
             <Image
               source={require("../assets/illustrations/ginger-cat-729.png")}
@@ -682,6 +768,12 @@ const styles = StyleSheet.create({
     height: 25,
     width: 40,
   },
+  threedot2: {
+    height: 23,
+    width: 23,
+    marginBottom: -12,
+    marginRight: 30
+  },
   image: {
     height: 300,
     width: 300,
@@ -763,7 +855,7 @@ const styles = StyleSheet.create({
     // outlineWidth: 0,
     width: "100%",
     paddingHorizontal: 10,
-    height: 200,
+    height: 150,
     textAlignVertical: "top",
     paddingTop: 15,
   },
@@ -785,8 +877,8 @@ const styles = StyleSheet.create({
   },
 
   camera: {
-    height: 70,
-    width: 40,
+    height: 55,
+    width: 55,
     marginRight: 30,
   },
 
@@ -802,8 +894,8 @@ const styles = StyleSheet.create({
     // justifyContent: "center",
     flex: 1,
     backgroundColor: "#FFF",
-    width: '100%',
-    marginTop: 40
+    width: "100%",
+    marginTop: 40,
   },
   pollCross: {
     height: 25,
@@ -829,5 +921,10 @@ const styles = StyleSheet.create({
     width: 400,
     margin: 3,
     marginTop: -8,
-  }
+  },
+  smIcon: {
+    height: 30,
+    width: 30,
+    margin: 10,
+  },
 });
