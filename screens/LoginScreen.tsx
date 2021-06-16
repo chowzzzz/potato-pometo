@@ -27,7 +27,7 @@ const LoginScreen = ({ navigation }) => {
 							return;
 						}
 						const user = snapshot.val();
-						navigation.navigate("Root", { user });
+						navigation.navigate("Root");
 					})
 					.catch((error) => {
 						alert(error);
