@@ -32,6 +32,7 @@ const OnboardingScreen = ({ navigation }) => {
 			</Text>
 			<FormButton
 				buttonTitle="Login"
+				bgColor="#6b5b95"
 				onPress={() => navigation.navigate("LoginScreen")}
 			></FormButton>
 
@@ -57,6 +58,7 @@ const OnboardingScreen = ({ navigation }) => {
 
 			<FormButton
 				buttonTitle="Sign up"
+				bgColor="#6b5b95"
 				onPress={() => setAlertVisible(true)}
 			></FormButton>
 		</View>
