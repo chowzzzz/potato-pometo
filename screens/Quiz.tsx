@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { SafeAreaView, StyleSheet, Image, FlatList, TouchableOpacity } from "react-native"
+import { SafeAreaView, StyleSheet, Image, FlatList, TouchableOpacity,Text,View } from "react-native"
 import { Card, ListItem, Button } from 'react-native-elements'
 import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
 import Search from "../components/Search";
 import { useNavigation } from '@react-navigation/native';
 
@@ -27,7 +26,7 @@ export default function Quiz() {
 				</Card.Image>
 				<Card.Divider />
 				<View>
-					<Card.Image style={styles.image} source={require('../assets/images/ginger-cat-736.png')}>
+					<Card.Image style={styles.image} source={require('../assets/images/ginger-cat-729.png')}>
 						<TouchableOpacity style={styles.buttonStyle}
 							onPress={() => navigation.navigate('CreateQuiz')}
 						// type="solid"

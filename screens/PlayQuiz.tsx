@@ -93,31 +93,7 @@ export default function PlayQuiz(route: any) {
 }
 
 
-// export default class PlayQuiz extends Component {
-// 	constructor(props: any) {
-// 	  super(props);
-// 	  this.state = {
-// 		title: props.title || '',
-// 		body: props.body || '',
-// 	  };
-// 	}
-// 	render(){
-// 		return(
-// 			<View>
-//  			<TextInput
-// 				style={{
-// 					height: 40,
-// 					borderColor: 'gray',
-// 					borderWidth: 1,
-// 								}}
-// 				onChangeText={text => this.setState({body: text})}
-// 				value={this.props.body}
-// 				defaultValue="testing"
-// 			/>				
-// 			</View>
-// 		);
-// 	}
-//   }
+
 
 
 
@@ -144,11 +120,15 @@ const styles = StyleSheet.create({
 		marginTop: -20,
 	},
 	buttonStyle: {
+		marginTop: 120,
+		padding: 10,
 		width: '100%',
-		color: 'red',
 		alignItems: 'center',
 		alignSelf: 'stretch',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		backgroundColor: '#c4c3f7',
+		height: 35,
+		borderRadius: 10,
 	},
 	answer: {
 		marginTop: 30,

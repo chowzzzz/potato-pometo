@@ -30,7 +30,7 @@ export default function PlayQuizIntro() {
 					selectedValue={selectedValue}
 					onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
 				>
-					<Picker.Item label="Bob" value="Bob" />
+					<Picker.Item label="Aerin" value="Aerin" />
 					<Picker.Item label="Josh" value="Josh" />
 				</Picker>
 			</View>
