@@ -15,36 +15,36 @@ const displayedDATA = [
     id: "abcd-0001",
     title: "Some orange juice will be good in this hot weather!",
     username: "Wishlist #1",
-      },
+  },
   {
     id: "abcd-0002",
     title: "Craving for chicken rice today ><><",
-      username: "Wishlist #2",
-    },
+    username: "Wishlist #2",
+  },
   {
     id: "abcd-0003",
     title: "Love some laksaaaaa! Omnomnomz",
-     username: "Wishlist #3",
-    },
+    username: "Wishlist #3",
+  },
   {
     id: "abcd-0004",
     title: "Happy dumpling day! I miss having ba zhangs",
     username: "Wishlist #4",
-   },
+  },
   {
     id: "abcd-0005",
     title: "Oooh green apple milk tea with 80% sugar, no pearls ((: Thanks angel",
     username: "Wishlist #5",
-     },
+  },
   {
     id: "abcd-0006",
     title: "I love classical chicken pizza!!!!",
     username: "Wishlist #6",
-   },
+  },
 ];
 
 export default function AngelScreen({ setModal }) {
-  const Post = ({ title, username  }) => (
+  const Post = ({ title, username }) => (
     <Card containerStyle={styles.cardBox}>
       <View
         style={{
