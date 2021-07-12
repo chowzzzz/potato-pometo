@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
 		padding:8,
 		borderRadius: 6,
 		textAlign: "center",
-		borderColor: "c4c3f7",
+		borderColor: "#c4c3f7",
 		borderWidth: 2,
 		height: 95,
 		width: '90%',

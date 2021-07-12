@@ -48,15 +48,12 @@ function RootNavigator() {
 					.get()
 					.then((snapshot) => {
 						const data = snapshot.val();
-						setLoading(false);
 						setUser(data);
 					})
 					.catch((error) => {
-						setLoading(false);
 					});
-			} else {
-				setLoading(false);
-			}
+			} 
+			setLoading(false);
 		});
 	}, []);
 
