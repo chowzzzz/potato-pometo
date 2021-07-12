@@ -30,6 +30,8 @@
         "react-native/no-single-element-style-arrays": 1,
         "require-jsdoc" : 0,
         "object-curly-spacing": 0,
-        "no-tabs": 0
+        "no-tabs": 0,
+        "quotes": "off",
+        "@typescript-eslint/quotes": ["error", "double"]
     }
 }
