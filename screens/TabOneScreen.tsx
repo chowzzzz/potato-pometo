@@ -13,6 +13,7 @@ import {
 } from "react-native";
 import { Card, ListItem, Button, Icon } from "react-native-elements";
 import RNPoll, { IChoice } from "react-native-poll";
+import _ from 'lodash';
 import Search from "../components/Search";
 import PersonalityModalScreen from "./PersonalityModalScreen";
 import AngelScreen from "./AngelScreen";
@@ -159,7 +160,7 @@ const Post = ({ title, imageUrl, username, caption, likes, url }) => (
 		<TouchableOpacity
 			style={{ textDecorationLine: "underline", marginVertical: 5 }}
 		>
-			{url}
+			<Text>{url}</Text>
 		</TouchableOpacity>
 	</Card>
 );
@@ -277,7 +278,6 @@ export default class TabOneScreen extends React.Component {
 						<Text
 							style={{
 								fontSize: 15,
-								fontFamily: "sans-serif",
 								marginBottom: 5
 							}}
 						>
@@ -286,7 +286,6 @@ export default class TabOneScreen extends React.Component {
 						<Text
 							style={{
 								fontSize: 25,
-								fontFamily: "sans-serif",
 								fontWeight: "bold"
 							}}
 						>
