@@ -2,7 +2,6 @@ import React, { useState, useCallback } from "react";
 import { StyleSheet, Image, Text, View, TouchableOpacity } from "react-native";
 import { firebase } from "../firebase/config";
 import { Divider } from "react-native-elements";
-import Icon from "react-native-vector-icons/FontAwesome5";
 // import Carousel from "react-native-snap-carousel";
 
 import FormButton from "../components/FormButton";
